@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IPTV Afrika - 22,000+ chaines et 120,000+ films en HD/4K. L'Afrique regarde autrement.">
+    <title>IPTV Afrika — L'Afrique regarde autrement</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --bg-elevated: #0C0C0C;
+            --surface: rgba(255,255,255,0.04);
+            --text-primary: #FAFAFA;
+            --text-muted: #737373;
+            --accent: #E67E22;
+            --accent-glow: rgba(230,126,34,0.15);
+            --border: rgba(255,255,255,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Scroll chevron bounce */
+        @keyframes scrollBounce {
+            0%, 100% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(10px); opacity: 1; }
+        }
+        .scroll-indicator { animation: scrollBounce 2s ease-in-out infinite; }
+
+        /* FAQ toggle */
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+        .faq-item.open .faq-chevron {
+            transform: rotate(180deg);
+        }
+        .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+
+        /* Accent line */
+        .accent-line {
+            width: 48px;
+            height: 2px;
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(5,5,5,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center h-16">
+            <a href="#" class="cursor-pointer" style="font-weight: 700; font-size: 15px; letter-spacing: 0.15em; color: var(--text-primary);">IPTV AFRIKA</a>
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#channels" class="cursor-pointer transition-colors duration-200" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='#737373'">Chaines</a>
+                <a href="#pricing" class="cursor-pointer transition-colors duration-200" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='#737373'">Tarifs</a>
+                <a href="#contact" class="cursor-pointer transition-colors duration-200" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='#737373'">Contact</a>
+            </div>
+            <a href="#pricing" class="cursor-pointer px-6 py-2.5 transition-all duration-200" style="background: var(--accent); color: #fff; font-weight: 600; font-size: 13px; letter-spacing: 0.02em;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">S'abonner</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO ========== -->
+    <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Video Background -->
+        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline style="filter: brightness(0.7);">
+            <source src="../statics/img/large_2x.mp4" type="video/mp4">
+        </video>
+
+        <!-- Radial Gradient Overlay -->
+        <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(5,5,5,0.2) 0%, rgba(5,5,5,0.85) 70%, rgba(5,5,5,0.98) 100%);"></div>
+
+        <!-- Content -->
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <h1 class="reveal" style="font-weight: 900; font-size: clamp(3rem, 8vw, 7rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary);">
+                L'Afrique regarde<br>autrement
+            </h1>
+            <p class="mt-8 reveal" style="font-weight: 400; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.7; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+                22,000 chaines en direct. 120,000 films a la demande.<br>Qualite 4K. Zero publicite.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12 reveal">
+                <a href="#pricing" class="cursor-pointer px-10 py-4 text-white transition-all duration-200 inline-block text-center" style="background: var(--accent); font-weight: 600; font-size: 15px;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+                    Decouvrir les offres
+                </a>
+                <a href="#channels" class="cursor-pointer px-10 py-4 text-white transition-all duration-200 inline-block text-center" style="border: 1px solid rgba(255,255,255,0.3); font-weight: 500; font-size: 15px; background: transparent;" onmouseover="this.style.borderColor='rgba(255,255,255,0.6)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.background='transparent'">
+                    Explorer les chaines
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+        </div>
+    </section>
+
+    <!-- ========== STATS BAR ========== -->
+    <section class="relative" style="background: var(--bg-elevated);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 reveal">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+                <!-- Stat 1 -->
+                <div class="text-center py-4 md:py-0" style="border-right: 1px solid var(--border);">
+                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">22,000+</div>
+                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Chaines</div>
+                </div>
+                <!-- Stat 2 -->
+                <div class="text-center py-4 md:py-0 md:border-r" style="border-right-color: var(--border); border-right-width: 1px; border-right-style: solid;">
+                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">120,000+</div>
+                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Films & Series</div>
+                </div>
+                <!-- Stat 3 -->
+                <div class="text-center py-4 md:py-0" style="border-right: 1px solid var(--border);">
+                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">4K</div>
+                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Ultra HD</div>
+                </div>
+                <!-- Stat 4 -->
+                <div class="text-center py-4 md:py-0">
+                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">0</div>
+                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Publicite</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FEATURES ========== -->
+    <section id="channels" class="py-32 md:py-48 px-6" style="background: var(--bg-deep);">
+        <div class="max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="mb-20 reveal">
+                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Une experience premium</h2>
+                <div class="accent-line mt-6"></div>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Feature 1: Streaming Ultra-Rapide -->
+                <div class="p-8 transition-all duration-300 reveal cursor-default" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;" onmouseover="this.style.borderColor='rgba(230,126,34,0.3)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
+                    <!-- Zap/Lightning Icon -->
+                    <svg class="mb-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Streaming Ultra-Rapide</h3>
+                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Serveurs optimises en Afrique et Europe. Aucun buffering, aucun temps de chargement. Votre contenu demarre instantanement.</p>
+                </div>
+
+                <!-- Feature 2: Compatibilite Totale -->
+                <div class="p-8 transition-all duration-300 reveal cursor-default" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;" onmouseover="this.style.borderColor='rgba(230,126,34,0.3)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
+                    <!-- Smartphone Icon -->
+                    <svg class="mb-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                    </svg>
+                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Compatibilite Totale</h3>
+                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Smart TV, telephone, tablette, ordinateur, box Android. Une seule souscription, tous vos ecrans.</p>
+                </div>
+
+                <!-- Feature 3: Contenu Mis a Jour -->
+                <div class="p-8 transition-all duration-300 reveal cursor-default" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;" onmouseover="this.style.borderColor='rgba(230,126,34,0.3)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
+                    <!-- Film/Play Icon -->
+                    <svg class="mb-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                        <line x1="7" y1="2" x2="7" y2="22"></line>
+                        <line x1="17" y1="2" x2="17" y2="22"></line>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <line x1="2" y1="7" x2="7" y2="7"></line>
+                        <line x1="2" y1="17" x2="7" y2="17"></line>
+                        <line x1="17" y1="7" x2="22" y2="7"></line>
+                        <line x1="17" y1="17" x2="22" y2="17"></line>
+                    </svg>
+                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Contenu Mis a Jour</h3>
+                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Nouvelles chaines et films ajoutes chaque semaine. Restez a jour avec les dernieres sorties et evenements sportifs en direct.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="py-32 md:py-48 px-6" style="background: var(--bg-elevated);">
+        <div class="max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="mb-20 reveal">
+                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Comment ca fonctionne</h2>
+                <div class="accent-line mt-6"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="grid md:grid-cols-3 gap-12 md:gap-8">
+                <!-- Step 01 -->
+                <div class="reveal">
+                    <div class="flex items-center justify-center w-14 h-14 mb-8" style="border: 1px solid var(--border); border-radius: 50%; font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: 0.05em;">01</div>
+                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Choisissez votre forfait</h3>
+                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Selectionnez l'offre adaptee a vos besoins parmi nos 3 plans.</p>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="reveal">
+                    <div class="flex items-center justify-center w-14 h-14 mb-8" style="border: 1px solid var(--border); border-radius: 50%; font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: 0.05em;">02</div>
+                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Recevez vos acces</h3>
+                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Identifiants envoyes par email et WhatsApp en moins de 5 minutes.</p>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="reveal">
+                    <div class="flex items-center justify-center w-14 h-14 mb-8" style="border: 1px solid var(--border); border-radius: 50%; font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: 0.05em;">03</div>
+                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Regardez partout</h3>
+                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Installez l'application sur votre appareil et profitez immediatement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING ========== -->
+    <section id="pricing" class="py-32 md:py-48 px-6" style="background: var(--bg-deep);">
+        <div class="max-w-6xl mx-auto">
+            <!-- Section Header -->
+            <div class="mb-20 reveal">
+                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Nos tarifs</h2>
+                <div class="accent-line mt-6"></div>
+            </div>
+
+            <!-- Pricing Cards -->
+            <div class="grid md:grid-cols-3 gap-6 items-start">
+
+                <!-- BASIQUE -->
+                <div class="p-8 md:p-10 transition-all duration-300 reveal" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
+                    <div class="mb-8">
+                        <p style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Basique</p>
+                        <div class="mt-4 flex items-baseline gap-2">
+                            <span style="font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--text-primary);">2,990</span>
+                            <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">FCFA/mois</span>
+                        </div>
+                    </div>
+                    <a href="#" class="cursor-pointer block text-center py-3.5 mb-8 transition-all duration-200" style="border: 1px solid rgba(255,255,255,0.2); color: var(--text-primary); font-weight: 600; font-size: 14px;" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='transparent'">Choisir</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Qualite HD
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            1 ecran
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Support WhatsApp
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Mise a jour hebdomadaire
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- PRO (Featured) -->
+                <div class="p-8 md:p-10 transition-all duration-300 reveal relative md:-mt-4 md:mb-[-16px]" style="background: rgba(230,126,34,0.06); border: 1.5px solid rgba(230,126,34,0.4); border-radius: 4px; box-shadow: 0 0 60px rgba(230,126,34,0.08);">
+                    <div class="mb-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <p style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent);">Pro</p>
+                            <span class="px-3 py-0.5" style="font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: var(--accent); color: #fff; border-radius: 2px;">Populaire</span>
+                        </div>
+                        <div class="flex items-baseline gap-2">
+                            <span style="font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--text-primary);">5,990</span>
+                            <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">FCFA/mois</span>
+                        </div>
+                    </div>
+                    <a href="#" class="cursor-pointer block text-center py-3.5 mb-8 transition-all duration-200" style="background: var(--accent); color: #fff; font-weight: 600; font-size: 14px;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Choisir</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            4K Ultra HD
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            4 ecrans simultanes
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Support prioritaire
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            VOD complete
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Replay 7 jours
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- PREMIUM -->
+                <div class="p-8 md:p-10 transition-all duration-300 reveal" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
+                    <div class="mb-8">
+                        <p style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Premium</p>
+                        <div class="mt-4 flex items-baseline gap-2">
+                            <span style="font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--text-primary);">9,990</span>
+                            <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">FCFA/mois</span>
+                        </div>
+                    </div>
+                    <a href="#" class="cursor-pointer block text-center py-3.5 mb-8 transition-all duration-200" style="border: 1px solid rgba(255,255,255,0.2); color: var(--text-primary); font-weight: 600; font-size: 14px;" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='transparent'">Choisir</a>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            4K Ultra HD
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Ecrans illimites
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Support VIP dedie
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            VOD + exclusivites
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Replay 30 jours
+                        </li>
+                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Multi-room
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section id="contact" class="py-32 md:py-48 px-6" style="background: var(--bg-elevated);">
+        <div class="max-w-3xl mx-auto">
+            <!-- Section Header -->
+            <div class="mb-20 reveal">
+                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Questions frequentes</h2>
+                <div class="accent-line mt-6"></div>
+            </div>
+
+            <!-- FAQ Items -->
+            <div class="space-y-0 reveal">
+
+                <!-- Q1 -->
+                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between py-6">
+                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Quels appareils sont compatibles ?</h3>
+                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Smart TV (Samsung, LG), Android TV, Box Android (MAG, Formuler), smartphone et tablette, ordinateur via VLC ou navigateur.</p>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between py-6">
+                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Comment recevoir mes acces ?</h3>
+                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Apres paiement, vos identifiants sont envoyes par email et WhatsApp sous 5 minutes.</p>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between py-6">
+                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Puis-je tester avant d'acheter ?</h3>
+                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Oui, nous proposons un essai de 24h pour decouvrir notre service.</p>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between py-6">
+                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Le service fonctionne-t-il en Afrique ?</h3>
+                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Oui, nos serveurs sont optimises pour l'Afrique centrale et de l'ouest. Le service fonctionne aussi parfaitement en Europe et dans le reste du monde.</p>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between py-6">
+                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Quels moyens de paiement acceptez-vous ?</h3>
+                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Nous acceptons Orange Money, MTN Mobile Money, Wave, virement bancaire et PayPal. Le paiement est simple et securise.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="background: var(--bg-deep); border-top: 1px solid var(--border);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
+
+                <!-- Col 1: Branding -->
+                <div class="col-span-2 md:col-span-1">
+                    <p style="font-weight: 700; font-size: 15px; letter-spacing: 0.15em; color: var(--text-primary);">IPTV AFRIKA</p>
+                    <p class="mt-4" style="font-weight: 400; font-size: 14px; line-height: 1.7; color: var(--text-muted);">La television reinventee pour l'Afrique. Streaming premium, sans compromis.</p>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <p class="mb-4" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Navigation</p>
+                    <ul class="space-y-3">
+                        <li><a href="#channels" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Chaines</a></li>
+                        <li><a href="#pricing" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Tarifs</a></li>
+                        <li><a href="#contact" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Support -->
+                <div>
+                    <p class="mb-4" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Support</p>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">WhatsApp</a></li>
+                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Email</a></li>
+                        <li><a href="#contact" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">FAQ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Legal -->
+                <div>
+                    <p class="mb-4" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Legal</p>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">CGV</a></li>
+                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Politique de confidentialite</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="mt-16 pt-8" style="border-top: 1px solid var(--border);">
+                <p class="text-center" style="font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.25);">&copy; 2026 IPTV Afrika. Tous droits reserves.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // Scroll Reveal with IntersectionObserver
+        document.addEventListener('DOMContentLoaded', function() {
+            const revealElements = document.querySelectorAll('.reveal');
+
+            // Immediately reveal elements already in viewport
+            revealElements.forEach(function(el) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                }
+            });
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            revealElements.forEach(function(el) {
+                if (!el.classList.contains('visible')) {
+                    observer.observe(el);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

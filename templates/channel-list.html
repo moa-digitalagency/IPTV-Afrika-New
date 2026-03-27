@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcourez toutes les chaînes IPTV Afrika - 22,000+ chaînes en haute qualité HD/4K">
+    <title>Chaînes IPTV Afrika | 22K Chaînes Télévision</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'sans': ['Poppins', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif']
+                    },
+                    colors: {
+                        'african-gold': '#D4A574',
+                        'african-orange': '#E67E22',
+                        'african-terracotta': '#C1440E',
+                        'african-rust': '#8B3A0D',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="../statics/css/style.css">
+    <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .animated-gradient {
+            background: linear-gradient(-45deg, #1A1410, #2D1F15, #3D2A1F, #2D1F15);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        /* Floating Particles */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle-1 { width: 200px; height: 200px; background: radial-gradient(circle, rgba(212, 165, 116, 0.3) 0%, transparent 70%); top: 20%; left: 10%; animation-delay: 0s; }
+        .particle-2 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(230, 126, 34, 0.2) 0%, transparent 70%); top: 50%; right: 5%; animation-delay: 2s; }
+        .particle-3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(193, 68, 14, 0.2) 0%, transparent 70%); bottom: 10%; left: 20%; animation-delay: 4s; }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(26, 20, 16, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 165, 116, 0.1);
+            border-radius: 16px;
+        }
+
+        .glow-text {
+            background: linear-gradient(135deg, #D4A574 0%, #E67E22 50%, #C1440E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 768px) {
+            .particle { display: none; }
+        }
+    </style>
+</head>
+<body class="text-white relative" style="background: linear-gradient(135deg, #1A1410 0%, #2D1F15 50%, #1A1410 100%); min-height: 100vh;">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md" style="background: rgba(26, 20, 16, 0.8); border-bottom: 1px solid rgba(212, 165, 116, 0.2);">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="./index.html" class="flex items-center gap-3 group cursor-pointer hover:opacity-80 transition-opacity">
+                <div class="w-12 h-12 rounded-xl flex items-center justify-center font-display font-bold text-lg transform group-hover:scale-110 transition-transform" style="background: linear-gradient(135deg, #D4A574, #E67E22, #C1440E); color: #1A1410; box-shadow: 0 8px 16px rgba(230, 126, 34, 0.3);">
+                    IA
+                </div>
+                <div class="hidden sm:block">
+                    <h1 class="font-display font-bold text-lg glow-text">IPTV Afrika</h1>
+                    <p class="text-xs" style="color: rgba(212, 165, 116, 0.7);">Chaînes & Films</p>
+                </div>
+            </a>
+
+            <div class="hidden md:flex gap-8 items-center">
+                <a href="./index.html" class="transition-all duration-300" style="color: rgba(212, 165, 116, 0.7);">Accueil</a>
+                <a href="#channels" class="transition-all duration-300" style="color: rgba(212, 165, 116, 0.7);">Chaînes</a>
+                <a href="./index.html#pricing" class="transition-all duration-300" style="color: rgba(212, 165, 116, 0.7);">Tarifs</a>
+            </div>
+
+            <button class="px-6 py-2.5 rounded-full font-sans font-bold text-sm text-white transform hover:scale-105 transition-all duration-300" style="background: linear-gradient(to right, #E67E22, #C1440E);">
+                S'abonner
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-80 md:min-h-96 flex items-center justify-center pt-20 px-6 overflow-hidden">
+        <div class="absolute inset-0 animated-gradient -z-10"></div>
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+
+        <div class="max-w-5xl mx-auto text-center relative z-10 space-y-6 reveal">
+            <div class="inline-block px-6 py-3 rounded-full backdrop-blur-sm" style="background: rgba(212, 165, 116, 0.08); border: 1px solid rgba(212, 165, 116, 0.4);">
+                <span class="font-sans font-bold" style="background: linear-gradient(to right, #D4A574, #E67E22); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">📺 22,000+ Chaînes en Direct</span>
+            </div>
+
+            <h1 class="text-6xl md:text-7xl font-display font-black leading-tight">
+                <span class="glow-text">Explorez</span><br/>
+                <span class="text-white">Toutes Nos Chaînes</span>
+            </h1>
+
+            <p class="text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-sans" style="color: rgba(212, 165, 116, 0.8);">
+                Filtrez par catégorie ou recherchez votre chaîne préférée. Accès illimité à plus de 22,000 chaînes en haute qualité.
+            </p>
+
+            <!-- Search Bar -->
+            <div class="relative max-w-2xl mx-auto">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Rechercher une chaîne..."
+                    class="w-full px-6 py-4 backdrop-blur-md rounded-full text-white transition-all duration-300 font-sans focus:outline-none"
+                    style="background: rgba(212, 165, 116, 0.1); border: 1px solid rgba(212, 165, 116, 0.3); color: white;"
+                    aria-label="Rechercher une chaîne"
+                >
+                <span class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none" style="color: rgba(212, 165, 116, 0.5);">🔍</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Channels Section -->
+    <section id="channels" class="py-20 md:py-32 px-6 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-6 mb-16 reveal">
+                <h2 class="text-5xl md:text-6xl font-display font-black">
+                    <span class="glow-text">Parcourez</span><br/>
+                    <span class="text-white">Nos Chaînes</span>
+                </h2>
+                <p class="text-xl max-w-2xl mx-auto font-sans" style="color: rgba(212, 165, 116, 0.7);">
+                    Filtrez par catégorie ou utilisez la barre de recherche pour trouver votre chaîne
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons justify-center mb-12 reveal" style="animation-delay: 0.1s">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">Toutes les Chaînes</button>
+                <button class="filter-btn" data-filter="sports" aria-pressed="false">🏆 Sports</button>
+                <button class="filter-btn" data-filter="cinema" aria-pressed="false">🎬 Cinéma</button>
+                <button class="filter-btn" data-filter="series" aria-pressed="false">📺 Séries</button>
+                <button class="filter-btn" data-filter="info" aria-pressed="false">📰 Infos</button>
+                <button class="filter-btn" data-filter="musique" aria-pressed="false">🎵 Musique</button>
+                <button class="filter-btn" data-filter="enfants" aria-pressed="false">👶 Enfants</button>
+                <button class="filter-btn" data-filter="international" aria-pressed="false">🌍 International</button>
+            </div>
+
+            <!-- Channels Grid -->
+            <div class="channel-grid" id="channelsGrid">
+                <!-- SPORTS -->
+                <div class="channel-card scroll-reveal" data-category="sports" data-channel="Canal+ Sports" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="Canal+ Sports - Chaîne sportive HD" loading="lazy">
+                    <div class="channel-name">Canal+ Sports</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="sports" data-channel="Eurosport" role="button" tabindex="0">
+                    <img src="../statics/img/Customer-Support-.png" alt="Eurosport - Événements sportifs mondiaux" loading="lazy">
+                    <div class="channel-name">Eurosport</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="sports" data-channel="beIN Sports" role="button" tabindex="0">
+                    <img src="../statics/img/Files-Folders-3.png" alt="beIN Sports - Couverture sportive complète" loading="lazy">
+                    <div class="channel-name">beIN Sports</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="sports" data-channel="Sky Sports" role="button" tabindex="0">
+                    <img src="../statics/img/Order-Completed.png" alt="Sky Sports - Sports HD" loading="lazy">
+                    <div class="channel-name">Sky Sports</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="sports" data-channel="ESPN" role="button" tabindex="0">
+                    <img src="../statics/img/Reset-Password-6.png" alt="ESPN - Sports américains" loading="lazy">
+                    <div class="channel-name">ESPN</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="sports" data-channel="NBA TV" role="button" tabindex="0">
+                    <img src="../statics/img/Smiley-Face.png" alt="NBA TV - Basketball professionnel" loading="lazy">
+                    <div class="channel-name">NBA TV</div>
+                </div>
+
+                <!-- CINEMA -->
+                <div class="channel-card scroll-reveal" data-category="cinema" data-channel="HBO" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="HBO - Films et séries premium" loading="lazy">
+                    <div class="channel-name">HBO</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="cinema" data-channel="Netflix" role="button" tabindex="0">
+                    <img src="../statics/img/Uploading-4.png" alt="Netflix - Streaming illimité" loading="lazy">
+                    <div class="channel-name">Netflix</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="cinema" data-channel="Disney+" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="Disney+ - Contenu Disney et Star" loading="lazy">
+                    <div class="channel-name">Disney+</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="cinema" data-channel="Amazon Prime" role="button" tabindex="0">
+                    <img src="../statics/img/Customer-Support-.png" alt="Amazon Prime Video - Films et séries" loading="lazy">
+                    <div class="channel-name">Amazon Prime</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="cinema" data-channel="Paramount+" role="button" tabindex="0">
+                    <img src="../statics/img/Files-Folders-3.png" alt="Paramount+ - Films Paramount" loading="lazy">
+                    <div class="channel-name">Paramount+</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="cinema" data-channel="Apple TV+" role="button" tabindex="0">
+                    <img src="../statics/img/Order-Completed.png" alt="Apple TV+ - Productions originales Apple" loading="lazy">
+                    <div class="channel-name">Apple TV+</div>
+                </div>
+
+                <!-- SERIES -->
+                <div class="channel-card scroll-reveal" data-category="series" data-channel="Showtime" role="button" tabindex="0">
+                    <img src="../statics/img/Reset-Password-6.png" alt="Showtime - Séries exclusives" loading="lazy">
+                    <div class="channel-name">Showtime</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="series" data-channel="Starzplay" role="button" tabindex="0">
+                    <img src="../statics/img/Smiley-Face.png" alt="Starzplay - Séries premium" loading="lazy">
+                    <div class="channel-name">Starzplay</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="series" data-channel="OCS" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="OCS - Chaîne française de cinéma" loading="lazy">
+                    <div class="channel-name">OCS</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="series" data-channel="Molotov" role="button" tabindex="0">
+                    <img src="../statics/img/Uploading-4.png" alt="Molotov - TV en direct et replay" loading="lazy">
+                    <div class="channel-name">Molotov</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="series" data-channel="TF1" role="button" tabindex="0">
+                    <img src="../statics/img/Customer-Support-.png" alt="TF1 - Chaîne généraliste française" loading="lazy">
+                    <div class="channel-name">TF1</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="series" data-channel="France 2" role="button" tabindex="0">
+                    <img src="../statics/img/Files-Folders-3.png" alt="France 2 - Chaîne généraliste française" loading="lazy">
+                    <div class="channel-name">France 2</div>
+                </div>
+
+                <!-- INFO -->
+                <div class="channel-card scroll-reveal" data-category="info" data-channel="France 24" role="button" tabindex="0">
+                    <img src="../statics/img/Order-Completed.png" alt="France 24 - Actualités internationales" loading="lazy">
+                    <div class="channel-name">France 24</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="info" data-channel="BBC News" role="button" tabindex="0">
+                    <img src="../statics/img/Reset-Password-6.png" alt="BBC News - Infos BBC" loading="lazy">
+                    <div class="channel-name">BBC News</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="info" data-channel="CNN International" role="button" tabindex="0">
+                    <img src="../statics/img/Smiley-Face.png" alt="CNN - Infos internationales" loading="lazy">
+                    <div class="channel-name">CNN International</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="info" data-channel="Al Jazeera" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="Al Jazeera - Actualités mondialesu" loading="lazy">
+                    <div class="channel-name">Al Jazeera</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="info" data-channel="Euronews" role="button" tabindex="0">
+                    <img src="../statics/img/Uploading-4.png" alt="Euronews - Infos européennes" loading="lazy">
+                    <div class="channel-name">Euronews</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="info" data-channel="Bloomberg" role="button" tabindex="0">
+                    <img src="../statics/img/Customer-Support-.png" alt="Bloomberg - Infos économiques" loading="lazy">
+                    <div class="channel-name">Bloomberg</div>
+                </div>
+
+                <!-- MUSIQUE -->
+                <div class="channel-card scroll-reveal" data-category="musique" data-channel="MTV" role="button" tabindex="0">
+                    <img src="../statics/img/Files-Folders-3.png" alt="MTV - Chaîne musicale" loading="lazy">
+                    <div class="channel-name">MTV</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="musique" data-channel="M6 Music" role="button" tabindex="0">
+                    <img src="../statics/img/Order-Completed.png" alt="M6 Music - Musique française" loading="lazy">
+                    <div class="channel-name">M6 Music</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="musique" data-channel="Trace Urban" role="button" tabindex="0">
+                    <img src="../statics/img/Reset-Password-6.png" alt="Trace Urban - Hip-hop et musique urbaine" loading="lazy">
+                    <div class="channel-name">Trace Urban</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="musique" data-channel="Music Box" role="button" tabindex="0">
+                    <img src="../statics/img/Smiley-Face.png" alt="Music Box - Clips musicaux" loading="lazy">
+                    <div class="channel-name">Music Box</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="musique" data-channel="VH1" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="VH1 - Musique et divertissement" loading="lazy">
+                    <div class="channel-name">VH1</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="musique" data-channel="Trace Toca" role="button" tabindex="0">
+                    <img src="../statics/img/Uploading-4.png" alt="Trace Toca - Musique africaine" loading="lazy">
+                    <div class="channel-name">Trace Toca</div>
+                </div>
+
+                <!-- ENFANTS -->
+                <div class="channel-card scroll-reveal" data-category="enfants" data-channel="Cartoon Network" role="button" tabindex="0">
+                    <img src="../statics/img/Customer-Support-.png" alt="Cartoon Network - Dessins animés" loading="lazy">
+                    <div class="channel-name">Cartoon Network</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="enfants" data-channel="Nickelodeon" role="button" tabindex="0">
+                    <img src="../statics/img/Files-Folders-3.png" alt="Nickelodeon - Contenu enfants" loading="lazy">
+                    <div class="channel-name">Nickelodeon</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="enfants" data-channel="Disney Channel" role="button" tabindex="0">
+                    <img src="../statics/img/Order-Completed.png" alt="Disney Channel - Disney pour enfants" loading="lazy">
+                    <div class="channel-name">Disney Channel</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="enfants" data-channel="Boomerang" role="button" tabindex="0">
+                    <img src="../statics/img/Reset-Password-6.png" alt="Boomerang - Dessins animés classiques" loading="lazy">
+                    <div class="channel-name">Boomerang</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="enfants" data-channel="Piwi+" role="button" tabindex="0">
+                    <img src="../statics/img/Smiley-Face.png" alt="Piwi+ - Programmes enfants" loading="lazy">
+                    <div class="channel-name">Piwi+</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="enfants" data-channel="Gulli" role="button" tabindex="0">
+                    <img src="../statics/img/Being-Rich-2.png" alt="Gulli - Chaîne française enfants" loading="lazy">
+                    <div class="channel-name">Gulli</div>
+                </div>
+
+                <!-- INTERNATIONAL -->
+                <div class="channel-card scroll-reveal" data-category="international" data-channel="NHK World" role="button" tabindex="0">
+                    <img src="../statics/img/Uploading-4.png" alt="NHK World - Chaîne japonaise" loading="lazy">
+                    <div class="channel-name">NHK World</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="international" data-channel="CCTV" role="button" tabindex="0">
+                    <img src="../statics/img/Customer-Support-.png" alt="CCTV - Chaîne chinoise" loading="lazy">
+                    <div class="channel-name">CCTV</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="international" data-channel="Telesur" role="button" tabindex="0">
+                    <img src="../statics/img/Files-Folders-3.png" alt="Telesur - Chaîne latino-américaine" loading="lazy">
+                    <div class="channel-name">Telesur</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="international" data-channel="DW" role="button" tabindex="0">
+                    <img src="../statics/img/Order-Completed.png" alt="DW - Deutsch Welle Allemagne" loading="lazy">
+                    <div class="channel-name">DW (Deutsch Welle)</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="international" data-channel="Russia Today" role="button" tabindex="0">
+                    <img src="../statics/img/Reset-Password-6.png" alt="Russia Today - Chaîne russe" loading="lazy">
+                    <div class="channel-name">Russia Today</div>
+                </div>
+
+                <div class="channel-card scroll-reveal" data-category="international" data-channel="RTBF" role="button" tabindex="0">
+                    <img src="../statics/img/Smiley-Face.png" alt="RTBF - Chaîne belgique" loading="lazy">
+                    <div class="channel-name">RTBF (Belgique)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 md:py-32 px-6 bg-gradient-to-r from-purple-600/10 via-transparent to-pink-600/10 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10 reveal">
+            <h2 class="text-5xl md:text-6xl font-display font-black mb-6">
+                <span class="glow-text">Prêt à Regarder?</span>
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 font-sora">
+                Accédez à toutes les chaînes dès maintenant avec l'une de nos formules d'abonnement flexible.
+            </p>
+            <a href="./index.html#pricing" class="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-sora font-bold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all transform hover:scale-105 inline-block">
+                S'abonner Maintenant
+                <span class="group-hover:translate-x-2 transition-transform duration-300 inline-block ml-2">→</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 py-16 px-6 relative">
+        <div class="max-w-6xl mx-auto text-center text-gray-400 font-sora">
+            <p class="mb-4">© 2026 IPTV Afrika. Tous droits réservés.</p>
+            <p class="text-sm text-gray-500">Regardez sans limites. Profitez sans interruption.</p>
+        </div>
+    </footer>
+
+    <script src="../statics/js/script.js"></script>
+</body>
+</html>
