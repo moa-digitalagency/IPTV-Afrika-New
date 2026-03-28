@@ -135,7 +135,13 @@ class GoldenAPIService:
                 'password': password,
                 'package_id': package_id
             }
+            print(f"📝 Sending create line request:")
+            print(f"   URL: {url}")
+            print(f"   Data: {data}")
             response = requests.post(url, json=data, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
+            print(f"   Status: {response.status_code}")
+            if response.status_code != 201:
+                print(f"   Response: {response.text}")
             return GoldenAPIService._handle_response(response)
         except GoldenAPIException as e:
             print(f"❌ Error creating line: {e}")
