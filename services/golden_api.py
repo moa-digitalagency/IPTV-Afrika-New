@@ -49,6 +49,18 @@ class GoldenAPIService:
                 raise GoldenAPIException("Forbidden: Access denied")
             elif response.status_code == 404:
                 raise GoldenAPIException("Not found")
+            elif response.status_code == 422:
+                # Unprocessable Entity - validation error
+                try:
+                    error_data = response.json()
+                    if 'errors' in error_data:
+                        errors = error_data['errors']
+                        error_msg = ', '.join([f"{k}: {v}" for k, v in errors.items()])
+                        raise GoldenAPIException(f"Validation error: {error_msg}")
+                    elif 'message' in error_data:
+                        raise GoldenAPIException(f"Validation error: {error_data['message']}")
+                except ValueError:
+                    raise GoldenAPIException("Validation error (422)")
             elif response.status_code == 429:
                 raise GoldenAPIException("Rate limited: Too many requests")
             elif response.status_code >= 500:
