@@ -55,7 +55,7 @@
             font-size: 1rem;
             transition: all 0.2s;
         " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
-            🔔 Notifications
+            <i class="fas fa-bell"></i> Notifications
         </button>
         <button class="tab-btn" onclick="switchTab('cache')" style="
             padding: 1rem 1.5rem;
@@ -127,7 +127,7 @@
                 <!-- Test Connection -->
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
                     <button type="button" onclick="testConnection()" class="btn" style="width: 100%;">
-                        🧪 Tester la Connexion
+                        <i class="fas fa-flask-vial"></i> Tester la Connexion
                     </button>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
                         <i class="fas fa-floppy-disk"></i> Sauvegarder
@@ -226,7 +226,7 @@
     <div id="notifications" class="tab-content" style="display: none;">
         <div class="content-card">
             <div class="card-header">
-                <h3 class="card-title">🔔 Notifications</h3>
+                <h3 class="card-title"><i class="fas fa-bell"></i> Notifications</h3>
             </div>
 
             <form method="POST" action="{{ url_for('settings.update_notifications') }}" style="padding: 1.5rem;">

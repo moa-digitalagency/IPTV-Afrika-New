@@ -66,13 +66,13 @@
 
             <!-- Téléphone -->
             <div>
-                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">☎️ Téléphone</div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-phone"></i> Téléphone</div>
                 <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">{{ line.phone or 'N/A' }}</div>
             </div>
 
             <!-- Package -->
             <div>
-                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">📦 Package</div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-box"></i> Package</div>
                 <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
                     <span class="badge {% if line.is_trial %}badge-gold{% else %}badge-success{% endif %}">{{ line.package_name or 'N/A' }}</span>
                 </div>
@@ -92,7 +92,7 @@
                 <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-tag"></i> Type</div>
                 <div style="font-size: 1.25rem; font-weight: 600;">
                     {% if line.is_trial %}
-                        <span style="color: var(--gold);">🧪 Testeur</span>
+                        <span style="color: var(--gold);"><i class="fas fa-flask-vial"></i> Testeur</span>
                     {% else %}
                         <span style="color: var(--success);"> Abonné</span>
                     {% endif %}
@@ -351,7 +351,11 @@ function togglePassword() {
     const btn = event.target;
     passwordVisible = !passwordVisible;
     display.textContent = passwordVisible ? '{{ line.password }}' : '••••••••';
-    btn.textContent = passwordVisible ? '‍🗨️' : '';
+    // Update button icon
+    btn.innerHTML = '';
+    const icon = document.createElement('i');
+    icon.className = passwordVisible ? 'fas fa-eye' : 'fas fa-eye-slash';
+    btn.appendChild(icon);
 }
 
 function openExtendModal(golden_id, username) {

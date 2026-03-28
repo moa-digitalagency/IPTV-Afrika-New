@@ -54,69 +54,72 @@ class CacheService:
 
     @staticmethod
     def sync_lines():
-        """Sync lines from GOLDEN API to database"""
+        """
+        Sync lines from GOLDEN API to database.
+
+        NOTE: GOLDEN API doesn't support bulk listing all lines.
+        This method syncs locally cached lines by refreshing their details from the API.
+        New lines are added when created via the POST /v1/lines endpoint.
+        """
         print("\n📋 Syncing lines...")
         start_time = time.time()
 
         try:
-            lines_data = GoldenAPIService.get_all_lines()
-            if not lines_data:
-                return 0
-
-            # Handle both list and dict responses
-            lines_list = lines_data if isinstance(lines_data, list) else lines_data.get('lines', [])
+            # Get all locally cached lines
+            cached_lines = LineCache.query.all()
             synced_count = 0
 
-            for line in lines_list:
-                golden_id = line.get('id')
-                if not golden_id:
+            if not cached_lines:
+                print("ℹ️  No cached lines to sync. Lines are created via POST /v1/lines endpoint.")
+                return 0
+
+            # Refresh details for each cached line from GOLDEN API
+            for cache in cached_lines:
+                try:
+                    # Fetch latest data from GOLDEN API for this specific line
+                    line_data = GoldenAPIService.get_line(cache.golden_id)
+                    if not line_data:
+                        continue
+
+                    # Update cache fields with latest data from API
+                    cache.username = line_data.get('username', cache.username)
+                    cache.password = line_data.get('password', cache.password)
+                    cache.full_name = line_data.get('full_name', cache.full_name)
+                    cache.email = line_data.get('email', cache.email)
+                    cache.phone = line_data.get('phone', cache.phone)
+                    cache.package_id = line_data.get('package_id', cache.package_id)
+                    cache.package_name = line_data.get('package_name', cache.package_name)
+                    cache.is_trial = line_data.get('is_trial', cache.is_trial)
+
+                    # Parse expiration date
+                    exp_date_str = line_data.get('exp_date')
+                    if exp_date_str:
+                        try:
+                            if 'T' in exp_date_str:
+                                cache.exp_date = datetime.fromisoformat(exp_date_str.replace('Z', '+00:00'))
+                            else:
+                                cache.exp_date = datetime.strptime(exp_date_str, '%Y-%m-%d')
+                        except ValueError:
+                            pass
+
+                    cache.enabled = line_data.get('enabled', cache.enabled)
+                    cache.max_connections = line_data.get('max_connections', cache.max_connections)
+                    cache.note = line_data.get('note', cache.note)
+                    cache.dns_link = line_data.get('dns_link', cache.dns_link)
+                    cache.cached_at = datetime.utcnow()
+                    synced_count += 1
+
+                except GoldenAPIException as e:
+                    print(f"  ⚠️  Could not refresh line {cache.golden_id}: {e}")
+                    # Continue with next line
                     continue
-
-                cache = LineCache.query.filter_by(golden_id=golden_id).first()
-
-                if not cache:
-                    cache = LineCache(golden_id=golden_id)
-                    db.session.add(cache)
-
-                # Update cache fields
-                cache.username = line.get('username', '')
-                cache.password = line.get('password', '')
-                cache.full_name = line.get('full_name')
-                cache.email = line.get('email')
-                cache.phone = line.get('phone')
-                cache.package_id = line.get('package_id')
-                cache.package_name = line.get('package_name')
-                cache.is_trial = line.get('is_trial', False)
-
-                # Parse expiration date
-                exp_date_str = line.get('exp_date')
-                if exp_date_str:
-                    try:
-                        # Handle various date formats
-                        if 'T' in exp_date_str:
-                            cache.exp_date = datetime.fromisoformat(exp_date_str.replace('Z', '+00:00'))
-                        else:
-                            cache.exp_date = datetime.strptime(exp_date_str, '%Y-%m-%d')
-                    except ValueError:
-                        cache.exp_date = None
-
-                cache.enabled = line.get('enabled', True)
-                cache.max_connections = line.get('max_connections', 1)
-                cache.note = line.get('note')
-                cache.dns_link = line.get('dns_link')
-
-                if not cache.created_at:
-                    cache.created_at = datetime.utcnow()
-
-                cache.cached_at = datetime.utcnow()
-                synced_count += 1
 
             db.session.commit()
             duration_ms = int((time.time() - start_time) * 1000)
             print(f"✅ Synced {synced_count} lines in {duration_ms}ms")
             return synced_count
 
-        except GoldenAPIException as e:
+        except Exception as e:
             print(f"❌ Error syncing lines: {e}")
             raise
 
