@@ -205,11 +205,13 @@ def create_line():
 
         # Auto-generate credentials if not provided
         if not username:
-            username = ('USER_' + ''.join(random.choices(string.digits, k=8))).upper()
+            # Username: 7-12 characters, letters and numbers only
+            username = 'USER' + ''.join(random.choices(string.digits, k=4))  # USER + 4 digits = 8 chars
 
         if not password:
-            chars = string.ascii_letters + string.digits + '!@#$%^&*'
-            password = ''.join(random.choices(chars, k=16)).upper()
+            # Password: Exactly 7 characters, uppercase letters and numbers only
+            chars = string.ascii_uppercase + string.digits
+            password = ''.join(random.choices(chars, k=7))
 
         # Validate required fields
         if not package_id:
