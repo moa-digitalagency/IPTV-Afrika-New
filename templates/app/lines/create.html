@@ -35,7 +35,7 @@
                     font-size: 1rem;
                     transition: border-color 0.3s;
                 ">
-                <button type="button" onclick="generateCredentials()" class="btn" style="min-width: 120px;">
+                <button type="button" id="generateBtn" class="btn" style="min-width: 120px;">
                     <i class="fas fa-dice"></i> Générer
                 </button>
             </div>
@@ -170,10 +170,21 @@ function generateCredentials() {
     console.log('Generated credentials:', { username, password });
 }
 
-// Auto-generate on page load
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', function() {
-    // Only auto-generate if fields are empty
-    if (!document.getElementById('username').value) {
+    const generateBtn = document.getElementById('generateBtn');
+    const usernameField = document.getElementById('username');
+
+    // Add click event listener to generate button
+    if (generateBtn) {
+        generateBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            generateCredentials();
+        });
+    }
+
+    // Auto-generate if fields are empty
+    if (!usernameField.value) {
         generateCredentials();
     }
 });
