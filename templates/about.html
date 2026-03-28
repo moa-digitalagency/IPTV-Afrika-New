@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="À Propos de Mon IPTV Africa - Découvrez notre mission de centraliser tous vos divertissements en un seul abonnement. 22,000+ chaînes, 120,000+ films & séries.">
+    <title>À Propos | Mon IPTV Africa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/statics/img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Poppins', 'system-ui', 'sans-serif'],
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../statics/css/style.css">
+    <link rel="stylesheet" href="../statics/css/index.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2">
+                <img src="../statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/#pricing" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="/about" class="label-text" style="color: var(--gold);">A PROPOS</a>
+                <a href="/contact" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">CONTACT</a>
+            </div>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="/abonnements" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Poppins', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2" onclick="toggleMobileMenu()">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden" style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
+            <div class="px-6 py-6 flex flex-col gap-5">
+                <a href="/#pricing" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">ABONNEMENTS</a>
+                <a href="/about" class="label-text" style="color: var(--gold);" onclick="toggleMobileMenu()">A PROPOS</a>
+                <a href="/contact" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">CONTACT</a>
+                <a href="/abonnements" class="gold-gradient-bg text-center text-sm font-semibold px-6 py-3 rounded-full mt-2" style="color: var(--bg);" onclick="toggleMobileMenu()">S'abonner</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-32 pb-16">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <!-- Badge -->
+            <div class="reveal inline-flex items-center gap-2 px-5 py-2 rounded-full mb-10" style="border: 1px solid var(--border-gold); background: rgba(212,165,116,0.06);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span class="label-text-wide" style="color: var(--gold); font-size: 10px;">LA NOUVELLE FAÇON DE REGARDER</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-heading font-bold leading-none mb-8 reveal" style="font-size: 4.5rem;">
+                <span style="color: var(--text-primary);">À Propos de</span><br>
+                <span class="italic gold-gradient-text">Mon IPTV Africa</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="font-sans font-normal text-xl max-w-3xl mx-auto mb-8 leading-relaxed reveal" style="color: var(--text-muted);">
+                Un seul abonnement pour toutes les chaînes francophones, Canal+, Netflix, Amazon Prime et Apple TV réunis. Via internet, sur tous vos écrans.
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== MISSION SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Text -->
+                <div class="reveal">
+                    <div class="label-text mb-6" style="color: var(--gold);">NOTRE MISSION</div>
+                    <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-8" style="color: var(--text-primary);">
+                        Centralisez <span class="italic gold-gradient-text">Tous Vos Divertissements</span>
+                    </h2>
+                    <p class="font-sans font-normal text-lg mb-6 leading-relaxed" style="color: var(--text-muted);">
+                        Nous croyons que le divertissement ne devrait pas être compliqué. C'est pourquoi nous avons créé Mon IPTV Africa — une plateforme unique qui réunit tous vos services de streaming préférés en un seul abonnement abordable.
+                    </p>
+                    <p class="font-sans font-normal text-lg mb-8 leading-relaxed" style="color: var(--text-muted);">
+                        Fini les multiples abonnements, les mots de passe innombrables et les factures élevées. Profitez de tout ce que vous aimez en un seul endroit.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Plus de 22,000 chaînes en direct</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Plus de 120,000 films & séries</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Disponible dans 150+ pays</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">99.9% de disponibilité garantie</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Stats -->
+                <div class="reveal reveal-delay-1">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-5xl mb-2" style="color: var(--gold);">22K<span style="font-size: 1.5rem;">+</span></div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Chaînes en Direct</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-5xl mb-2" style="color: var(--gold);">120K<span style="font-size: 1.5rem;">+</span></div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Films & Séries</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">150+</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Pays Couverts</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">99.9%</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Disponibilité</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WHY CHOOSE US SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Pourquoi Choisir </span><span class="italic gold-gradient-text">Mon IPTV Africa?</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-width-2xl mx-auto" style="color: var(--text-muted);">
+                    Un seul abonnement pour Canal+, Netflix, Amazon Prime et Apple TV. Tout ce dont vous avez besoin au prix d'un seul service.
+                </p>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Feature 1 -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="mb-4">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-3" style="color: var(--text-primary);">Tous Vos Services en Un</h3>
+                    <p class="font-sans text-base" style="color: var(--text-muted);">Canal+, Netflix, Amazon Prime, Apple TV et bien plus. Un seul abonnement, un seul mot de passe.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal reveal-delay-1" style="border: 1px solid var(--border-gold);">
+                    <div class="mb-4">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18"/><path d="M7 2v20M17 2v20M2 12h20M2 7h20M2 17h20"/></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-3" style="color: var(--text-primary);">Compatibilité Universelle</h3>
+                    <p class="font-sans text-base" style="color: var(--text-muted);">Regardez sur Smart TV, Android TV, Box Android, PC, tablette ou téléphone. Partout, n'importe quand.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal reveal-delay-2" style="border: 1px solid var(--border-gold);">
+                    <div class="mb-4">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-3" style="color: var(--text-primary);">Qualité Garantie</h3>
+                    <p class="font-sans text-base" style="color: var(--text-muted);">99.9% de disponibilité garantie. Nos serveurs sont optimisés pour une diffusion fluide en haute qualité.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal reveal-delay-3" style="border: 1px solid var(--border-gold);">
+                    <div class="mb-4">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/></svg>
+                    </div>
+                    <h3 class="font-heading text-2xl font-semibold mb-3" style="color: var(--text-primary);">Support Réactif</h3>
+                    <p class="font-sans text-base" style="color: var(--text-muted);">Besoin d'aide? Nos équipes sont disponibles pour répondre à vos questions rapidement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WORLD COVERAGE SECTION ========== -->
+    <section class="relative py-32 lg:py-40" style="background: var(--bg-elevated); overflow: hidden;">
+        <!-- Subtle background decoration -->
+        <div style="position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,165,116,0.03) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <!-- Decorative line -->
+            <div class="mb-20 flex items-center justify-center reveal">
+                <div style="flex: 1; max-width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+                <div style="width: 8px; height: 8px; background: var(--gold); margin: 0 1.5rem; transform: rotate(45deg);"></div>
+                <div style="flex: 1; max-width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+            </div>
+
+            <!-- Section Intro -->
+            <div class="text-center mb-20 reveal">
+                <span class="label-text" style="color: var(--gold); letter-spacing: 4px;">COUVERTURE MONDIALE</span>
+                <h2 class="font-heading text-6xl lg:text-7xl font-bold mt-4 mb-6">
+                    <span style="color: var(--text-primary);">Disponible en </span><span class="italic gold-gradient-text">Afrique et Partout</span>
+                </h2>
+                <p class="font-sans text-lg" style="color: var(--text-muted);">
+                    Nous servons les clients dans plus de 150 pays à travers l'Afrique, l'Europe, l'Amérique et au-delà.
+                </p>
+            </div>
+
+            <!-- Countries Cards -->
+            <div class="flex flex-wrap justify-center gap-6 mb-16 lg:mb-24">
+                <!-- Côte d'Ivoire -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20en%20C%C3%B4te%20d%27Ivoire%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.1s;">
+                    <div class="country-badge-icon">🇨🇮</div>
+                    <div class="country-badge-name">Côte d'Ivoire</div>
+                </a>
+
+                <!-- Gabon -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Gabon%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.2s;">
+                    <div class="country-badge-icon">🇬🇦</div>
+                    <div class="country-badge-name">Gabon</div>
+                </a>
+
+                <!-- Sénégal -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Sénégal%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.3s;">
+                    <div class="country-badge-icon">🇸🇳</div>
+                    <div class="country-badge-name">Sénégal</div>
+                </a>
+
+                <!-- Congo RDC -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20en%20Congo%20RDC%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.4s;">
+                    <div class="country-badge-icon">🇨🇩</div>
+                    <div class="country-badge-name">Congo RDC</div>
+                </a>
+
+                <!-- Canada -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Canada%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.5s;">
+                    <div class="country-badge-icon">🇨🇦</div>
+                    <div class="country-badge-name">Canada</div>
+                </a>
+
+                <!-- Autres Pays -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20d%27un%20autre%20pays%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.6s;">
+                    <div class="country-badge-icon">🌍</div>
+                    <div class="country-badge-name">Autres Pays</div>
+                </a>
+            </div>
+
+            <!-- Rest of World Statement -->
+            <div class="text-center reveal" style="animation-delay: 0.6s;">
+                <div style="font-size: 1.125rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;">Et aussi</div>
+                <div class="font-heading text-4xl lg:text-5xl font-bold gold-gradient-text italic mb-6">
+                    Le Reste de l'Afrique et du Monde Entier
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <img src="../statics/img/logo.svg" alt="Logo" style="height: 32px; width: 32px;">
+                        <div class="flex flex-col leading-tight">
+                            <span class="font-heading text-xs font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                            <span class="font-heading text-xs font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                        </div>
+                    </div>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">Votre plateforme de streaming complète pour l'Afrique et le monde.</p>
+                </div>
+
+                <!-- Product -->
+                <div>
+                    <div class="label-text mb-4" style="color: var(--gold);">PRODUIT</div>
+                    <ul class="space-y-3 font-sans text-sm" style="color: var(--text-muted);">
+                        <li><a href="/" class="hover:text-gold transition-colors">Accueil</a></li>
+                        <li><a href="/abonnements" class="hover:text-gold transition-colors">Abonnements</a></li>
+                        <li><a href="/about" class="hover:text-gold transition-colors">À Propos</a></li>
+                        <li><a href="/contact" class="hover:text-gold transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <div class="label-text mb-4" style="color: var(--gold);">LEGAL</div>
+                    <ul class="space-y-3 font-sans text-sm" style="color: var(--text-muted);">
+                        <li><a href="#" class="hover:text-gold transition-colors">Conditions d'Utilisation</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Politique de Confidentialité</a></li>
+                        <li><a href="#" class="hover:text-gold transition-colors">Mentions Légales</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <div class="label-text mb-4" style="color: var(--gold);">CONTACTEZ-NOUS</div>
+                    <ul class="space-y-3 font-sans text-sm" style="color: var(--text-muted);">
+                        <li><a href="https://wa.me/243860493345" target="_blank" class="hover:text-gold transition-colors">WhatsApp Support</a></li>
+                        <li><a href="mailto:support@moriptvafrica.com" class="hover:text-gold transition-colors">Email Support</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div style="height: 1px; background: var(--border-gold); margin-bottom: 12px;"></div>
+
+            <!-- Copyright -->
+            <div class="flex flex-col sm:flex-row items-center justify-between text-sm font-sans" style="color: var(--text-muted);">
+                <p>&copy; 2024 Mon IPTV Africa. Tous droits réservés.</p>
+                <p>Créé par <span style="color: var(--gold);">MOA Digital Agency</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10,8,6,0.95)';
+            } else {
+                navbar.style.background = 'rgba(10,8,6,0.85)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

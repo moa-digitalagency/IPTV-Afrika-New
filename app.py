@@ -106,6 +106,11 @@ def abonnements():
     """Serve the Abonnements page"""
     return render_template('abonnements.html')
 
+@app.route('/about')
+def about():
+    """Serve the About page"""
+    return render_template('about.html')
+
 @app.route('/statics/<path:filename>')
 def serve_static(filename):
     """Serve static files"""
