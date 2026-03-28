@@ -167,12 +167,25 @@ def line_detail(golden_id):
 def create_line():
     """Create new line"""
     if request.method == 'GET':
-        # Get packages for dropdown
+        # Get packages from cache or GOLDEN API
+        from models.line import PackageCache
+
+        packages = []
         try:
-            packages = db.session.query(
-                LineCache.package_id,
-                LineCache.package_name
-            ).filter(LineCache.package_id.isnot(None)).distinct().all()
+            # First try to get from cache
+            cached_packages = PackageCache.query.all()
+
+            if cached_packages:
+                packages = [(p.golden_id, p.package_name) for p in cached_packages]
+            else:
+                # If cache is empty, fetch from GOLDEN API
+                try:
+                    api_result = GoldenAPIService.get_packages()
+                    api_packages = api_result.get('packages', [])
+                    packages = [(p.get('id'), p.get('name')) for p in api_packages]
+                except GoldenAPIException as e:
+                    print(f"Error fetching packages from API: {e}")
+                    packages = []
         except Exception as e:
             print(f"Error loading packages: {e}")
             packages = []
