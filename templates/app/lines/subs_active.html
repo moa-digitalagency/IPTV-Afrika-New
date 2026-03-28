@@ -11,7 +11,7 @@
 <!-- FILTERS & ACTIONS -->
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 200px;">
-        <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom d'utilisateur..." style="
+        <input type="text" id="searchInput" placeholder="Rechercher par nom d'utilisateur..." style="
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-gold);
@@ -22,8 +22,8 @@
             font-size: 0.875rem;
         ">
     </div>
-    <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary">
-         Créer un Abonnement
+    <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary" style="white-space: nowrap;">
+        <i class="fas fa-plus"></i> Créer un Abonnement
     </a>
 </div>
 
