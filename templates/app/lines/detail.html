@@ -474,14 +474,23 @@ document.getElementById('refundModal').addEventListener('click', (e) => {
 });
 
 // M3U Link Management
-const dnsLink = ('{{ line.dns_link }}'.trim() === 'None' || '{{ line.dns_link }}'.trim() === '') ? null : '{{ line.dns_link }}'.trim();
-const username = '{{ line.username }}'.trim() || '';
-const password = '{{ line.password }}'.trim() || '';
+// Extract values from Jinja2 template
+const rawDnsLink = '{{ line.dns_link }}';
+const rawUsername = '{{ line.username }}';
+const rawPassword = '{{ line.password }}';
+
+// Clean up null/None values from Python
+const dnsLink = (rawDnsLink && rawDnsLink.trim() && rawDnsLink !== 'None') ? rawDnsLink.trim() : null;
+const username = (rawUsername && rawUsername.trim()) ? rawUsername.trim() : '';
+const password = (rawPassword && rawPassword.trim()) ? rawPassword.trim() : '';
+
+console.log('[M3U Init]', { dnsLink, username, password });
 
 function buildBaseM3ULink() {
     // Construct M3U URL with username, password, and standard params
     if (!dnsLink || !username || !password) {
-        return 'Lien M3U non disponible (dns_link manquant de l\'API GOLDEN)';
+        console.warn('[buildBaseM3ULink] Missing fields:', { dnsLink, username, password });
+        return 'Lien M3U non disponible (dns_link/username/password manquant)';
     }
 
     let url = dnsLink.trim();
@@ -503,12 +512,14 @@ function buildBaseM3ULink() {
     params.append('type', 'm3u_plus');
     params.append('output', 'mpegts');
 
-    return url + params.toString();
+    const finalUrl = url + params.toString();
+    console.log('[buildBaseM3ULink] Result:', finalUrl);
+    return finalUrl;
 }
 
 function buildCustomM3ULink() {
-    const quality = document.getElementById('m3uQuality').value;
-    const format = document.getElementById('m3uFormat').value;
+    const quality = document.getElementById('m3uQuality')?.value || '';
+    const format = document.getElementById('m3uFormat')?.value || '';
 
     let link = buildBaseM3ULink();
 
@@ -516,10 +527,15 @@ function buildCustomM3ULink() {
         const params = [];
         if (quality) params.push(`quality=${encodeURIComponent(quality)}`);
         if (format) params.push(`format=${encodeURIComponent(format)}`);
-        link += '&' + params.join('&');
+        if (params.length > 0) {
+            link += '&' + params.join('&');
+        }
     }
 
-    document.getElementById('m3uCustomLink').textContent = link;
+    const m3uCustomLink = document.getElementById('m3uCustomLink');
+    if (m3uCustomLink) {
+        m3uCustomLink.textContent = link;
+    }
     return link;
 }
 
@@ -537,27 +553,31 @@ function copyM3ULink() {
     });
 }
 
-// Initialize M3U link on page load
+// Initialize M3U link immediately
 function initM3ULink() {
+    console.log('[initM3ULink] Starting initialization...');
+
     const m3uLink = document.getElementById('m3uLink');
-    const m3uCustomLink = document.getElementById('m3uCustomLink');
+    console.log('[initM3ULink] m3uLink element:', m3uLink ? 'found' : 'NOT FOUND');
 
     if (m3uLink) {
         const baseLink = buildBaseM3ULink();
+        console.log('[initM3ULink] Setting m3uLink.textContent to:', baseLink);
         m3uLink.textContent = baseLink;
     }
+
+    const m3uCustomLink = document.getElementById('m3uCustomLink');
+    console.log('[initM3ULink] m3uCustomLink element:', m3uCustomLink ? 'found' : 'NOT FOUND');
 
     if (m3uCustomLink) {
         buildCustomM3ULink();
     }
+
+    console.log('[initM3ULink] Initialization complete');
 }
 
-// Try to initialize immediately and also on DOMContentLoaded
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initM3ULink);
-} else {
-    initM3ULink();
-}
+// Initialize as soon as script runs (not waiting for DOMContentLoaded)
+initM3ULink();
 
 function copyCustomM3ULink() {
     const link = document.getElementById('m3uCustomLink').textContent;
