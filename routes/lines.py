@@ -258,11 +258,22 @@ def create_line():
             enabled=result.get('enabled', True),
             max_connections=result.get('max_connections', 1),
             dns_link=result.get('dns_link'),
-            created_at=datetime.utcnow(),
+            created_at=result.get('created_at') or datetime.utcnow(),
             cached_at=datetime.utcnow()
         )
         db.session.add(cache_line)
         db.session.commit()
+
+        # If dns_link is not provided, fetch full details from API
+        if not cache_line.dns_link:
+            try:
+                full_details = GoldenAPIService.get_line(line_id)
+                if full_details:
+                    cache_line.dns_link = full_details.get('dns_link')
+                    cache_line.created_at = full_details.get('created_at')
+                    db.session.commit()
+            except Exception as e:
+                print(f"Warning: Could not fetch full line details: {e}")
 
         flash(f'Ligne créée avec succès: {username}', 'success')
         return redirect(url_for('lines.line_detail', golden_id=line_id))
