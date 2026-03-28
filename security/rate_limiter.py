@@ -7,6 +7,7 @@ Rate Limiting Configuration
 
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from flask_limiter.errors import RateLimitExceeded
 from flask import jsonify
 
 def init_limiter(app):
@@ -19,12 +20,12 @@ def init_limiter(app):
         strategy="fixed-window"
     )
 
-    @limiter.error_handler
+    @app.errorhandler(RateLimitExceeded)
     def ratelimit_error_handler(e):
         """Custom error handler for rate limit violations"""
         return jsonify({
             'success': False,
-            'message': '⚠️ Trop de tentatives. Veuillez réessayer dans quelques minutes.',
+            'message': 'Trop de tentatives. Veuillez réessayer dans quelques minutes.',
             'error_code': 'RATE_LIMIT_EXCEEDED'
         }), 429
 

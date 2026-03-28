@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">🔐 Gestion des Permissions</h1>
+    <h1 class="page-title"><i class="fas fa-lock"></i> Gestion des Permissions</h1>
     <p class="page-subtitle">{{ user.username }} ({{ user.role }})</p>
 </div>
 
@@ -17,7 +17,7 @@
 
 <!-- INFO PANEL -->
 <div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-    <h3 style="margin-top: 0; color: var(--gold);">ℹ️ À Propos des Permissions</h3>
+    <h3 style="margin-top: 0; color: var(--gold);"> À Propos des Permissions</h3>
     <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
         Les permissions granulaires permettent un contrôle précis sur chaque ressource.
         Chaque ressource peut avoir des permissions en lecture et/ou écriture.
@@ -25,11 +25,11 @@
     </p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
         <div>
-            <strong style="color: var(--gold);">📖 Lecture (Read)</strong>
+            <strong style="color: var(--gold);"><i class="fas fa-book"></i> Lecture (Read)</strong>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0 0 0;">Voir/accéder à la ressource</p>
         </div>
         <div>
-            <strong style="color: var(--gold);">✏️ Écriture (Write)</strong>
+            <strong style="color: var(--gold);"><i class="fas fa-pen"></i> Écriture (Write)</strong>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0 0 0;">Créer, modifier, supprimer la ressource</p>
         </div>
     </div>
@@ -37,7 +37,7 @@
 
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📋 Permissions par Ressource</h3>
+        <h3 class="card-title"> Permissions par Ressource</h3>
     </div>
 
     <form method="POST" style="padding: 1.5rem;">
@@ -56,7 +56,7 @@
                     <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
                         <input type="checkbox" name="{{ perm_key }}" {% if has_perm %}checked{% endif %} style="width: 18px; height: 18px; cursor: pointer;">
                         <span style="color: var(--text-primary);">
-                            {% if action == 'read' %}📖 Lecture{% elif action == 'write' %}✏️ Écriture{% endif %}
+                            {% if action == 'read' %}<i class="fas fa-book"></i> Lecture{% elif action == 'write' %}<i class="fas fa-pen"></i> Écriture{% endif %}
                         </span>
                     </label>
                     {% endfor %}
@@ -68,7 +68,7 @@
         <!-- Save -->
         <div style="margin-top: 2rem;">
             <button type="submit" class="btn btn-primary" style="width: 100%;">
-                💾 Sauvegarder les Permissions
+                <i class="fas fa-floppy-disk"></i> Sauvegarder les Permissions
             </button>
         </div>
     </form>
@@ -77,7 +77,7 @@
 <!-- QUICK PRESETS -->
 <div class="content-card" style="margin-top: 2rem;">
     <div class="card-header">
-        <h3 class="card-title">⚡ Présets Rapides</h3>
+        <h3 class="card-title"> Présets Rapides</h3>
     </div>
 
     <div style="padding: 1.5rem;">
@@ -85,16 +85,16 @@
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
             <button type="button" onclick="applyPreset('operator')" class="btn">
-                🟢 Opérateur
+                <i class="fas fa-user"></i> Opérateur
             </button>
             <button type="button" onclick="applyPreset('admin')" class="btn">
-                🟠 Admin
+                <i class="fas fa-user-tie"></i> Admin
             </button>
             <button type="button" onclick="applyPreset('superadmin')" class="btn">
-                🔴 Superadmin
+                <i class="fas fa-shield"></i> Superadmin
             </button>
             <button type="button" onclick="clearAll()" class="btn btn-danger">
-                ❌ Tout Effacer
+                <i class="fas fa-trash"></i> Tout Effacer
             </button>
         </div>
     </div>
@@ -102,12 +102,12 @@
 
 <script>
 function applyPreset(role) {
-    alert('ℹ️ Présets — Phase 7.1\n\nFonctionnalité venant bientôt pour appliquer automatiquement les permissions selon le rôle.');
+    alert(' Présets — Phase 7.1\n\nFonctionnalité venant bientôt pour appliquer automatiquement les permissions selon le rôle.');
     // TODO: Implement preset permission application
 }
 
 function clearAll() {
-    if (!confirm('⚠️ Êtes-vous sûr?\n\nToutes les permissions seront supprimées.')) return;
+    if (!confirm(' Êtes-vous sûr?\n\nToutes les permissions seront supprimées.')) return;
     document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
 }
 </script>

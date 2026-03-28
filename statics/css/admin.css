@@ -479,6 +479,30 @@ table tbody tr:hover {
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* Desktop - Show sidebar by default */
+@media (min-width: 769px) {
+    :root {
+        --sidebar-width: 260px;
+    }
+
+    .sidebar {
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .sidebar.hidden {
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+}
+
 @media (max-width: 1024px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);

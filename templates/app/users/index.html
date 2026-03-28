@@ -4,26 +4,26 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">👥 Gestion des Utilisateurs</h1>
+    <h1 class="page-title"> Gestion des Utilisateurs</h1>
     <p class="page-subtitle">Administrez les comptes et les permissions</p>
 </div>
 
 <!-- FILTERS & ACTIONS -->
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 200px;">
-        <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom d'utilisateur..." style="
+        <input type="text" id="searchInput" placeholder="Rechercher par nom d'utilisateur..." style="
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-gold);
             border-radius: 8px;
             background: var(--bg-surface);
             color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 0.875rem;
         ">
     </div>
     <a href="{{ url_for('users.create') }}" class="btn btn-primary">
-        ➕ Nouvel Utilisateur
+         Nouvel Utilisateur
     </a>
 </div>
 
@@ -46,7 +46,7 @@
 <!-- USERS TABLE -->
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📋 Liste des Utilisateurs</h3>
+        <h3 class="card-title"> Liste des Utilisateurs</h3>
         <span style="font-size: 0.875rem; color: var(--text-muted);">{{ users|length }} / {{ total }}</span>
     </div>
 
@@ -71,18 +71,18 @@
                     <td>{{ user.email }}</td>
                     <td>
                         {% if user.role == 'superadmin' %}
-                            <span class="badge badge-danger">🔴 Superadmin</span>
+                            <span class="badge badge-danger"><i class="fas fa-shield"></i> Superadmin</span>
                         {% elif user.role == 'admin' %}
-                            <span class="badge badge-gold">🟠 Admin</span>
+                            <span class="badge badge-gold"><i class="fas fa-user-tie"></i> Admin</span>
                         {% else %}
-                            <span class="badge badge-success">🟢 Opérateur</span>
+                            <span class="badge badge-success"><i class="fas fa-user"></i> Opérateur</span>
                         {% endif %}
                     </td>
                     <td>
                         {% if user.is_active %}
-                            <span style="color: var(--success);">✅ Actif</span>
+                            <span style="color: var(--success);"><i class="fas fa-check-circle"></i> Actif</span>
                         {% else %}
-                            <span style="color: var(--text-muted);">⚪ Inactif</span>
+                            <span style="color: var(--text-muted);"><i class="fas fa-circle"></i> Inactif</span>
                         {% endif %}
                     </td>
                     <td style="font-size: 0.875rem;">
@@ -96,14 +96,14 @@
                         {% endif %}
                     </td>
                     <td style="text-align: center; gap: 0.5rem;">
-                        <a href="{{ url_for('users.edit', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
-                            ✏️
+                        <a href="{{ url_for('users.edit', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;" title="Éditer">
+                            <i class="fas fa-pen"></i>
                         </a>
                         <a href="{{ url_for('users.permissions', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block; margin-left: 0.25rem;" title="Permissions">
-                            🔐
+                            <i class="fas fa-lock"></i>
                         </a>
                         <a href="{{ url_for('users.activity', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block; margin-left: 0.25rem;" title="Activité">
-                            📊
+                            <i class="fas fa-history"></i>
                         </a>
                     </td>
                 </tr>
@@ -137,10 +137,10 @@
 
     {% else %}
     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
         <p>Aucun utilisateur</p>
         <a href="{{ url_for('users.create') }}" class="btn btn-primary" style="margin-top: 1rem;">
-            ➕ Créer le premier
+             Créer le premier
         </a>
     </div>
     {% endif %}

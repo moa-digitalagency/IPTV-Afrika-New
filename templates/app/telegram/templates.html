@@ -4,13 +4,13 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">📝 Templates de Messages</h1>
+    <h1 class="page-title"> Templates de Messages</h1>
     <p class="page-subtitle">Personnalisez les messages envoyés aux utilisateurs</p>
 </div>
 
 <!-- INFO PANEL -->
 <div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-    <h3 style="margin-top: 0; color: var(--gold);">🔤 Variables Disponibles</h3>
+    <h3 style="margin-top: 0; color: var(--gold);"><i class="fas fa-font"></i> Variables Disponibles</h3>
     <p style="color: var(--text-muted); margin-bottom: 1rem;">Utilisez ces placeholders dans vos templates:</p>
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
         <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
@@ -43,7 +43,7 @@
 <!-- TEMPLATES LIST -->
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📋 Messages Disponibles</h3>
+        <h3 class="card-title"> Messages Disponibles</h3>
     </div>
 
     {% if templates %}
@@ -56,19 +56,19 @@
                     <div>
                         <div style="font-size: 1.1rem; font-weight: 600; color: var(--gold);">{{ template.title }}</div>
                         <div style="font-size: 0.85rem; color: var(--text-muted);">
-                            🏷️ {{ template.slug }}
+                            <i class="fas fa-tag"></i> {{ template.slug }}
                             {% if template.lang == 'fr' %}
-                                <span style="color: var(--gold);">🇫🇷</span>
+                                <span style="color: var(--gold);">FR</span>
                             {% elif template.lang == 'en' %}
-                                <span style="color: var(--gold);">🇬🇧</span>
+                                <span style="color: var(--gold);">EN</span>
                             {% endif %}
                         </div>
                     </div>
                     <div>
                         {% if template.is_active %}
-                        <span class="badge badge-success" style="display: inline-block;">✅ Actif</span>
+                        <span class="badge badge-success" style="display: inline-block;"> Actif</span>
                         {% else %}
-                        <span class="badge badge-danger" style="display: inline-block;">⚪ Inactif</span>
+                        <span class="badge badge-danger" style="display: inline-block;"><i class="fas fa-circle"></i> Inactif</span>
                         {% endif %}
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                 <!-- Action -->
                 <div>
                     <a href="{{ url_for('telegram.template_edit', slug=template.slug) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
-                        ✏️ Éditer
+                        <i class="fas fa-pen"></i> Éditer
                     </a>
                 </div>
             </div>
@@ -88,7 +88,7 @@
     </div>
     {% else %}
     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
         <p>Aucun template disponible</p>
     </div>
     {% endif %}

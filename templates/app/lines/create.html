@@ -4,13 +4,13 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">➕ Créer un Nouvel Abonnement</h1>
+    <h1 class="page-title"> Créer un Nouvel Abonnement</h1>
     <p class="page-subtitle">Ajouter une nouvelle ligne M3U à votre inventaire</p>
 </div>
 
 <div class="content-card" style="max-width: 600px; margin: 0 auto;">
     <div class="card-header">
-        <h3 class="card-title">📝 Formulaire de Création</h3>
+        <h3 class="card-title"> Formulaire de Création</h3>
     </div>
 
     <form method="POST" style="padding: 2rem;">
@@ -21,7 +21,7 @@
         <!-- IDENTIFIANT -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                🔤 Nom d'Utilisateur <span style="color: var(--danger);">*</span>
+                <i class="fas fa-font"></i> Nom d'Utilisateur <span style="color: var(--danger);">*</span>
             </label>
             <input type="text" name="username" placeholder="user_123" required style="
                 width: 100%;
@@ -30,7 +30,7 @@
                 border-radius: 8px;
                 background: var(--bg-surface);
                 color: var(--text-primary);
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 1rem;
                 transition: border-color 0.3s;
             " onhover="this.style.borderColor = 'var(--gold)'" onfocus="this.style.borderColor = 'var(--gold)'" onblur="this.style.borderColor = 'var(--border-gold)'">
@@ -40,7 +40,7 @@
         <!-- MOT DE PASSE -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                🔐 Mot de Passe <span style="color: var(--danger);">*</span>
+                <i class="fas fa-lock"></i> Mot de Passe <span style="color: var(--danger);">*</span>
             </label>
             <input type="password" name="password" placeholder="••••••••••" required style="
                 width: 100%;
@@ -49,7 +49,7 @@
                 border-radius: 8px;
                 background: var(--bg-surface);
                 color: var(--text-primary);
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 1rem;
                 transition: border-color 0.3s;
             ">
@@ -68,7 +68,7 @@
                 border-radius: 8px;
                 background: var(--bg-surface);
                 color: var(--text-primary);
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 1rem;
             ">
                 <option value="">-- Sélectionner un package --</option>
@@ -86,7 +86,7 @@
         <!-- NOM COMPLET -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                👤 Nom Complet
+                 Nom Complet
             </label>
             <input type="text" name="full_name" placeholder="Jean Dupont" style="
                 width: 100%;
@@ -95,7 +95,7 @@
                 border-radius: 8px;
                 background: var(--bg-surface);
                 color: var(--text-primary);
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 1rem;
             ">
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Facultatif</p>
@@ -104,7 +104,7 @@
         <!-- EMAIL -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                ✉️ Email
+                <i class="fas fa-envelope"></i> Email
             </label>
             <input type="email" name="email" placeholder="contact@example.com" style="
                 width: 100%;
@@ -113,7 +113,7 @@
                 border-radius: 8px;
                 background: var(--bg-surface);
                 color: var(--text-primary);
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 1rem;
             ">
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Facultatif</p>
@@ -125,7 +125,7 @@
                 ← Annuler
             </a>
             <button type="submit" class="btn btn-primary" style="flex: 1;">
-                ✅ Créer l'Abonnement
+                 Créer l'Abonnement
             </button>
         </div>
     </form>
@@ -133,7 +133,7 @@
     <!-- INFO PANEL -->
     <div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1rem; margin-top: 2rem; border-radius: 4px;">
         <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">
-            <strong>ℹ️ Information:</strong> Les données seront synchronisées automatiquement avec l'API GOLDEN. Un email de confirmation peut être envoyé au contact fourni.
+            <strong> Information:</strong> Les données seront synchronisées automatiquement avec l'API GOLDEN. Un email de confirmation peut être envoyé au contact fourni.
         </p>
     </div>
 </div>

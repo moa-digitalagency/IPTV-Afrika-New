@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">✏️ Éditer Meta Tags</h1>
+    <h1 class="page-title"><i class="fas fa-pen"></i> Éditer Meta Tags</h1>
     <p class="page-subtitle">{{ page_title }}</p>
 </div>
 
@@ -19,14 +19,14 @@
     <!-- FORM -->
     <div class="content-card">
         <div class="card-header">
-            <h3 class="card-title">📝 Meta Tags</h3>
+            <h3 class="card-title"> Meta Tags</h3>
         </div>
 
         <form method="POST" style="padding: 1.5rem;">
             <!-- Meta Title -->
             <div style="margin-bottom: 1.5rem;">
                 <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                    📄 Meta Title <span style="color: var(--danger);">*</span>
+                     Meta Title <span style="color: var(--danger);">*</span>
                     <span id="titleLength" style="float: right; color: var(--text-muted); font-weight: 400; text-transform: none;">0/60</span>
                 </label>
                 <input type="text" name="meta_title" maxlength="60" value="{{ seo.meta_title or '' }}" required placeholder="Titre pour les SERP (max 60 chars)" style="
@@ -36,18 +36,18 @@
                     border-radius: 8px;
                     background: var(--bg-surface);
                     color: var(--text-primary);
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                     font-size: 1rem;
                 " oninput="updateLength('meta_title', 'titleLength', 60)">
                 <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
-                    💡 Affiché dans les résultats de recherche Google
+                     Affiché dans les résultats de recherche Google
                 </p>
             </div>
 
             <!-- Meta Description -->
             <div style="margin-bottom: 1.5rem;">
                 <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                    📝 Meta Description <span style="color: var(--danger);">*</span>
+                     Meta Description <span style="color: var(--danger);">*</span>
                     <span id="descLength" style="float: right; color: var(--text-muted); font-weight: 400; text-transform: none;">0/160</span>
                 </label>
                 <textarea name="meta_description" maxlength="160" required placeholder="Description pour les SERP (max 160 chars)" style="
@@ -57,19 +57,19 @@
                     border-radius: 8px;
                     background: var(--bg-surface);
                     color: var(--text-primary);
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                     font-size: 1rem;
                     min-height: 80px;
                     resize: vertical;
                 " oninput="updateLength('meta_description', 'descLength', 160)">{{ seo.meta_description or '' }}</textarea>
                 <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
-                    💡 Affiché sous le titre dans les résultats
+                     Affiché sous le titre dans les résultats
                 </p>
             </div>
 
             <!-- Open Graph Section -->
             <div style="border-top: 1px solid var(--border-gold); padding-top: 1.5rem; margin-bottom: 1.5rem;">
-                <h4 style="color: var(--gold); margin-bottom: 1rem; font-size: 0.95rem;">🔗 Open Graph (Réseaux Sociaux)</h4>
+                <h4 style="color: var(--gold); margin-bottom: 1rem; font-size: 0.95rem;"> Open Graph (Réseaux Sociaux)</h4>
 
                 <!-- OG Title -->
                 <div style="margin-bottom: 1.5rem;">
@@ -83,7 +83,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                 </div>
@@ -100,7 +100,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                         min-height: 60px;
                         resize: vertical;
@@ -119,11 +119,11 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
-                        💡 Image affichée lors du partage (recommandé: 1200x630px)
+                         Image affichée lors du partage (recommandé: 1200x630px)
                     </p>
                 </div>
 
@@ -139,7 +139,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                         <option value="website" {% if not seo or seo.og_type == 'website' %}selected{% endif %}>website</option>
@@ -152,7 +152,7 @@
 
             <!-- Advanced SEO -->
             <div style="border-top: 1px solid var(--border-gold); padding-top: 1.5rem; margin-bottom: 1.5rem;">
-                <h4 style="color: var(--gold); margin-bottom: 1rem; font-size: 0.95rem;">⚙️ SEO Avancé</h4>
+                <h4 style="color: var(--gold); margin-bottom: 1rem; font-size: 0.95rem;"> SEO Avancé</h4>
 
                 <!-- Canonical URL -->
                 <div style="margin-bottom: 1.5rem;">
@@ -166,11 +166,11 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
-                        💡 URL maître si contenu dupliqué
+                         URL maître si contenu dupliqué
                     </p>
                 </div>
 
@@ -186,11 +186,11 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
-                        💡 Options: index/noindex, follow/nofollow
+                         Options: index/noindex, follow/nofollow
                     </p>
                 </div>
             </div>
@@ -198,7 +198,7 @@
             <!-- Save Button -->
             <div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">
-                    💾 Sauvegarder
+                    <i class="fas fa-floppy-disk"></i> Sauvegarder
                 </button>
             </div>
         </form>
@@ -209,7 +209,7 @@
         <!-- Google SERP Preview -->
         <div class="content-card" style="margin-bottom: 1.5rem;">
             <div class="card-header">
-                <h3 class="card-title">🔍 Aperçu SERP</h3>
+                <h3 class="card-title"> Aperçu SERP</h3>
             </div>
 
             <div style="padding: 1.5rem;">
@@ -231,7 +231,7 @@
                 </div>
 
                 <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">
-                    💡 Aperçu de l'apparence dans Google
+                     Aperçu de l'apparence dans Google
                 </p>
             </div>
         </div>
@@ -239,7 +239,7 @@
         <!-- Social Media Preview -->
         <div class="content-card">
             <div class="card-header">
-                <h3 class="card-title">📱 Aperçu Réseaux</h3>
+                <h3 class="card-title"><i class="fas fa-mobile"></i> Aperçu Réseaux</h3>
             </div>
 
             <div style="padding: 1.5rem;">
@@ -260,7 +260,7 @@
                 </div>
 
                 <p style="font-size: 0.75rem; color: var(--text-muted);">
-                    💡 Aperçu du partage sur Facebook/WhatsApp
+                     Aperçu du partage sur Facebook/WhatsApp
                 </p>
             </div>
         </div>

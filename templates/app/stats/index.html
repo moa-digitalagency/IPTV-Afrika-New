@@ -94,38 +94,38 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">📊 Statistiques</h1>
+    <h1 class="page-title"> Statistiques</h1>
     <p class="page-subtitle">Analyse complète de votre inventaire IPTV</p>
 </div>
 
 {% if error %}
 <div class="error-alert">
-    <strong>⚠️ Erreur:</strong> {{ error }}
+    <strong> Erreur:</strong> {{ error }}
 </div>
 {% endif %}
 
 <!-- KEY METRICS -->
 <div class="stat-grid">
     <div class="stat-card">
-        <div class="stat-label">📺 Total Lignes</div>
+        <div class="stat-label"><i class="fas fa-tv"></i> Total Lignes</div>
         <div class="stat-value" id="total-lines">-</div>
         <div class="stat-subtext">Actives et inactives</div>
     </div>
 
     <div class="stat-card">
-        <div class="stat-label">🟢 Actifs</div>
+        <div class="stat-label"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> Actifs</div>
         <div class="stat-value" id="active-lines" style="color: var(--success);">-</div>
         <div class="stat-subtext">Non expirés</div>
     </div>
 
     <div class="stat-card">
-        <div class="stat-label">⚠️ Expiration Proche</div>
+        <div class="stat-label"> Expiration Proche</div>
         <div class="stat-value" id="expiring-soon" style="color: var(--warning);">-</div>
         <div class="stat-subtext">&lt; 7 jours</div>
     </div>
 
     <div class="stat-card">
-        <div class="stat-label">❌ Expirés</div>
+        <div class="stat-label"> Expirés</div>
         <div class="stat-value" id="expired-lines" style="color: var(--danger);">-</div>
         <div class="stat-subtext">À rembourser</div>
     </div>
@@ -137,7 +137,7 @@
     </div>
 
     <div class="stat-card">
-        <div class="stat-label">💳 Abonnés</div>
+        <div class="stat-label"> Abonnés</div>
         <div class="stat-value" id="paid-lines">-</div>
         <div class="stat-subtext">Payants</div>
     </div>
@@ -147,7 +147,7 @@
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 2rem;">
     <!-- Expiry Distribution -->
     <div class="chart-container">
-        <div class="chart-title">⏳ Distribution des Expirations</div>
+        <div class="chart-title"><i class="fas fa-hourglass-end"></i> Distribution des Expirations</div>
         <div class="chart-canvas">
             <canvas id="expiryChart"></canvas>
         </div>
@@ -155,7 +155,7 @@
 
     <!-- Trial vs Paid -->
     <div class="chart-container">
-        <div class="chart-title">🎭 Testeurs vs Abonnés</div>
+        <div class="chart-title"><i class="fas fa-masks"></i> Testeurs vs Abonnés</div>
         <div class="chart-canvas">
             <canvas id="trialPaidChart"></canvas>
         </div>
@@ -164,7 +164,7 @@
 
 <!-- Activity Timeline -->
 <div class="chart-container" style="grid-column: 1 / -1;">
-    <div class="chart-title">📈 Activité (Derniers 30 Jours)</div>
+    <div class="chart-title"> Activité (Derniers 30 Jours)</div>
     <div class="chart-canvas">
         <canvas id="activityChart"></canvas>
     </div>
@@ -180,7 +180,7 @@
 
 <!-- Cache Status -->
 <div class="chart-container">
-    <div class="chart-title">🔄 Statut du Cache</div>
+    <div class="chart-title"><i class="fas fa-arrows-rotate"></i> Statut du Cache</div>
     <div style="padding: 1rem;">
         <table style="width: 100%; font-size: 0.9rem;">
             <tr style="border-bottom: 1px solid var(--border-gold);">
@@ -307,7 +307,7 @@ function updateExpiryChart(data) {
                     position: 'bottom',
                     labels: {
                         color: 'var(--text-primary)',
-                        font: { family: "'Montserrat', sans-serif" }
+                        font: { family: "'Poppins', sans-serif" }
                     }
                 }
             }
@@ -342,7 +342,7 @@ function updateTrialPaidChart(data) {
                 legend: {
                     labels: {
                         color: 'var(--text-primary)',
-                        font: { family: "'Montserrat', sans-serif" }
+                        font: { family: "'Poppins', sans-serif" }
                     }
                 }
             },
@@ -393,7 +393,7 @@ function updateActivityChart(data) {
                 legend: {
                     labels: {
                         color: 'var(--text-primary)',
-                        font: { family: "'Montserrat', sans-serif" }
+                        font: { family: "'Poppins', sans-serif" }
                     }
                 }
             },
@@ -439,7 +439,7 @@ function updatePackagesChart(data) {
                 legend: {
                     labels: {
                         color: 'var(--text-primary)',
-                        font: { family: "'Montserrat', sans-serif" }
+                        font: { family: "'Poppins', sans-serif" }
                     }
                 }
             },
@@ -459,7 +459,7 @@ function updatePackagesChart(data) {
 }
 
 function exportStats() {
-    alert('ℹ️ Fonctionnalité de rapport CSV — Phase 5.2');
+    alert(' Fonctionnalité de rapport CSV — Phase 5.2');
     // TODO: Implement CSV export with Flask response
 }
 </script>

@@ -8,14 +8,6 @@
     <p class="page-subtitle">Bienvenue dans l'interface d'administration Mon IPTV Africa</p>
 </div>
 
-<!-- CACHE STATUS WIDGET -->
-<div class="cache-widget" id="cacheWidget">
-    <div style="text-align: center; padding: 2rem;">
-        <div class="loading"></div>
-        <p style="margin-top: 1rem; color: var(--text-muted);">Chargement du cache...</p>
-    </div>
-</div>
-
 <!-- WELCOME MESSAGE -->
 <div style="
     background: linear-gradient(135deg, rgba(212,165,116,0.1) 0%, rgba(230,126,34,0.05) 100%);
@@ -24,38 +16,38 @@
     padding: 2rem;
     margin-bottom: 2rem;
 ">
-    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;">👋 Bienvenue, {{ current_user.username }}!</h2>
+    <h2 style="font-size: 1.5rem; margin-bottom: 0.5rem;"><i class="fas fa-hand"></i> Bienvenue, {{ current_user.username }}!</h2>
     <p style="color: var(--text-muted); line-height: 1.6;">
         Cette interface vous permet de gérer vos abonnements IPTV, vos utilisateurs et d'accéder à des statistiques détaillées.
         Utilisez le menu latéral pour naviguer entre les différentes sections.
     </p>
     <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-gold); font-size: 0.875rem; color: var(--text-muted);">
-        💡 <strong>Testeurs</strong> = Abonnés avec accès d'essai (is_trial = true) &nbsp; | &nbsp; <strong>Abonnés</strong> = Accès payant (is_trial = false)
+         <strong>Testeurs</strong> = Abonnés avec accès d'essai (is_trial = true) &nbsp; | &nbsp; <strong>Abonnés</strong> = Accès payant (is_trial = false)
     </div>
 </div>
 
 <!-- STATISTICS GRID -->
 <div class="stats-grid">
     <div class="stat-card" data-stat="lines">
-        <div class="stat-label">📺 Lignes Totales</div>
+        <div class="stat-label"><i class="fas fa-tv"></i> Lignes Totales</div>
         <div class="stat-value">0</div>
         <div class="stat-change"></div>
     </div>
 
     <div class="stat-card" data-stat="users">
-        <div class="stat-label">👥 Utilisateurs</div>
+        <div class="stat-label"> Utilisateurs</div>
         <div class="stat-value">0</div>
         <div class="stat-change"></div>
     </div>
 
     <div class="stat-card" data-stat="expired">
-        <div class="stat-label">⏰ Lignes Expirées</div>
+        <div class="stat-label"> Lignes Expirées</div>
         <div class="stat-value">0</div>
         <div class="stat-change"></div>
     </div>
 
     <div class="stat-card" data-stat="trial">
-        <div class="stat-label">🎯 Lignes Testeurs</div>
+        <div class="stat-label"> Lignes Testeurs</div>
         <div class="stat-value">0</div>
         <div class="stat-change"></div>
     </div>
@@ -65,78 +57,63 @@
 <div class="content-grid">
     <div class="content-card">
         <div class="card-header">
-            <h3 class="card-title">📊 Statut du Système</h3>
+            <h3 class="card-title"> Statut du Système</h3>
         </div>
         <div style="display: grid; gap: 1rem;">
             <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border-gold);">
                 <span style="color: var(--text-muted);">API GOLDEN</span>
-                <span style="color: var(--success);">🟢 Actif</span>
+                <span style="color: var(--success);"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> Actif</span>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border-gold);">
                 <span style="color: var(--text-muted);">Base de Données</span>
-                <span style="color: var(--success);">🟢 Connectée</span>
+                <span style="color: var(--success);"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> Connectée</span>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span style="color: var(--text-muted);">Cache Synchronisé</span>
-                <span id="cacheIndicator" style="color: var(--success);">🟢 À jour</span>
+                <span id="cacheIndicator" style="color: var(--success);"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> À jour</span>
             </div>
         </div>
     </div>
 
     <div class="content-card">
         <div class="card-header">
-            <h3 class="card-title">⚡ Actions Rapides</h3>
+            <h3 class="card-title"> Actions Rapides</h3>
         </div>
         <div style="display: flex; flex-direction: column; gap: 0.75rem;">
             <!-- Create Tester -->
             <a href="{{ url_for('lines.create_line', trial=1) }}" class="btn btn-primary" style="width: 100%; justify-content: center; text-decoration: none;">
-                🎯 Ajouter un Testeur
+                 Ajouter un Testeur
             </a>
 
             <!-- Create Paid Subscriber -->
             <a href="{{ url_for('lines.create_line', trial=0) }}" class="btn" style="width: 100%; justify-content: center; text-decoration: none;">
-                💳 Ajouter un Abonné
+                 Ajouter un Abonné
             </a>
 
             <!-- Convert Tester to Subscriber -->
             <button class="btn" style="width: 100%; justify-content: center;" onclick="openConvertModal()">
-                🔄 Convertir Testeur
+                <i class="fas fa-arrows-rotate"></i> Convertir Testeur
             </button>
 
             <!-- View Stats -->
             <a href="{{ url_for('stats.index') }}" class="btn" style="width: 100%; justify-content: center; text-decoration: none; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border-gold);">
-                📈 Statistiques
+                 Statistiques
             </a>
 
             <!-- Manage Users -->
             <a href="{{ url_for('users.index') }}" class="btn" style="width: 100%; justify-content: center; text-decoration: none;">
-                👥 Utilisateurs
+                 Utilisateurs
             </a>
         </div>
     </div>
 </div>
 
-<!-- ABOUT PHASE 3 -->
-<div style="
-    background: var(--bg-surface);
-    border: 1px solid var(--border-gold);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin-top: 2rem;
-">
-    <h3 style="color: var(--gold); margin-bottom: 0.75rem;">ℹ️ À Propos de Phase 3</h3>
-    <p style="color: var(--text-muted); font-size: 0.875rem; line-height: 1.6;">
-        La Phase 3 fournit le framework complet de l'interface d'administration avec :
-    </p>
-    <ul style="color: var(--text-muted); font-size: 0.875rem; margin-left: 2rem; margin-top: 0.75rem; line-height: 1.8;">
-        <li>✅ Sidebar et topbar responsive</li>
-        <li>✅ Système de widget de cache en temps réel</li>
-        <li>✅ Intégration des services de statistiques</li>
-        <li>✅ Architecture modulaire pour les pages suivantes</li>
-    </ul>
-    <p style="color: var(--text-muted); font-size: 0.875rem; margin-top: 0.75rem;">
-        Les pages de gestion des lignes, statistiques et paramètres seront ajoutées dans les phases suivantes.
-    </p>
+<!-- CACHE STATUS WIDGET (Bottom) -->
+<div class="cache-widget" id="cacheWidget" style="margin-top: 2rem;">
+    <div style="text-align: center; padding: 2rem;">
+        <div class="loading"></div>
+        <p style="margin-top: 1rem; color: var(--text-muted);">Chargement du cache...</p>
+    </div>
 </div>
 
 <!-- CONVERT TESTER MODAL -->
@@ -161,7 +138,7 @@
         width: 90%;
         box-shadow: 0 20px 60px rgba(0,0,0,0.5);
     ">
-        <h2 style="color: var(--gold); margin-bottom: 1rem;">🔄 Convertir Testeur en Abonné</h2>
+        <h2 style="color: var(--gold); margin-bottom: 1rem;"><i class="fas fa-arrows-rotate"></i> Convertir Testeur en Abonné</h2>
 
         <form id="convertForm" style="display: flex; flex-direction: column; gap: 1rem;">
             <div>
@@ -187,7 +164,7 @@
                 </label>
                 <div id="packOptions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; min-height: 60px;">
                     <div style="grid-column: 1 / -1; text-align: center; padding: 1rem; color: var(--text-muted);">
-                        ⏳ Chargement des packs...
+                        <i class="fas fa-hourglass-end"></i> Chargement des packs...
                     </div>
                 </div>
             </div>
@@ -299,11 +276,11 @@ function openConvertModal() {
                 span.style.fontSize = '0.875rem';
 
                 if (pkg.duration_months >= 12) {
-                    span.textContent = '📅 ' + (pkg.duration_months / 12).toFixed(1) + ' Année(s)';
+                    span.innerHTML = '<i class="fas fa-calendar"></i> ' + (pkg.duration_months / 12).toFixed(1) + ' Année(s)';
                 } else if (pkg.duration_months > 1) {
-                    span.textContent = '📅 ' + pkg.duration_months + ' Mois';
+                    span.innerHTML = '<i class="fas fa-calendar"></i> ' + pkg.duration_months + ' Mois';
                 } else {
-                    span.textContent = '📅 ' + pkg.duration_days + ' Jours';
+                    span.innerHTML = '<i class="fas fa-calendar"></i> ' + pkg.duration_days + ' Jours';
                 }
 
                 label.appendChild(radio);
@@ -369,18 +346,18 @@ document.getElementById('convertForm').addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.success) {
-            showConvertMessage('✅ ' + result.message, 'success');
+            showConvertMessage(' ' + result.message, 'success');
             messageDiv.style.color = 'var(--success)';
             setTimeout(() => {
                 closeConvertModal();
                 location.reload();
             }, 1500);
         } else {
-            showConvertMessage('❌ ' + (result.message || 'Erreur lors de la conversion'), 'danger');
+            showConvertMessage(' ' + (result.message || 'Erreur lors de la conversion'), 'danger');
         }
     } catch (err) {
         console.error('Conversion error:', err);
-        showConvertMessage('❌ Erreur lors de la conversion', 'danger');
+        showConvertMessage(' Erreur lors de la conversion', 'danger');
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Convertir';

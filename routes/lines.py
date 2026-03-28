@@ -169,11 +169,12 @@ def create_line():
     if request.method == 'GET':
         # Get packages for dropdown
         try:
-            packages = LineCache.query.with_entities(
+            packages = db.session.query(
                 LineCache.package_id,
                 LineCache.package_name
-            ).distinct().filter(LineCache.package_id.isnot(None)).all()
-        except:
+            ).filter(LineCache.package_id.isnot(None)).distinct().all()
+        except Exception as e:
+            print(f"Error loading packages: {e}")
             packages = []
 
         return render_template('app/lines/create.html', packages=packages)

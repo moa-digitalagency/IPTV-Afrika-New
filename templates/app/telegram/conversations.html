@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">💬 Conversations Telegram</h1>
+    <h1 class="page-title"> Conversations Telegram</h1>
     <p class="page-subtitle">Gérez les discussions avec les utilisateurs</p>
 </div>
 
@@ -13,7 +13,7 @@
     <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
         {% for status in statuses %}
         <a href="?status={{ status }}" class="btn {% if status_filter == status or (status_filter == 'all' and status == 'all') %}btn-primary{% else %}btn{% endif %}" style="text-decoration: none; display: inline-block;">
-            {% if status == 'pending' %}⏳ En Attente{% elif status == 'active' %}💬 Active{% elif status == 'validated' %}✅ Validée{% elif status == 'closed' %}❌ Fermée{% elif status == 'all' %}📊 Tous{% endif %}
+            {% if status == 'pending' %}<i class="fas fa-hourglass-end"></i> En Attente{% elif status == 'active' %}<i class="fas fa-circle-play"></i> Active{% elif status == 'validated' %}<i class="fas fa-check-circle"></i> Validée{% elif status == 'closed' %}<i class="fas fa-circle-xmark"></i> Fermée{% elif status == 'all' %}<i class="fas fa-list"></i> Tous{% endif %}
         </a>
         {% endfor %}
     </div>
@@ -22,7 +22,7 @@
 <!-- CONVERSATIONS TABLE -->
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📋 Liste des Conversations</h3>
+        <h3 class="card-title"> Liste des Conversations</h3>
         <span style="font-size: 0.875rem; color: var(--text-muted);">{{ conversations|length }} / {{ total }}</span>
     </div>
 
@@ -56,13 +56,13 @@
                     </td>
                     <td>
                         {% if conv.status == 'pending' %}
-                            <span style="color: var(--warning);">⏳ En Attente</span>
+                            <span style="color: var(--warning);"><i class="fas fa-hourglass-end"></i> En Attente</span>
                         {% elif conv.status == 'active' %}
-                            <span style="color: var(--gold);">💬 Active</span>
+                            <span style="color: var(--gold);"><i class="fas fa-circle-play"></i> Active</span>
                         {% elif conv.status == 'validated' %}
-                            <span style="color: var(--success);">✅ Validée</span>
+                            <span style="color: var(--success);"><i class="fas fa-check-circle"></i> Validée</span>
                         {% elif conv.status == 'closed' %}
-                            <span style="color: var(--text-muted);">❌ Fermée</span>
+                            <span style="color: var(--text-muted);"><i class="fas fa-circle-xmark"></i> Fermée</span>
                         {% endif %}
                     </td>
                     <td style="font-size: 0.9rem;">
@@ -74,11 +74,11 @@
                     <td style="text-align: center; gap: 0.5rem;">
                         {% if conv.status != 'closed' %}
                         <button class="btn btn-sm" onclick="validateConversation({{ conv.id }}, '{{ conv.telegram_username }}')" title="Valider">
-                            ✅
+                            <i class="fas fa-check"></i>
                         </button>
                         {% endif %}
                         <button class="btn btn-sm" onclick="closeConversation({{ conv.id }}, '{{ conv.telegram_username }}')" style="margin-left: 0.25rem;" title="Fermer">
-                            ❌
+                            <i class="fas fa-times"></i>
                         </button>
                     </td>
                 </tr>
@@ -112,7 +112,7 @@
 
     {% else %}
     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
         <p>Aucune conversation</p>
     </div>
     {% endif %}
@@ -121,7 +121,7 @@
 <!-- VALIDATE MODAL -->
 <div id="validateModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
-        <h3 style="margin-bottom: 1rem; color: var(--gold);">✅ Valider Conversation</h3>
+        <h3 style="margin-bottom: 1rem; color: var(--gold);"> Valider Conversation</h3>
         <p id="validateUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
 
         <form id="validateForm">
@@ -136,7 +136,7 @@
                     border-radius: 8px;
                     background: var(--bg-surface);
                     color: var(--text-primary);
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                 "></textarea>
             </div>
             <div style="display: flex; gap: 0.75rem;">
@@ -150,7 +150,7 @@
 <!-- CLOSE MODAL -->
 <div id="closeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background: var(--bg-elevated); border: 1px solid var(--danger); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
-        <h3 style="margin-bottom: 1rem; color: var(--danger);">⚠️ Fermer Conversation</h3>
+        <h3 style="margin-bottom: 1rem; color: var(--danger);"> Fermer Conversation</h3>
         <p id="closeUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
         <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">
             La conversation sera marquée comme fermée et ne pourra plus être réactivée.
@@ -206,14 +206,14 @@ document.getElementById('validateForm').addEventListener('submit', async (e) => 
 
         const result = await response.json();
         if (result.success) {
-            alert('✅ ' + result.message);
+            alert(' ' + result.message);
             closeValidateModal();
             location.reload();
         } else {
-            alert('❌ ' + result.message);
+            alert(' ' + result.message);
         }
     } catch (error) {
-        alert('❌ Erreur: ' + error.message);
+        alert(' Erreur: ' + error.message);
     }
 });
 
@@ -231,14 +231,14 @@ document.getElementById('closeForm').addEventListener('submit', async (e) => {
 
         const result = await response.json();
         if (result.success) {
-            alert('✅ ' + result.message);
+            alert(' ' + result.message);
             closeCloseModal();
             location.reload();
         } else {
-            alert('❌ ' + result.message);
+            alert(' ' + result.message);
         }
     } catch (error) {
-        alert('❌ Erreur: ' + error.message);
+        alert(' Erreur: ' + error.message);
     }
 });
 

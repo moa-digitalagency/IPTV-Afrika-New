@@ -19,14 +19,14 @@ def init_security_headers(app):
         # Content Security Policy
         # - Prevents inline scripts (XSS)
         # - Allows scripts only from self
-        # - Allows Chart.js and Telegram from CDN
+        # - Allows Chart.js, Font Awesome and other CDNs
         response.headers['Content-Security-Policy'] = (
             "default-src 'self'; "
-            "script-src 'self' cdn.jsdelivr.net cdnjs.cloudflare.com unpkg.com; "
-            "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com; "
+            "script-src 'self' cdn.jsdelivr.net cdnjs.cloudflare.com unpkg.com cdn.tailwindcss.com; "
+            "style-src 'self' 'unsafe-inline' cdnjs.cloudflare.com cdn.tailwindcss.com fonts.googleapis.com; "
             "img-src 'self' data: https:; "
-            "font-src 'self' cdnjs.cloudflare.com; "
-            "connect-src 'self' api.telegram.org; "
+            "font-src 'self' data: cdnjs.cloudflare.com fonts.gstatic.com; "
+            "connect-src 'self' api.telegram.org fonts.googleapis.com; "
             "frame-ancestors 'none'; "
             "base-uri 'self'; "
             "form-action 'self'"

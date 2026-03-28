@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">⚙️ Paramètres Système</h1>
+    <h1 class="page-title"> Paramètres Système</h1>
     <p class="page-subtitle">Configuration GOLDEN API, branding, notifications</p>
 </div>
 
@@ -29,7 +29,7 @@
             font-size: 1rem;
             transition: all 0.2s;
         " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
-            🔑 GOLDEN API
+            <i class="fas fa-key"></i> GOLDEN API
         </button>
         <button class="tab-btn" onclick="switchTab('branding')" style="
             padding: 1rem 1.5rem;
@@ -42,7 +42,7 @@
             font-size: 1rem;
             transition: all 0.2s;
         " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
-            🎨 Branding
+            <i class="fas fa-palette"></i> Branding
         </button>
         <button class="tab-btn" onclick="switchTab('notifications')" style="
             padding: 1rem 1.5rem;
@@ -68,7 +68,7 @@
             font-size: 1rem;
             transition: all 0.2s;
         " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
-            ⚡ Cache TTL
+             Cache TTL
         </button>
     </div>
 
@@ -76,14 +76,14 @@
     <div id="golden-api" class="tab-content">
         <div class="content-card">
             <div class="card-header">
-                <h3 class="card-title">🔑 Clés GOLDEN API</h3>
+                <h3 class="card-title"><i class="fas fa-key"></i> Clés GOLDEN API</h3>
             </div>
 
             <form method="POST" action="{{ url_for('settings.update_golden_api') }}" style="padding: 1.5rem;">
                 <!-- Info Panel -->
                 <div style="background: rgba(212, 165, 116, 0.1); border-left: 4px solid var(--gold); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
-                        ℹ️ Ces paramètres contrôlent la connexion à l'API GOLDEN pour la synchronisation des lignes.
+                         Ces paramètres contrôlent la connexion à l'API GOLDEN pour la synchronisation des lignes.
                     </p>
                 </div>
 
@@ -119,7 +119,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                 </div>
@@ -130,7 +130,7 @@
                         🧪 Tester la Connexion
                     </button>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        💾 Sauvegarder
+                        <i class="fas fa-floppy-disk"></i> Sauvegarder
                     </button>
                 </div>
 
@@ -144,7 +144,7 @@
     <div id="branding" class="tab-content" style="display: none;">
         <div class="content-card">
             <div class="card-header">
-                <h3 class="card-title">🎨 Identité Visuelle</h3>
+                <h3 class="card-title"><i class="fas fa-palette"></i> Identité Visuelle</h3>
             </div>
 
             <form method="POST" action="{{ url_for('settings.update_branding') }}" style="padding: 1.5rem;">
@@ -160,7 +160,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                 </div>
@@ -177,7 +177,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                         min-height: 80px;
                         resize: vertical;
@@ -196,7 +196,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                 </div>
@@ -215,7 +215,7 @@
                 <!-- Save Button -->
                 <div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        💾 Sauvegarder
+                        <i class="fas fa-floppy-disk"></i> Sauvegarder
                     </button>
                 </div>
             </form>
@@ -253,7 +253,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
@@ -273,7 +273,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                         min-height: 80px;
                         resize: vertical;
@@ -286,7 +286,7 @@
                 <!-- Save Button -->
                 <div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        💾 Sauvegarder
+                        <i class="fas fa-floppy-disk"></i> Sauvegarder
                     </button>
                 </div>
             </form>
@@ -297,14 +297,14 @@
     <div id="cache" class="tab-content" style="display: none;">
         <div class="content-card">
             <div class="card-header">
-                <h3 class="card-title">⚡ Configuration du Cache</h3>
+                <h3 class="card-title"> Configuration du Cache</h3>
             </div>
 
             <form method="POST" action="{{ url_for('settings.update_cache_ttl') }}" style="padding: 1.5rem;">
                 <!-- Info -->
                 <div style="background: rgba(212, 165, 116, 0.1); border-left: 4px solid var(--gold); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
                     <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
-                        ℹ️ TTL = Time To Live. Durée avant invalidation du cache et re-sync depuis GOLDEN.
+                         TTL = Time To Live. Durée avant invalidation du cache et re-sync depuis GOLDEN.
                     </p>
                 </div>
 
@@ -320,7 +320,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
@@ -340,7 +340,7 @@
                         border-radius: 8px;
                         background: var(--bg-surface);
                         color: var(--text-primary);
-                        font-family: 'Montserrat', sans-serif;
+                        font-family: 'Poppins', sans-serif;
                         font-size: 1rem;
                     ">
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
@@ -351,7 +351,7 @@
                 <!-- Save Button -->
                 <div>
                     <button type="submit" class="btn btn-primary" style="width: 100%;">
-                        💾 Sauvegarder
+                        <i class="fas fa-floppy-disk"></i> Sauvegarder
                     </button>
                 </div>
             </form>
@@ -387,7 +387,7 @@ function testConnection() {
     const apiUrl = document.querySelector('[name="api_url"]').value;
 
     if (!apiKey || !apiUrl) {
-        alert('⚠️ Remplissez API key et URL avant de tester');
+        alert(' Remplissez API key et URL avant de tester');
         return;
     }
 
@@ -395,7 +395,7 @@ function testConnection() {
     resultDiv.style.display = 'block';
     resultDiv.style.background = 'rgba(243, 156, 18, 0.2)';
     resultDiv.style.color = 'var(--warning)';
-    resultDiv.textContent = '⏳ Test en cours...';
+    resultDiv.innerHTML = '<i class="fas fa-hourglass-end" style="margin-right: 0.5rem;"></i>Test en cours...';
 
     fetch('{{ url_for("settings.test_api") }}', {
         method: 'POST',
@@ -409,18 +409,18 @@ function testConnection() {
         if (data.success) {
             resultDiv.style.background = 'rgba(39, 174, 96, 0.2)';
             resultDiv.style.color = 'var(--success)';
-            resultDiv.textContent = '✅ ' + data.message;
+            resultDiv.textContent = ' ' + data.message;
         } else {
             resultDiv.style.background = 'rgba(231, 76, 60, 0.2)';
             resultDiv.style.color = 'var(--danger)';
-            resultDiv.textContent = '❌ ' + data.message;
+            resultDiv.textContent = ' ' + data.message;
         }
     })
     .catch(e => {
         resultDiv.style.display = 'block';
         resultDiv.style.background = 'rgba(231, 76, 60, 0.2)';
         resultDiv.style.color = 'var(--danger)';
-        resultDiv.textContent = '❌ Erreur: ' + e.message;
+        resultDiv.textContent = ' Erreur: ' + e.message;
     });
 }
 

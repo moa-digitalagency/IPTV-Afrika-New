@@ -158,11 +158,15 @@ settings_bp = Blueprint('settings', __name__, url_prefix='/app/settings')
 @require_permission('settings', 'read')
 def index():
     """Settings overview page"""
-    # Get current settings
-    settings = {}
-    app_settings = db.session.query(
-        db.func.count(db.literal_column('*')).label('total')
-    ).select_entity_from(db.text('app_settings')).scalar()
+    # Get current settings from AppSetting model
+    from models.settings import AppSetting
+
+    try:
+        app_settings = AppSetting.query.all()
+        settings = {s.key: s.value for s in app_settings}
+    except Exception as e:
+        print(f"Error loading settings: {e}")
+        settings = {}
 
     return render_template('app/settings/index.html', settings=settings)
 

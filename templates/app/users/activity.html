@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">📊 Journal d'Activité</h1>
+    <h1 class="page-title"> Journal d'Activité</h1>
     <p class="page-subtitle">Historique des actions de {{ user.username }}</p>
 </div>
 
@@ -36,7 +36,7 @@
 <!-- ACTIVITY TABLE -->
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📋 Historique des Actions</h3>
+        <h3 class="card-title"> Historique des Actions</h3>
         <span style="font-size: 0.875rem; color: var(--text-muted);">{{ activities|length }} / {{ total }}</span>
     </div>
 
@@ -57,13 +57,13 @@
                 <tr>
                     <td>
                         {% if activity.action.startswith('user_') %}
-                            👥 {{ activity.action.replace('user_', '').replace('_', ' ')|upper }}
+                            <i class="fas fa-user"></i> {{ activity.action.replace('user_', '').replace('_', ' ')|upper }}
                         {% elif activity.action.startswith('line_') %}
-                            📺 {{ activity.action.replace('line_', '').replace('_', ' ')|upper }}
+                            <i class="fas fa-tv"></i> {{ activity.action.replace('line_', '').replace('_', ' ')|upper }}
                         {% elif activity.action.startswith('telegram_') %}
-                            💬 {{ activity.action.replace('telegram_', '').replace('_', ' ')|upper }}
+                            <i class="fab fa-telegram"></i> {{ activity.action.replace('telegram_', '').replace('_', ' ')|upper }}
                         {% else %}
-                            🔧 {{ activity.action.replace('_', ' ')|upper }}
+                            <i class="fas fa-wrench"></i> {{ activity.action.replace('_', ' ')|upper }}
                         {% endif %}
                     </td>
                     <td style="font-size: 0.9rem;">
@@ -122,7 +122,7 @@
 
     {% else %}
     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
         <p>Aucune activité enregistrée</p>
     </div>
     {% endif %}

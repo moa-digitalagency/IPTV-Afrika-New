@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">✏️ Éditer Template</h1>
+    <h1 class="page-title"><i class="fas fa-pen"></i> Éditer Template</h1>
     <p class="page-subtitle">{{ template.title }}</p>
 </div>
 
@@ -12,14 +12,14 @@
     <!-- FORM -->
     <div class="content-card">
         <div class="card-header">
-            <h3 class="card-title">📝 Édition</h3>
+            <h3 class="card-title"> Édition</h3>
         </div>
 
         <form method="POST" style="padding: 1.5rem;">
             <!-- Title -->
             <div style="margin-bottom: 1.5rem;">
                 <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                    📌 Titre
+                    <i class="fas fa-thumbtack"></i> Titre
                 </label>
                 <input type="text" name="title" value="{{ template.title }}" required style="
                     width: 100%;
@@ -28,7 +28,7 @@
                     border-radius: 8px;
                     background: var(--bg-surface);
                     color: var(--text-primary);
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                     font-size: 1rem;
                 ">
             </div>
@@ -36,7 +36,7 @@
             <!-- Body -->
             <div style="margin-bottom: 1.5rem;">
                 <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                    💬 Message <span style="color: var(--danger);">*</span>
+                     Message <span style="color: var(--danger);">*</span>
                 </label>
                 <textarea name="body" required style="
                     width: 100%;
@@ -46,7 +46,7 @@
                     border-radius: 8px;
                     background: var(--bg-surface);
                     color: var(--text-primary);
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                     font-size: 0.95rem;
                     resize: vertical;
                 ">{{ template.body }}</textarea>
@@ -72,7 +72,7 @@
                     ← Retour
                 </a>
                 <button type="submit" class="btn btn-primary" style="flex: 1;">
-                    💾 Sauvegarder
+                    <i class="fas fa-floppy-disk"></i> Sauvegarder
                 </button>
             </div>
         </form>
@@ -81,7 +81,7 @@
     <!-- PREVIEW -->
     <div class="content-card">
         <div class="card-header">
-            <h3 class="card-title">👁️ Aperçu</h3>
+            <h3 class="card-title"> Aperçu</h3>
         </div>
 
         <div style="padding: 1.5rem;">
@@ -91,7 +91,7 @@
 
             <!-- Mock Data -->
             <div style="background: var(--bg-elevated); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.85rem;">
-                <div style="color: var(--gold); margin-bottom: 0.5rem;">📊 Données Fictives</div>
+                <div style="color: var(--gold); margin-bottom: 0.5rem;"> Données Fictives</div>
                 <table style="width: 100%; font-family: monospace;">
                     <tr style="border-bottom: 1px solid var(--border-gold);">
                         <td style="padding: 0.5rem; color: var(--text-muted);">username</td>
@@ -122,13 +122,13 @@
 
             <!-- Preview Box -->
             <div style="background: var(--bg-elevated); border: 2px solid var(--border-gold); border-radius: 8px; padding: 1.5rem; min-height: 200px;">
-                <div id="preview" style="white-space: pre-wrap; word-break: break-word; color: var(--text-primary); font-size: 0.95rem; font-family: 'Montserrat', sans-serif; line-height: 1.6;">
+                <div id="preview" style="white-space: pre-wrap; word-break: break-word; color: var(--text-primary); font-size: 0.95rem; font-family: 'Poppins', sans-serif; line-height: 1.6;">
                     Tapez votre message pour voir l'aperçu...
                 </div>
             </div>
 
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">
-                ℹ️ Cet aperçu utilise des données fictives
+                 Cet aperçu utilise des données fictives
             </p>
         </div>
     </div>

@@ -4,26 +4,26 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">❌ Abonnés Expirés</h1>
+    <h1 class="page-title"> Abonnés Expirés</h1>
     <p class="page-subtitle">Abonnements M3U dont la validité a expiré</p>
 </div>
 
 <!-- FILTERS & ACTIONS -->
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 200px;">
-        <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom d'utilisateur..." style="
+        <input type="text" id="searchInput" placeholder="<i class="fas fa-magnifying-glass"></i> Rechercher par nom d'utilisateur..." style="
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-gold);
             border-radius: 8px;
             background: var(--bg-surface);
             color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 0.875rem;
         ">
     </div>
     <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary">
-        ➕ Créer un Abonnement
+         Créer un Abonnement
     </a>
 </div>
 
@@ -38,7 +38,7 @@
 <!-- LINES TABLE -->
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📋 Liste des Abonnés Expirés</h3>
+        <h3 class="card-title"> Liste des Abonnés Expirés</h3>
         <span style="font-size: 0.875rem; color: var(--text-muted);">{{ lines|length }} / {{ total }}</span>
     </div>
 
@@ -78,10 +78,10 @@
                     </td>
                     <td style="text-align: center; gap: 0.5rem;">
                         <a href="{{ url_for('lines.line_detail', golden_id=line.golden_id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
-                            👁️
+                            
                         </a>
                         <button class="btn btn-sm" onclick="refundLine({{ line.golden_id }}, '{{ line.username }}')" style="margin-left: 0.25rem;">
-                            🗑️
+                            <i class="fas fa-trash"></i>
                         </button>
                     </td>
                 </tr>
@@ -115,7 +115,7 @@
 
     {% else %}
     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎉</div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
         <p>Aucun abonnement expiré - c'est super!</p>
     </div>
     {% endif %}
@@ -124,7 +124,7 @@
 <!-- REFUND MODAL -->
 <div id="refundModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background: var(--bg-elevated); border: 1px solid var(--danger); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
-        <h3 style="margin-bottom: 1rem; color: var(--danger);">⚠️ Supprimer l'Abonnement</h3>
+        <h3 style="margin-bottom: 1rem; color: var(--danger);"> Supprimer l'Abonnement</h3>
         <p id="refundUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
         <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">
             Cette action marquera l'abonnement comme remboursé et le désactivera.
@@ -157,7 +157,7 @@ document.getElementById('refundForm').addEventListener('submit', async (e) => {
     const golden_id = document.getElementById('refundGoldenId').value;
 
     try {
-        const response = await fetch(`{{ url_for('lines.refund_line', golden_id='REPLACE') }}`.replace('REPLACE', golden_id), {
+        const response = await fetch(`/app/lines/${golden_id}/refund('REPLACE', golden_id), {
             method: 'POST',
             headers: {
                 'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
@@ -166,14 +166,14 @@ document.getElementById('refundForm').addEventListener('submit', async (e) => {
 
         const result = await response.json();
         if (result.success) {
-            alert('✅ ' + result.message);
+            alert(' ' + result.message);
             closeRefundModal();
             location.reload();
         } else {
-            alert('❌ ' + result.message);
+            alert(' ' + result.message);
         }
     } catch (error) {
-        alert('❌ Erreur: ' + error.message);
+        alert(' Erreur: ' + error.message);
     }
 });
 

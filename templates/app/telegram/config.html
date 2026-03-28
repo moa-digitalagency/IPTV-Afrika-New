@@ -4,13 +4,13 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">💬 Configuration Telegram Bot</h1>
+    <h1 class="page-title"> Configuration Telegram Bot</h1>
     <p class="page-subtitle">Connectez votre bot Telegram pour les notifications automatiques</p>
 </div>
 
 <!-- INFO PANEL -->
 <div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
-    <h3 style="margin-top: 0; color: var(--gold);">📖 Comment créer un bot Telegram</h3>
+    <h3 style="margin-top: 0; color: var(--gold);"><i class="fas fa-book"></i> Comment créer un bot Telegram</h3>
     <ol style="color: var(--text-muted); line-height: 1.8;">
         <li>Ouvrez Telegram et cherchez <code style="color: var(--gold);">@BotFather</code></li>
         <li>Envoyez <code style="color: var(--gold);">/newbot</code> et suivez les instructions</li>
@@ -21,11 +21,11 @@
 
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">⚙️ Paramètres du Bot</h3>
+        <h3 class="card-title"> Paramètres du Bot</h3>
         {% if config %}
-        <span style="font-size: 0.875rem; color: var(--success);">🟢 Actif</span>
+        <span style="font-size: 0.875rem; color: var(--success);"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> Actif</span>
         {% else %}
-        <span style="font-size: 0.875rem; color: var(--text-muted);">⚪ Inactif</span>
+        <span style="font-size: 0.875rem; color: var(--text-muted);"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> Inactif</span>
         {% endif %}
     </div>
 
@@ -33,7 +33,7 @@
         <!-- Bot Token -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                🔑 Token du Bot <span style="color: var(--danger);">*</span>
+                <i class="fas fa-key"></i> Token du Bot <span style="color: var(--danger);">*</span>
             </label>
             <input type="password" name="bot_token" placeholder="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11" required style="
                 width: 100%;
@@ -51,7 +51,7 @@
         <!-- Webhook URL -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                🔗 URL du Webhook
+                <i class="fas fa-link"></i> URL du Webhook
             </label>
             <input type="url" name="webhook_url" placeholder="https://example.com/app/telegram/webhook" style="
                 width: 100%;
@@ -60,7 +60,7 @@
                 border-radius: 8px;
                 background: var(--bg-surface);
                 color: var(--text-primary);
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Poppins', sans-serif;
                 font-size: 0.9rem;
             " value="{{ config.webhook_url if config else '' }}">
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">URL complète pour recevoir les messages (HTTPS requis)</p>
@@ -69,7 +69,7 @@
         <!-- Admin Chat ID -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                👤 Chat ID Admin
+                <i class="fas fa-comments"></i> Chat ID Admin
             </label>
             <input type="text" name="chat_id_admin" placeholder="-1001234567890" style="
                 width: 100%;
@@ -87,14 +87,14 @@
         <!-- Buttons -->
         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
             <button type="submit" class="btn btn-primary" style="flex: 1;">
-                💾 Sauvegarder
+                <i class="fas fa-floppy-disk"></i> Sauvegarder
             </button>
             {% if config %}
             <button type="button" onclick="setWebhook()" class="btn" style="flex: 1;">
-                🔗 Configurer Webhook
+                <i class="fas fa-link"></i> Configurer Webhook
             </button>
             <button type="button" onclick="testMessage()" class="btn" style="flex: 1;">
-                📨 Test Message
+                <i class="fas fa-paper-plane"></i> Test Message
             </button>
             {% endif %}
         </div>
@@ -105,22 +105,22 @@
 {% if config %}
 <div class="content-card" style="margin-top: 2rem;">
     <div class="card-header">
-        <h3 class="card-title">📊 Statut de Connexion</h3>
+        <h3 class="card-title"> Statut de Connexion</h3>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding: 1.5rem;">
         <div>
             <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Status</div>
-            <div style="font-size: 1.25rem; font-weight: 600; color: var(--success);">🟢 Actif</div>
+            <div style="font-size: 1.25rem; font-weight: 600; color: var(--success);"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> Actif</div>
         </div>
 
         <div>
             <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Webhook</div>
             <div style="font-size: 0.9rem; color: var(--text-primary); font-family: monospace;">
                 {% if config.webhook_url %}
-                    ✅ Configuré
+                     Configuré
                 {% else %}
-                    ⚠️ Non configuré
+                     Non configuré
                 {% endif %}
             </div>
         </div>
@@ -129,9 +129,9 @@
             <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Admin Chat</div>
             <div style="font-size: 0.9rem; color: var(--text-primary); font-family: monospace;">
                 {% if config.chat_id_admin %}
-                    ✅ {{ config.chat_id_admin }}
+                     {{ config.chat_id_admin }}
                 {% else %}
-                    ⚠️ Non défini
+                     Non défini
                 {% endif %}
             </div>
         </div>
@@ -154,7 +154,7 @@
 function setWebhook() {
     const url = document.querySelector('input[name="webhook_url"]').value;
     if (!url) {
-        alert('⚠️ Veuillez entrer l\'URL du webhook d\'abord');
+        alert(' Veuillez entrer l\'URL du webhook d\'abord');
         return;
     }
 
@@ -171,13 +171,13 @@ function setWebhook() {
     .then(r => r.json())
     .then(data => {
         if (data.success) {
-            alert('✅ ' + data.message);
+            alert(' ' + data.message);
             location.reload();
         } else {
-            alert('❌ ' + data.message);
+            alert(' ' + data.message);
         }
     })
-    .catch(e => alert('❌ Erreur: ' + e.message));
+    .catch(e => alert(' Erreur: ' + e.message));
 }
 
 function testMessage() {
@@ -195,12 +195,12 @@ function testMessage() {
     .then(r => r.json())
     .then(data => {
         if (data.success) {
-            alert('✅ ' + data.message);
+            alert(' ' + data.message);
         } else {
-            alert('❌ ' + data.message);
+            alert(' ' + data.message);
         }
     })
-    .catch(e => alert('❌ Erreur: ' + e.message));
+    .catch(e => alert(' Erreur: ' + e.message));
 }
 
 // Show/hide password

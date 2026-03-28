@@ -269,9 +269,28 @@ function formatNumber(num) {
 }
 
 /**
+ * Initialize sidebar visibility based on screen size
+ */
+function initSidebarVisibility() {
+    const sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    // On desktop (min-width: 769px), remove hidden class
+    if (window.innerWidth >= 769) {
+        sidebar.classList.remove('hidden');
+        sidebar.classList.remove('visible');
+    } else {
+        // On mobile, ensure hidden class is present
+        sidebar.classList.add('hidden');
+        sidebar.classList.remove('visible');
+    }
+}
+
+/**
  * Initialize admin page
  */
 document.addEventListener('DOMContentLoaded', () => {
+    initSidebarVisibility();
     initSidebarLinks();
     initActiveLink();
     loadCacheStatus();
@@ -282,6 +301,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reload cache status every 2 minutes
     setInterval(loadCacheStatus, 120000);
+});
+
+/**
+ * Handle window resize to adjust sidebar visibility
+ */
+window.addEventListener('resize', () => {
+    initSidebarVisibility();
 });
 
 /**

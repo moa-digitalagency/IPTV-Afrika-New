@@ -4,26 +4,26 @@
 
 {% block content %}
 <div class="page-header">
-    <h1 class="page-title">🎬 Abonnés Actifs</h1>
+    <h1 class="page-title"> Abonnés Actifs</h1>
     <p class="page-subtitle">Lignes d'abonnement M3U actuellement valides</p>
 </div>
 
 <!-- FILTERS & ACTIONS -->
 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
     <div style="flex: 1; min-width: 200px;">
-        <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom d'utilisateur..." style="
+        <input type="text" id="searchInput" placeholder="<i class="fas fa-magnifying-glass"></i> Rechercher par nom d'utilisateur..." style="
             width: 100%;
             padding: 0.75rem 1rem;
             border: 1px solid var(--border-gold);
             border-radius: 8px;
             background: var(--bg-surface);
             color: var(--text-primary);
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Poppins', sans-serif;
             font-size: 0.875rem;
         ">
     </div>
     <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary">
-        ➕ Créer un Abonnement
+         Créer un Abonnement
     </a>
 </div>
 
@@ -38,7 +38,7 @@
 <!-- LINES TABLE -->
 <div class="content-card">
     <div class="card-header">
-        <h3 class="card-title">📺 Liste des Abonnements</h3>
+        <h3 class="card-title"><i class="fas fa-tv"></i> Liste des Abonnements</h3>
         <span style="font-size: 0.875rem; color: var(--text-muted);">{{ lines|length }} / {{ total }}</span>
     </div>
 
@@ -67,11 +67,11 @@
                         {% if line.exp_date %}
                             {% set days_left = (line.exp_date - now()).days %}
                             {% if days_left <= 7 %}
-                                <span style="color: var(--warning);">⚠️ {{ days_left }}j</span>
+                                <span style="color: var(--warning);"> {{ days_left }}j</span>
                             {% elif days_left <= 30 %}
-                                <span style="color: var(--gold);">⏳ {{ days_left }}j</span>
+                                <span style="color: var(--gold);"><i class="fas fa-hourglass-end"></i> {{ days_left }}j</span>
                             {% else %}
-                                <span style="color: var(--success);">✅ {{ days_left }}j</span>
+                                <span style="color: var(--success);"> {{ days_left }}j</span>
                             {% endif %}
                         {% else %}
                             <span style="color: var(--text-muted);">N/A</span>
@@ -80,10 +80,10 @@
                     <td>{{ line.max_connections }}</td>
                     <td style="text-align: center; gap: 0.5rem;">
                         <a href="{{ url_for('lines.line_detail', golden_id=line.golden_id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
-                            👁️
+                            
                         </a>
                         <button class="btn btn-sm" onclick="extendLine({{ line.golden_id }}, '{{ line.username }}')" style="margin-left: 0.25rem;">
-                            ⏱️
+                            
                         </button>
                     </td>
                 </tr>
@@ -117,10 +117,10 @@
 
     {% else %}
     <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;"></div>
         <p>Aucun abonnement actif pour le moment</p>
         <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary" style="margin-top: 1rem;">
-            ➕ Créer le premier
+             Créer le premier
         </a>
     </div>
     {% endif %}
@@ -129,7 +129,7 @@
 <!-- EXTEND LINE MODAL -->
 <div id="extendModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
     <div style="background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
-        <h3 style="margin-bottom: 1rem; color: var(--gold);">⏱️ Prolonger l'Abonnement</h3>
+        <h3 style="margin-bottom: 1rem; color: var(--gold);"> Prolonger l'Abonnement</h3>
         <p id="extendUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
 
         <form id="extendForm">
@@ -143,7 +143,7 @@
                     border-radius: 8px;
                     background: var(--bg-surface);
                     color: var(--text-primary);
-                    font-family: 'Montserrat', sans-serif;
+                    font-family: 'Poppins', sans-serif;
                 ">
             </div>
             <div style="display: flex; gap: 0.75rem;">
@@ -172,7 +172,7 @@ document.getElementById('extendForm').addEventListener('submit', async (e) => {
     const days = document.querySelector('[name="days"]').value;
 
     try {
-        const response = await fetch(`{{ url_for('lines.extend_line', golden_id='REPLACE') }}`.replace('REPLACE', golden_id), {
+        const response = await fetch(`/app/lines/${golden_id}/extend('REPLACE', golden_id), {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -183,14 +183,14 @@ document.getElementById('extendForm').addEventListener('submit', async (e) => {
 
         const result = await response.json();
         if (result.success) {
-            alert('✅ ' + result.message);
+            alert(' ' + result.message);
             closeExtendModal();
             location.reload();
         } else {
-            alert('❌ ' + result.message);
+            alert(' ' + result.message);
         }
     } catch (error) {
-        alert('❌ Erreur: ' + error.message);
+        alert(' Erreur: ' + error.message);
     }
 });
 
