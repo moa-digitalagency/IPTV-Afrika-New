@@ -14,6 +14,14 @@ lines_bp = Blueprint('lines', __name__, url_prefix='/app/lines')
 
 # ===== HELPER FUNCTIONS =====
 
+def build_m3u_link(line):
+    """Build complete M3U link from line data"""
+    if not line.dns_link or not line.username or not line.password:
+        return None
+    base = line.dns_link.rstrip('?&')
+    sep = '&' if '?' in base else '?'
+    return f"{base}{sep}username={line.username}&password={line.password}&type=m3u_plus&output=mpegts"
+
 def log_action(action, line_id, detail=None):
     """Log user action"""
     activity = ActivityLog(
@@ -152,10 +160,12 @@ def line_detail(golden_id):
         return redirect(url_for('lines.testers_active'))
 
     days_left = days_remaining(line.exp_date) if line.exp_date else None
+    m3u_link = build_m3u_link(line)
 
     return render_template('app/lines/detail.html',
         line=line,
         days_left=days_left,
+        m3u_link=m3u_link,
         now=datetime.utcnow
     )
 

@@ -83,6 +83,13 @@ with app.app_context():
     except Exception as e:
         print(f"⚠️  Warning: Could not migrate missing exp_dates: {e}")
 
+    # Recalculate incorrect exp_dates (when package durations change)
+    try:
+        from scripts.recalculate_incorrect_exp_dates import recalculate_incorrect_exp_dates
+        recalculate_incorrect_exp_dates()
+    except Exception as e:
+        print(f"⚠️  Warning: Could not recalculate exp_dates: {e}")
+
 # Routes
 @app.route('/')
 def index():

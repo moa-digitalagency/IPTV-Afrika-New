@@ -111,8 +111,14 @@ class GoldenAPIService:
             # Convert package data to standard format with duration_days
             normalized_packages = []
             for pkg in packages_list:
-                duration = pkg.get('official_duration', 0)
-                duration_unit = pkg.get('official_duration_in', 'days')
+                # Trial packages use trial_duration, official packages use official_duration
+                is_trial = bool(pkg.get('is_trial', 0))
+                if is_trial:
+                    duration = pkg.get('trial_duration', 0)
+                    duration_unit = pkg.get('trial_duration_in', 'hours')
+                else:
+                    duration = pkg.get('official_duration', 0)
+                    duration_unit = pkg.get('official_duration_in', 'days')
 
                 # Convert to days
                 if duration_unit == 'years':

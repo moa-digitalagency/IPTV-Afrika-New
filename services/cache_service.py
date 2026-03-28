@@ -40,9 +40,16 @@ class CacheService:
                 cache.credits_cost = pkg.get('credits_cost')
                 cache.cached_at = datetime.utcnow()
 
-                # Calculate duration_days from official_duration
-                duration = pkg.get('official_duration', 0) or pkg.get('duration_days', 0)
-                duration_unit = pkg.get('official_duration_in', 'days')
+                # Calculate duration_days from appropriate field (trial_duration for trials, official_duration for paid)
+                is_trial = pkg.get('is_trial', False)
+                if is_trial:
+                    # Trial packages use trial_duration (usually in hours)
+                    duration = pkg.get('trial_duration', 0)
+                    duration_unit = pkg.get('trial_duration_in', 'hours')
+                else:
+                    # Official packages use official_duration
+                    duration = pkg.get('official_duration', 0) or pkg.get('duration_days', 0)
+                    duration_unit = pkg.get('official_duration_in', 'days')
 
                 if duration_unit == 'years':
                     cache.duration_days = duration * 365
