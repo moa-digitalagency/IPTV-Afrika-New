@@ -40,9 +40,12 @@
     <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
             <!-- Logo -->
-            <a href="#" class="flex items-center gap-3">
+            <a href="#" class="flex items-center gap-2">
                 <img src="../statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
-                <span class="font-heading text-xl lg:text-2xl font-bold italic tracking-wider" style="color: var(--gold); letter-spacing: 3px;">Mon IPTV Africa</span>
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
             </a>
 
             <!-- Center Nav Links (Desktop) -->
@@ -849,73 +852,62 @@
                 </p>
             </div>
 
-            <!-- Devices Grid -->
-            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                <!-- Xbox -->
-                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/XBOX.webp" alt="Xbox" class="w-16 h-16 object-contain">
-                    </div>
+            <!-- Supported Devices Cards -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
+                <!-- Smart TV -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">📺</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Smart TV</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">Samsung, LG, Sony, Android TV, webOS</p>
                 </div>
-                <!-- PlayStation -->
-                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/PLAYSTATION.webp" alt="PlayStation" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Boxes & Sticks -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">📦</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Boxes & Sticks</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">Fire Stick, MAG Box, Engine Box, EOKU</p>
                 </div>
-                <!-- Amazon Fire TV -->
-                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/AMAZONFIRETV.webp" alt="Amazon Fire TV" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Smartphones -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">📱</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Smartphones</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">iOS et Android, toutes versions</p>
                 </div>
-                <!-- Android TV -->
-                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/ANDORIEDTV.webp" alt="Android TV" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Ordinateurs -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">💻</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Ordinateurs</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">Windows, macOS, Linux, navigateurs</p>
                 </div>
-                <!-- Android Phone -->
-                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/ANDORIED.webp" alt="Android Phone" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Consoles de Jeu -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">🎮</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Consoles</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">Xbox, PlayStation, Nintendo</p>
                 </div>
-                <!-- MAG Box -->
-                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/MAGBOX.webp" alt="MAG Box" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Tablettes -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">📖</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Tablettes</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">iPad, Samsung Tab, Android</p>
                 </div>
-                <!-- Engine Box -->
-                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/ENGINEBOX.webp" alt="Engine Box" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Lecteurs Média -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">▶️</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Lecteurs Média</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">VLC, XBMC, Kodi, lecteurs externes</p>
                 </div>
-                <!-- EOKU -->
-                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/EOKU.webp" alt="EOKU" class="w-16 h-16 object-contain">
-                    </div>
-                </div>
-                <!-- Windows -->
-                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/WINDOWZ.webp" alt="Windows" class="w-16 h-16 object-contain">
-                    </div>
-                </div>
-                <!-- VLC -->
-                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/VLC.webp" alt="VLC" class="w-16 h-16 object-contain">
-                    </div>
-                </div>
-                <!-- XBMC -->
-                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
-                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
-                        <img src="/statics/img/XBMC.webp" alt="XBMC" class="w-16 h-16 object-contain">
-                    </div>
+
+                <!-- Roku & Autres -->
+                <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex flex-col items-center text-center" style="border: 1px solid var(--border-gold);">
+                    <div class="text-5xl mb-4">🌐</div>
+                    <h4 class="font-heading font-semibold text-lg mb-2" style="color: var(--text-primary);">Et Plus</h4>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">Roku, Chromecast, navigateurs web</p>
                 </div>
             </div>
         </div>
