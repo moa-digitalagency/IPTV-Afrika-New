@@ -76,12 +76,12 @@
                             N/A
                         {% endif %}
                     </td>
-                    <td style="text-align: center; gap: 0.5rem;">
+                    <td style="text-align: center; display: flex; gap: 0.5rem; justify-content: center;">
                         <a href="{{ url_for('lines.line_detail', golden_id=line.golden_id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
-                            
+                            <i class="fas fa-eye"></i> Voir
                         </a>
                         <button class="btn btn-sm" onclick="refundLine({{ line.golden_id }}, '{{ line.username }}')" style="margin-left: 0.25rem;">
-                            <i class="fas fa-trash"></i>
+                            <i class="fas fa-trash"></i> Supprimer
                         </button>
                     </td>
                 </tr>

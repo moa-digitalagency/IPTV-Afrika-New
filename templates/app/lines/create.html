@@ -124,6 +124,26 @@
             <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Facultatif</p>
         </div>
 
+        <!-- NOTE -->
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                 Notes
+            </label>
+            <textarea name="note" placeholder="Ajouter des notes internes..." style="
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--border-gold);
+                border-radius: 8px;
+                background: var(--bg-surface);
+                color: var(--text-primary);
+                font-family: 'Poppins', sans-serif;
+                font-size: 1rem;
+                resize: vertical;
+                min-height: 100px;
+            "></textarea>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Facultatif</p>
+        </div>
+
         <!-- BOUTONS -->
         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
             <a href="{{ url_for('lines.testers_active') }}" class="btn" style="flex: 1; text-align: center;">

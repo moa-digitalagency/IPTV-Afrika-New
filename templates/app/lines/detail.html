@@ -184,7 +184,6 @@
             {% endif %}
 
             <!-- M3U Link with Options -->
-            {% if line.dns_link %}
             <div style="margin-bottom: 1.5rem;">
                 <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"> Lien M3U - Détails Complets</div>
 
@@ -266,7 +265,6 @@
                     </ul>
                 </div>
             </div>
-            {% endif %}
 
             <!-- Dates -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
@@ -476,12 +474,16 @@ document.getElementById('refundModal').addEventListener('click', (e) => {
 });
 
 // M3U Link Management
-const dnsLink = '{{ line.dns_link }}';
+const dnsLink = '{{ line.dns_link }}' || '';
 const username = '{{ line.username }}';
 const password = '{{ line.password }}';
 
 function buildBaseM3ULink() {
     // Construct M3U URL with username, password, and standard params
+    if (!dnsLink) {
+        return 'Lien M3U non disponible';
+    }
+
     let url = dnsLink;
 
     // Add query separator if not already present

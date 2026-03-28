@@ -203,6 +203,7 @@ def create_line():
         package_id = request.form.get('package_id', type=int)
         full_name = request.form.get('full_name', '').strip()
         email = request.form.get('email', '').strip()
+        note = request.form.get('note', '').strip()
 
         # Auto-generate credentials if not provided
         if not username:
@@ -263,6 +264,7 @@ def create_line():
             exp_date=exp_date,
             enabled=result.get('enabled', True),
             max_connections=result.get('max_connections', 1),
+            note=note or None,
             dns_link=result.get('dns_link'),
             created_at=result.get('created_at') or datetime.utcnow(),
             cached_at=datetime.utcnow()
