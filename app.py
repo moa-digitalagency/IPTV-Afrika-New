@@ -106,6 +106,11 @@ def catalog():
     """Serve the catalog page"""
     return render_template('catalog.html')
 
+@app.route('/installation')
+def installation():
+    """Serve the installation page"""
+    return render_template('installation.html')
+
 @app.route('/api/channels')
 def get_channels():
     """API endpoint to get all channels data"""
