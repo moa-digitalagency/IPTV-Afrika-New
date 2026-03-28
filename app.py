@@ -76,6 +76,13 @@ with app.app_context():
     except Exception as e:
         print(f"⚠️  Warning: Could not sync packages on startup: {e}")
 
+    # Migrate missing exp_dates for lines without expiration dates
+    try:
+        from scripts.migrate_missing_exp_dates import migrate_missing_exp_dates
+        migrate_missing_exp_dates()
+    except Exception as e:
+        print(f"⚠️  Warning: Could not migrate missing exp_dates: {e}")
+
 # Routes
 @app.route('/')
 def index():
