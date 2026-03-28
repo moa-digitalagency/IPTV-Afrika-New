@@ -224,9 +224,9 @@ def create_line():
         package = PackageCache.query.filter_by(golden_id=package_id).first()
         is_trial = package.is_trial if package else False
 
-        # Call GOLDEN API with all optional fields
-        result = GoldenAPIService.create_line(username, password, package_id,
-                                             full_name=full_name, email=email, note=note)
+        # Call GOLDEN API - IMPORTANT: Only send required fields (username, password, package_id)
+        # The API may not accept full_name, email, note - these are stored locally only
+        result = GoldenAPIService.create_line(username, password, package_id)
         if not result:
             flash('Erreur lors de la création de la ligne', 'danger')
             return redirect(url_for('lines.create_line'))
@@ -253,19 +253,20 @@ def create_line():
                 pass
 
         # Add the new line to cache immediately
+        # NOTE: API response doesn't include full_name, email, note - save from form input
         cache_line = LineCache(
             golden_id=line_id,
             username=result.get('username'),
             password=result.get('password'),
-            full_name=full_name or None,
-            email=email or None,
+            full_name=full_name if full_name else None,  # From form, not API
+            email=email if email else None,  # From form, not API
             package_id=result.get('package_id'),
             package_name=result.get('package_name'),
             is_trial=is_trial,
             exp_date=exp_date,
             enabled=result.get('enabled', True),
             max_connections=result.get('max_connections', 1),
-            note=note or None,
+            note=note if note else None,  # From form, not API
             dns_link=result.get('dns_link'),
             created_at=result.get('created_at') or datetime.utcnow(),
             cached_at=datetime.utcnow()
@@ -299,6 +300,8 @@ def create_line():
 
                     db.session.commit()
             except Exception as e:
+                # Log error but don't fail - will use duration_days fallback below
+                print(f"Warning: Could not fetch full details for line {line_id}: {e}")
                 pass
 
         # If exp_date still missing, calculate from package duration

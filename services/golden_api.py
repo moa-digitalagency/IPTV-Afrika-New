@@ -139,8 +139,12 @@ class GoldenAPIService:
             raise
 
     @staticmethod
-    def create_line(username, password, package_id, full_name=None, email=None, note=None):
-        """Create a new line"""
+    def create_line(username, password, package_id):
+        """Create a new line
+
+        NOTE: The GOLDEN API only accepts username, password, package_id.
+        Additional fields (full_name, email, note) should be stored locally in the database only.
+        """
         try:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines"
             data = {
@@ -148,13 +152,6 @@ class GoldenAPIService:
                 'password': password,
                 'package_id': package_id
             }
-            # Add optional fields if provided
-            if full_name:
-                data['full_name'] = full_name
-            if email:
-                data['email'] = email
-            if note:
-                data['note'] = note
 
             response = requests.post(url, json=data, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
 

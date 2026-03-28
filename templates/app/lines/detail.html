@@ -474,14 +474,14 @@ document.getElementById('refundModal').addEventListener('click', (e) => {
 });
 
 // M3U Link Management
-const dnsLink = '{{ line.dns_link }}'.trim() || '';
+const dnsLink = ('{{ line.dns_link }}'.trim() === 'None' || '{{ line.dns_link }}'.trim() === '') ? null : '{{ line.dns_link }}'.trim();
 const username = '{{ line.username }}'.trim() || '';
 const password = '{{ line.password }}'.trim() || '';
 
 function buildBaseM3ULink() {
     // Construct M3U URL with username, password, and standard params
     if (!dnsLink || !username || !password) {
-        return 'Lien M3U non disponible (dns_link manquant)';
+        return 'Lien M3U non disponible (dns_link manquant de l\'API GOLDEN)';
     }
 
     let url = dnsLink.trim();
