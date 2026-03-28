@@ -159,6 +159,7 @@ def server_error(error):
     return jsonify({"error": "Server error"}), 500
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
     print("=" * 60)
     print("🎬 Mon IPTV Africa Backend")
     print("=" * 60)
@@ -166,10 +167,10 @@ if __name__ == '__main__':
     print(f"🌍 {len(channels_data.get('countries', {}))} countries")
     print("")
     print("🚀 Starting server...")
-    print("📍 http://localhost:5000")
+    print(f"📍 http://localhost:{port}")
     print("📖 API endpoints:")
     print("   - GET /api/channels          (all channels)")
     print("   - GET /api/channels/<country> (specific country)")
     print("   - GET /api/stats             (statistics)")
     print("=" * 60)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=port)
