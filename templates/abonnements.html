@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Abonnements Mon IPTV Africa - Plans flexibles à partir de 3 490 FCFA/mois. 24h gratuit, 22K+ chaînes, Films & Séries inclus.">
+    <title>Abonnements Mon IPTV Africa | Plans Flexibles & Prix Compétitifs</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/statics/img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Poppins', 'system-ui', 'sans-serif'],
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../statics/css/style.css">
+    <link rel="stylesheet" href="../statics/css/index.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2">
+                <img src="../statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/#pricing" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="/#about" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A PROPOS</a>
+                <a href="/#contact" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">CONTACT</a>
+            </div>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="#pricing" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Poppins', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2" onclick="toggleMobileMenu()">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden" style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
+            <div class="px-6 py-6 flex flex-col gap-5">
+                <a href="/#pricing" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">ABONNEMENTS</a>
+                <a href="/#about" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">A PROPOS</a>
+                <a href="/#contact" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">CONTACT</a>
+                <a href="#pricing" class="gold-gradient-bg text-center text-sm font-semibold px-6 py-3 rounded-full mt-2" style="color: var(--bg);" onclick="toggleMobileMenu()">S'abonner</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Add padding for fixed navbar -->
+    <div style="height: 80px;"></div>
+
+    <!-- ========== FREE TRIAL SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Text -->
+                <div class="reveal">
+                    <div class="label-text mb-6" style="color: var(--gold);">ZERO RISQUE</div>
+                    <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-8" style="color: var(--text-primary);">
+                        Testez <span class="italic gold-gradient-text">Gratuitement</span>
+                    </h2>
+                    <p class="font-sans font-normal text-lg mb-8 leading-relaxed" style="color: var(--text-muted);">
+                        Découvrez la richesse de notre catalogue sans crainte. <strong style="color: var(--gold);">24 heures d'accès complet gratuit</strong> à Canal+, Netflix, Amazon Prime et Apple TV. Aucune carte bancaire requise pour commencer.
+                    </p>
+                    <div class="space-y-4 mb-10">
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">24h gratuit, pas de carte nécessaire</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Accès complet à tous les contenus</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Engagement zéro - cancellation à tout moment</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20voudrais%20commencer%20mon%20test%20gratuit%20de%2024h%20avec%20Mon%20IPTV%20Africa" target="_blank" class="inline-flex gold-gradient-bg px-10 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" style="color: var(--bg);">
+                        Commencer le Test Gratuit
+                    </a>
+                </div>
+
+                <!-- Right Stats -->
+                <div class="reveal reveal-delay-1">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-5xl mb-2" style="color: var(--gold);">24<span style="font-size: 1.5rem;">H</span></div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Gratuit</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-5xl mb-2" style="color: var(--gold);">0</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Risque</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">+22K</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Chaînes</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">+120K</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Films & Séries</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WORLD COVERAGE SECTION ========== -->
+    <section class="relative py-32 lg:py-40" style="background: var(--bg); overflow: hidden;">
+        <!-- Subtle background decoration -->
+        <div style="position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,165,116,0.03) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <!-- Decorative line -->
+            <div class="mb-20 flex items-center justify-center reveal">
+                <div style="flex: 1; max-width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+                <div style="width: 8px; height: 8px; background: var(--gold); margin: 0 1.5rem; transform: rotate(45deg);"></div>
+                <div style="flex: 1; max-width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+            </div>
+
+            <!-- Section Intro -->
+            <div class="text-center mb-20 reveal">
+                <span class="label-text" style="color: var(--gold); letter-spacing: 4px;">COUVERTURE MONDIALE</span>
+                <h2 class="font-heading text-6xl lg:text-7xl font-bold mt-4 mb-6">
+                    <span style="color: var(--text-primary);">Disponible en </span><span class="italic gold-gradient-text">Afrique et Partout</span>
+                </h2>
+            </div>
+
+            <!-- Countries Cards -->
+            <div class="flex flex-wrap justify-center gap-6 mb-16 lg:mb-24">
+                <!-- Côte d'Ivoire -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20en%20C%C3%B4te%20d%27Ivoire%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.1s;">
+                    <div class="country-badge-icon">🇨🇮</div>
+                    <div class="country-badge-name">Côte d'Ivoire</div>
+                </a>
+
+                <!-- Gabon -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Gabon%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.2s;">
+                    <div class="country-badge-icon">🇬🇦</div>
+                    <div class="country-badge-name">Gabon</div>
+                </a>
+
+                <!-- Congo RDC -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20en%20Congo%20RDC%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.3s;">
+                    <div class="country-badge-icon">🇨🇩</div>
+                    <div class="country-badge-name">Congo RDC</div>
+                </a>
+
+                <!-- Senegal -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Senegal%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.4s;">
+                    <div class="country-badge-icon">🇸🇳</div>
+                    <div class="country-badge-name">Senegal</div>
+                </a>
+
+                <!-- Mali -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Mali%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.5s;">
+                    <div class="country-badge-icon">🇲🇱</div>
+                    <div class="country-badge-name">Mali</div>
+                </a>
+
+                <!-- Autres Pays -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20d%27un%20autre%20pays%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.6s;">
+                    <div class="country-badge-icon">🌍</div>
+                    <div class="country-badge-name">Autres Pays</div>
+                </a>
+            </div>
+
+            <!-- Rest of World Statement -->
+            <div class="text-center reveal" style="animation-delay: 0.6s;">
+                <div style="font-size: 1.125rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;">Et aussi</div>
+                <div class="font-heading text-4xl lg:text-5xl font-bold gold-gradient-text italic mb-6">
+                    Le Reste de l'Afrique et du Monde Entier
+                </div>
+                <p class="font-sans text-base lg:text-lg" style="color: var(--text-muted); max-width: 2xl; margin: 0 auto;">
+                    Il suffit d'avoir une <span style="color: var(--gold);">Smart TV</span>, <span style="color: var(--gold);">Android TV</span> ou <span style="color: var(--gold);">Box Android</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRICING SECTION ========== -->
+    <section id="pricing" class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Mon IPTV Africa </span><span class="italic gold-gradient-text">Abonnement Premium</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-2xl mx-auto mb-10" style="color: var(--text-muted);">
+                    Un seul plan. Une qualite premiere. Economisez jusqu'à 15% avec un abonnement long terme.
+                </p>
+            </div>
+
+            <!-- Important Note -->
+            <div class="mb-12 p-6 rounded-2xl glass-surface reveal" style="border: 1px solid var(--border-gold);">
+                <div class="flex items-start gap-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">
+                        <span style="color: var(--gold); font-weight: 600;">Important:</span> Un abonnement = un seul appareil à la fois. L'abonnement est personnel et incessible. Possible sur un abonnement Annuel.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pricing Cards Grid (4 Plans) -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Test Gratuit 24h -->
+                <div class="pricing-card glass-surface rounded-2xl p-6 gold-glow-hover reveal flex flex-col h-full">
+                    <div class="label-text mb-4" style="color: var(--gold);">DECOUVERTE</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl" style="color: var(--orange);">Gratuit</span>
+                    </div>
+                    <div class="font-sans text-sm mb-6" style="color: var(--text-muted);">24 heures</div>
+
+                    <div class="space-y-2 mb-6 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Acces complet 24h</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Aucune carte requise</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Zero engagement</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
+                        </div>
+                    </div>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.15); color: var(--orange);">
+                        <span style="font-weight: 600;">IBO Player: </span>Test gratuit 5 jours
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20essayer%20gratuitement%20Mon%20IPTV%20Africa%20pendant%2024%20heures" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5" style="color: var(--orange); border: 1px solid var(--orange); background: transparent;">
+                        Essayer Gratuitement
+                    </a>
+                </div>
+
+                <!-- 1 Mois -->
+                <div class="pricing-card glass-surface rounded-2xl p-6 gold-glow-hover reveal reveal-delay-1 flex flex-col h-full">
+                    <div class="label-text mb-4" style="color: var(--gold);">FLEXIBILITE</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl" style="color: var(--text-primary);">3 490</span>
+                        <span class="font-sans text-xs" style="color: var(--text-muted);">FCFA</span>
+                    </div>
+                    <div class="font-sans text-sm mb-6" style="color: var(--text-muted);">par mois</div>
+
+                    <div class="space-y-2 mb-4 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Canal+, Netflix, Amazon Prime, Apple TV</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Test gratuit 24h inclus</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Support 24/7</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
+                        </div>
+                    </div>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.15); color: var(--orange);">
+                        <span style="font-weight: 600;">IBO Player: </span>5 000 FCFA/an
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20m%27abonner%20au%20pack%201%20mois%20de%20Mon%20IPTV%20Africa%20%283%20490%20FCFA%29" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5" style="color: var(--gold); border: 1px solid var(--border-gold); background: var(--surface);">
+                        S'abonner
+                    </a>
+                </div>
+
+                <!-- 6 Mois -->
+                <div class="pricing-card glass-surface rounded-2xl p-6 gold-glow-hover reveal reveal-delay-2 flex flex-col h-full">
+                    <div class="label-text mb-4" style="color: var(--gold);">ECONOMIE</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl" style="color: var(--text-primary);">20 940</span>
+                        <span class="font-sans text-xs" style="color: var(--text-muted);">FCFA</span>
+                    </div>
+                    <div class="font-sans text-sm mb-1" style="color: var(--text-muted);">pour 6 mois</div>
+                    <div class="font-sans text-xs mb-6" style="color: var(--gold);">3 490/mois</div>
+
+                    <div class="space-y-2 mb-4 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Canal+, Netflix, Amazon Prime, Apple TV</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Test gratuit 24h inclus</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Support prioritaire</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
+                        </div>
+                    </div>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.15); color: var(--orange);">
+                        <span style="font-weight: 600;">IBO Player: </span>5 000 FCFA/an
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20m%27abonner%20au%20pack%206%20mois%20de%20Mon%20IPTV%20Africa%20%2820%20940%20FCFA%29" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5" style="color: var(--gold); border: 1px solid var(--border-gold); background: var(--surface);">
+                        S'abonner
+                    </a>
+                </div>
+
+                <!-- 12 Mois (Featured) -->
+                <div class="pricing-featured rounded-2xl p-6 relative reveal reveal-delay-3 flex flex-col h-full" style="background: var(--surface); backdrop-filter: blur(12px);">
+                    <!-- Popular Badge -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 gold-gradient-bg px-6 py-2 rounded-full shadow-lg" style="box-shadow: 0 8px 32px rgba(212,165,116,0.25);">
+                        <span class="label-text" style="color: var(--bg); font-size: 10px; letter-spacing: 2px; white-space: nowrap;">★ MEILLEURE OFFRE ★</span>
+                    </div>
+
+                    <div class="label-text mb-4" style="color: var(--gold);">ANNUEL</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl gold-gradient-text">34 900</span>
+                        <span class="font-sans text-xs" style="color: var(--text-muted);">FCFA</span>
+                    </div>
+                    <div class="font-sans text-sm mb-1" style="color: var(--text-muted);">par an</div>
+                    <div class="font-sans text-xs mb-4" style="color: var(--gold);">2 908/mois (-17%)</div>
+                    <div class="font-sans text-xs font-medium mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.2); color: var(--orange); text-align: center;">🎁 <span style="font-weight: 600;">2 mois offert</span></div>
+
+                    <div class="space-y-2 mb-4 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Canal+, Netflix, Amazon Prime, Apple TV</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Test gratuit 24h inclus</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Support prioritaire 24/7</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
+                        </div>
+                    </div>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(212,165,116,0.2); color: var(--gold);">
+                        <span style="font-weight: 600;">IBO Player: </span><span style="text-decoration: line-through; opacity: 0.6;">5 000 FCFA</span> <span style="font-weight: 600; color: var(--orange);">OFFERT</span>
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20m%27abonner%20au%20pack%20annuel%20de%20Mon%20IPTV%20Africa%20%2834%20900%20FCFA%20avec%202%20mois%20offerts%29" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm gold-gradient-bg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" style="color: var(--bg);">
+                        S'abonner Maintenant
+                    </a>
+                </div>
+            </div>
+
+            <!-- Features included -->
+            <div class="mt-20 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="reveal">
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Votre Catalogue Unique</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Tous les contenus de Canal+</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Films & séries Netflix réunis</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Amazon Prime + Apple TV inclus</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Milliers de chaînes francophones</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Support & Avantages</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Support 24/7 en francais</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Pas de publicites</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Activation instant (< 5 min)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Chaînes africaines + internationales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="mt-20 reveal text-center">
+                <div class="label-text mb-6" style="color: var(--gold);">MOYENS DE PAIEMENT ACCEPTES</div>
+                <div class="glass-surface rounded-2xl p-8 flex items-center justify-center" style="border: 1px solid var(--border-gold);">
+                    <img src="/statics/img/payments.png" alt="Moyens de paiement" class="max-w-sm max-h-32 object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="contact" class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1: Logo -->
+                <div class="md:col-span-1">
+                    <div class="font-heading text-2xl font-bold italic mb-4" style="color: var(--gold); letter-spacing: 2px;">Mon IPTV Africa</div>
+                    <p class="font-sans text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Mon IPTV Africa. Centralisez Canal+, Netflix, Amazon Prime et Apple TV en un seul abonnement. Tous vos divertissements via internet.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">NAVIGATION</div>
+                    <div class="space-y-3">
+                        <a href="/app/login" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Login</a>
+                        <a href="/vod" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Films & Séries</a>
+                        <a href="/sports" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Sports</a>
+                        <a href="/installation" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Installation</a>
+                        <a href="/abonnements" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Abonnements</a>
+                        <a href="/" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A propos</a>
+                    </div>
+                </div>
+
+                <!-- Col 3: Contact -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">CONTACT</div>
+                    <div class="space-y-3">
+                        <div>
+                            <a href="https://wa.me/243860493345" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp RDC
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+243 86 049 33 45</div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/212699140001" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp Maroc
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+212 699 14 000 1</div>
+                        </div>
+                        <a href="mailto:contact@iptv-afrika.com" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 4: Legal -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">LEGAL</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Conditions generales</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Politique de confidentialite</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Mentions legales</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8" style="border-top: 1px solid var(--border-gold);">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        &copy; 2026 Mon IPTV Africa. Tous droits reserves.
+                    </p>
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        Designed with <span style="color: var(--gold);">&#9670;</span> in Africa
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts -->
+    <script src="../statics/js/script.js"></script>
+    <script src="../statics/js/index.js"></script>
+
+</body>
+</html>

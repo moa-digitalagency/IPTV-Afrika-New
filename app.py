@@ -101,6 +101,11 @@ def vod():
     """Serve the VOD (Films & Séries) page"""
     return render_template('vod.html')
 
+@app.route('/abonnements')
+def abonnements():
+    """Serve the Abonnements page"""
+    return render_template('abonnements.html')
+
 @app.route('/statics/<path:filename>')
 def serve_static(filename):
     """Serve static files"""
