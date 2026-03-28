@@ -178,7 +178,7 @@ function changePassword(userId) {
     const formData = new FormData();
     formData.append('password', password);
 
-    fetch(`{{ url_for('users.change_password', user_id='REPLACE') }}`.replace('REPLACE', userId), {
+    fetch(`/app/users/${userId}/change-password`, {
         method: 'POST',
         body: formData,
         headers: {
@@ -204,7 +204,7 @@ function deleteUser(userId, username) {
 
     const formData = new FormData();
 
-    fetch(`{{ url_for('users.delete', user_id='REPLACE') }}`.replace('REPLACE', userId), {
+    fetch(`/app/users/${userId}/delete`, {
         method: 'POST',
         body: formData,
         headers: {
