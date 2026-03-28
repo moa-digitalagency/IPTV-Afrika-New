@@ -111,12 +111,24 @@
                 </div>
             </div>
 
+            <!-- Création -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-clock"></i> Créé le</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
+                    {% if line.created_at %}
+                        {{ line.created_at.strftime('%d/%m/%Y %H:%M') }}
+                    {% else %}
+                        <span style="color: var(--text-muted);">N/A</span>
+                    {% endif %}
+                </div>
+            </div>
+
             <!-- Expiration -->
             <div>
                 <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;"><i class="fas fa-calendar"></i> Expire le</div>
                 <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
                     {% if line.exp_date %}
-                        {{ line.exp_date.strftime('%d/%m/%Y') }}
+                        {{ line.exp_date.strftime('%d/%m/%Y %H:%M') }}
                     {% else %}
                         <span style="color: var(--text-muted);">N/A</span>
                     {% endif %}
