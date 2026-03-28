@@ -161,8 +161,8 @@ function generateRandomString(length = 12, type = 'alphanumeric') {
 }
 
 function generateCredentials() {
-    const username = 'user_' + generateRandomString(8, 'numeric');
-    const password = generateRandomString(16, 'password');
+    const username = ('USER_' + generateRandomString(8, 'numeric')).toUpperCase();
+    const password = generateRandomString(16, 'password').toUpperCase();
 
     document.getElementById('username').value = username;
     document.getElementById('password').value = password;
