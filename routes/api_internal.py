@@ -226,3 +226,68 @@ def get_packages_list():
 
     except Exception as e:
         return jsonify({'error': str(e), 'packages': []}), 200
+
+@api_bp.route('/lines/all', methods=['GET'])
+@login_required
+@require_permission('lines', 'read')
+def get_all_lines():
+    """Get all lines data from cache"""
+    from models.line import LineCache
+    from datetime import datetime
+    from utils.date_helpers import format_date_fr, days_remaining
+
+    try:
+        page = request.args.get('page', 1, type=int)
+        per_page = request.args.get('per_page', 50, type=int)
+        filters = request.args.get('filters', 'all')  # all, active, expired, trial, paid, enabled, disabled
+
+        q = LineCache.query
+
+        now = datetime.utcnow()
+        if filters == 'active':
+            q = q.filter(LineCache.enabled == True, LineCache.exp_date > now)
+        elif filters == 'expired':
+            q = q.filter(LineCache.exp_date < now)
+        elif filters == 'trial':
+            q = q.filter(LineCache.is_trial == True)
+        elif filters == 'paid':
+            q = q.filter(LineCache.is_trial == False)
+        elif filters == 'enabled':
+            q = q.filter(LineCache.enabled == True)
+        elif filters == 'disabled':
+            q = q.filter(LineCache.enabled == False)
+
+        paginated = q.order_by(LineCache.exp_date.desc()).paginate(page=page, per_page=per_page)
+
+        results = []
+        for line in paginated.items:
+            results.append({
+                'id': line.golden_id,
+                'username': line.username,
+                'password': line.password,
+                'full_name': line.full_name,
+                'email': line.email,
+                'phone': line.phone,
+                'package_id': line.package_id,
+                'package_name': line.package_name,
+                'is_trial': line.is_trial,
+                'enabled': line.enabled,
+                'exp_date': line.exp_date.isoformat() if line.exp_date else None,
+                'exp_date_formatted': format_date_fr(line.exp_date) if line.exp_date else 'N/A',
+                'days_left': days_remaining(line.exp_date) if line.exp_date else None,
+                'max_connections': line.max_connections,
+                'dns_link': line.dns_link,
+                'note': line.note,
+                'cached_at': line.cached_at.isoformat() if line.cached_at else None
+            })
+
+        return jsonify({
+            'lines': results,
+            'total': paginated.total,
+            'pages': paginated.pages,
+            'current_page': page,
+            'per_page': per_page
+        })
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500

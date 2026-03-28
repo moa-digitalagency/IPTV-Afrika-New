@@ -1,7 +1,8 @@
 """GOLDEN API service wrapper"""
 import requests
+import os
 from datetime import datetime
-from models.settings import AppSetting
+from flask import current_app
 
 class GoldenAPIException(Exception):
     """Custom exception for GOLDEN API errors"""
@@ -14,17 +15,20 @@ class GoldenAPIService:
 
     @staticmethod
     def get_api_key():
-        """Get API key from settings"""
-        setting = AppSetting.query.filter_by(key='golden_api_key').first()
-        if not setting or not setting.value:
-            raise GoldenAPIException("GOLDEN API key not configured. Set it in app settings.")
-        return setting.value
+        """Get API key from .env or Flask config"""
+        # Priority: Flask config (from .env) > environment variable
+        api_key = current_app.config.get('GOLDEN_API_KEY') or os.environ.get('GOLDEN_API_KEY', '')
+
+        if not api_key:
+            raise GoldenAPIException("GOLDEN API key not configured in .env. Set GOLDEN_API_KEY environment variable.")
+        return api_key
 
     @staticmethod
     def get_base_url():
-        """Get API base URL from settings"""
-        setting = AppSetting.query.filter_by(key='golden_api_base_url').first()
-        return setting.value if setting else 'https://api.goldentv.com'
+        """Get API base URL from .env or Flask config"""
+        # Priority: Flask config (from .env) > environment variable > default
+        url = current_app.config.get('GOLDEN_API_BASE_URL') or os.environ.get('GOLDEN_API_BASE_URL', 'https://api.goldentv.com')
+        return url
 
     @staticmethod
     def _headers():
