@@ -181,15 +181,26 @@ def create_line():
 
     # POST: Create line
     try:
+        import random
+        import string
+
         username = request.form.get('username', '').strip()
         password = request.form.get('password', '').strip()
         package_id = request.form.get('package_id', type=int)
         full_name = request.form.get('full_name', '').strip()
         email = request.form.get('email', '').strip()
 
+        # Auto-generate credentials if not provided
+        if not username:
+            username = 'user_' + ''.join(random.choices(string.digits, k=8))
+
+        if not password:
+            chars = string.ascii_letters + string.digits + '!@#$%^&*'
+            password = ''.join(random.choices(chars, k=16))
+
         # Validate required fields
-        if not username or not password or not package_id:
-            flash('Veuillez remplir tous les champs requis', 'danger')
+        if not package_id:
+            flash('Veuillez sélectionner un package', 'danger')
             return redirect(url_for('lines.create_line'))
 
         # Call GOLDEN API

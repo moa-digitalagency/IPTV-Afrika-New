@@ -21,28 +21,33 @@
         <!-- IDENTIFIANT -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                <i class="fas fa-font"></i> Nom d'Utilisateur <span style="color: var(--danger);">*</span>
+                <i class="fas fa-font"></i> Nom d'Utilisateur
             </label>
-            <input type="text" name="username" placeholder="user_123" required style="
-                width: 100%;
-                padding: 0.75rem 1rem;
-                border: 1px solid var(--border-gold);
-                border-radius: 8px;
-                background: var(--bg-surface);
-                color: var(--text-primary);
-                font-family: 'Poppins', sans-serif;
-                font-size: 1rem;
-                transition: border-color 0.3s;
-            " onhover="this.style.borderColor = 'var(--gold)'" onfocus="this.style.borderColor = 'var(--gold)'" onblur="this.style.borderColor = 'var(--border-gold)'">
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Identifiant unique de la ligne</p>
+            <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="username" name="username" placeholder="Auto-généré" style="
+                    flex: 1;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Poppins', sans-serif;
+                    font-size: 1rem;
+                    transition: border-color 0.3s;
+                ">
+                <button type="button" onclick="generateCredentials()" class="btn" style="min-width: 120px;">
+                    <i class="fas fa-dice"></i> Générer
+                </button>
+            </div>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Laissez vide pour auto-générer</p>
         </div>
 
         <!-- MOT DE PASSE -->
         <div style="margin-bottom: 1.5rem;">
             <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
-                <i class="fas fa-lock"></i> Mot de Passe <span style="color: var(--danger);">*</span>
+                <i class="fas fa-lock"></i> Mot de Passe
             </label>
-            <input type="password" name="password" placeholder="••••••••••" required style="
+            <input type="text" id="password" name="password" placeholder="Auto-généré" style="
                 width: 100%;
                 padding: 0.75rem 1rem;
                 border: 1px solid var(--border-gold);
@@ -53,7 +58,7 @@
                 font-size: 1rem;
                 transition: border-color 0.3s;
             ">
-            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Au minimum 8 caractères</p>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Laissez vide pour auto-générer (16 caractères)</p>
         </div>
 
         <!-- PACKAGE -->
@@ -137,6 +142,42 @@
         </p>
     </div>
 </div>
+
+<script>
+function generateRandomString(length = 12, type = 'alphanumeric') {
+    const chars = {
+        'alpha': 'abcdefghijklmnopqrstuvwxyz',
+        'numeric': '0123456789',
+        'alphanumeric': 'abcdefghijklmnopqrstuvwxyz0123456789',
+        'password': 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'
+    };
+
+    const charset = chars[type] || chars.alphanumeric;
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    return result;
+}
+
+function generateCredentials() {
+    const username = 'user_' + generateRandomString(8, 'numeric');
+    const password = generateRandomString(16, 'password');
+
+    document.getElementById('username').value = username;
+    document.getElementById('password').value = password;
+
+    console.log('Generated credentials:', { username, password });
+}
+
+// Auto-generate on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Only auto-generate if fields are empty
+    if (!document.getElementById('username').value) {
+        generateCredentials();
+    }
+});
+</script>
 
 <style>
 input:focus, select:focus {
