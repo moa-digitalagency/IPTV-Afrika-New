@@ -40,6 +40,19 @@ class GoldenAPIService:
         }
 
     @staticmethod
+    def _extract_data(response):
+        """Extract line/data object from API response (handles wrapped responses)"""
+        if isinstance(response, dict):
+            if 'data' in response:
+                data_field = response['data']
+                if isinstance(data_field, list) and len(data_field) > 0:
+                    return data_field[0]
+                elif isinstance(data_field, dict):
+                    return data_field
+            return response
+        return response
+
+    @staticmethod
     def _handle_response(response):
         """Handle API response and raise exceptions on error"""
         try:
@@ -142,7 +155,9 @@ class GoldenAPIService:
             print(f"   Status: {response.status_code}")
             if response.status_code != 201:
                 print(f"   Response: {response.text}")
-            return GoldenAPIService._handle_response(response)
+
+            result = GoldenAPIService._handle_response(response)
+            return GoldenAPIService._extract_data(result)
         except GoldenAPIException as e:
             print(f"❌ Error creating line: {e}")
             raise
@@ -153,7 +168,8 @@ class GoldenAPIService:
         try:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines/{line_id}"
             response = requests.get(url, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
-            return GoldenAPIService._handle_response(response)
+            result = GoldenAPIService._handle_response(response)
+            return GoldenAPIService._extract_data(result)
         except GoldenAPIException as e:
             print(f"❌ Error fetching line {line_id}: {e}")
             raise
@@ -164,7 +180,14 @@ class GoldenAPIService:
         try:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines"
             response = requests.get(url, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
-            return GoldenAPIService._handle_response(response)
+            result = GoldenAPIService._handle_response(response)
+
+            # Extract lines from data if wrapped
+            if isinstance(result, dict):
+                if 'data' in result:
+                    return result['data']  # Return data array/object directly
+                return result
+            return result
         except GoldenAPIException as e:
             print(f"❌ Error fetching all lines: {e}")
             raise
@@ -176,7 +199,8 @@ class GoldenAPIService:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines/{line_id}/extend"
             data = {'days': days}
             response = requests.post(url, json=data, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
-            return GoldenAPIService._handle_response(response)
+            result = GoldenAPIService._handle_response(response)
+            return GoldenAPIService._extract_data(result)
         except GoldenAPIException as e:
             print(f"❌ Error extending line {line_id}: {e}")
             raise
@@ -187,7 +211,8 @@ class GoldenAPIService:
         try:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines/{line_id}/refund"
             response = requests.post(url, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
-            return GoldenAPIService._handle_response(response)
+            result = GoldenAPIService._handle_response(response)
+            return GoldenAPIService._extract_data(result)
         except GoldenAPIException as e:
             print(f"❌ Error refunding line {line_id}: {e}")
             raise
