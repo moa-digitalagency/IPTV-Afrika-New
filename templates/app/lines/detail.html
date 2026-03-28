@@ -474,22 +474,25 @@ document.getElementById('refundModal').addEventListener('click', (e) => {
 });
 
 // M3U Link Management
-const dnsLink = '{{ line.dns_link }}' || '';
-const username = '{{ line.username }}';
-const password = '{{ line.password }}';
+const dnsLink = '{{ line.dns_link }}'.trim() || '';
+const username = '{{ line.username }}'.trim() || '';
+const password = '{{ line.password }}'.trim() || '';
 
 function buildBaseM3ULink() {
     // Construct M3U URL with username, password, and standard params
-    if (!dnsLink) {
-        return 'Lien M3U non disponible';
+    if (!dnsLink || !username || !password) {
+        return 'Lien M3U non disponible (dns_link manquant)';
     }
 
-    let url = dnsLink;
+    let url = dnsLink.trim();
+
+    // Remove trailing slashes and query separators
+    url = url.replace(/[?&]+$/, '');
 
     // Add query separator if not already present
     if (!url.includes('?')) {
         url += '?';
-    } else if (!url.endsWith('&') && !url.endsWith('?')) {
+    } else {
         url += '&';
     }
 
