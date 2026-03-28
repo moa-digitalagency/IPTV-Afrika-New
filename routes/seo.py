@@ -57,7 +57,6 @@ def index():
     predefined_pages = {
         'home': 'Accueil',
         'catalog': 'Catalogue',
-        'channels': 'Chaînes',
         'about': 'À Propos',
         'contact': 'Contact',
         'legal': 'Mentions Légales',
@@ -87,7 +86,6 @@ def edit_page(slug):
     predefined_pages = {
         'home': 'Accueil',
         'catalog': 'Catalogue',
-        'channels': 'Chaînes',
         'about': 'À Propos',
         'contact': 'Contact',
         'legal': 'Mentions Légales',

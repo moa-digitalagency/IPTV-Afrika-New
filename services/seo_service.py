@@ -70,7 +70,7 @@ Crawl-delay: 1
         Generate sitemap.xml dynamically
 
         Includes:
-        - Static pages (home, catalog, channels, contact, etc.)
+        - Static pages (home, contact, about, etc.)
         - Public routes only
         """
         base_url = SeoService.get_base_url()
@@ -78,8 +78,6 @@ Crawl-delay: 1
         # Static pages with priority
         pages = [
             {'loc': '/', 'priority': '1.0', 'changefreq': 'daily'},
-            {'loc': '/catalog', 'priority': '0.9', 'changefreq': 'weekly'},
-            {'loc': '/channels', 'priority': '0.9', 'changefreq': 'daily'},
             {'loc': '/about', 'priority': '0.7', 'changefreq': 'monthly'},
             {'loc': '/contact', 'priority': '0.7', 'changefreq': 'monthly'},
             {'loc': '/legal', 'priority': '0.5', 'changefreq': 'yearly'},
@@ -134,16 +132,6 @@ Crawl-delay: 1
             'home': {
                 'meta_title': 'Mon IPTV Africa — Service IPTV Premium',
                 'meta_description': 'Accédez à des centaines de chaînes TV en streaming. Service IPTV fiable et rapide.',
-                'og_type': 'website'
-            },
-            'catalog': {
-                'meta_title': 'Catalogue Mon IPTV Africa — Nos Offres',
-                'meta_description': 'Découvrez tous nos offres IPTV: testeurs, abonnements, packs spécialisés.',
-                'og_type': 'website'
-            },
-            'channels': {
-                'meta_title': 'Chaînes Mon IPTV Africa — Programme Complet',
-                'meta_description': 'Liste complète des chaînes TV disponibles sur Mon IPTV Africa.',
                 'og_type': 'website'
             }
         }
