@@ -16,20 +16,20 @@
 
 /* ===== TYPOGRAPHY UTILITIES ===== */
 .font-heading {
-    font-family: 'Cormorant', Georgia, serif;
+    font-family: 'Poppins', sans-serif;
 }
 .font-body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 .label-text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 .label-text-wide {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 11px;
     text-transform: uppercase;
@@ -248,7 +248,7 @@
 }
 
 .country-badge-name {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     color: var(--text-primary);
