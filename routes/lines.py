@@ -224,17 +224,48 @@ def create_line():
             flash('Erreur lors de la création de la ligne', 'danger')
             return redirect(url_for('lines.create_line'))
 
+        line_id = result.get('id')
+
         # Log action
-        log_action('create', result.get('id'), {
+        log_action('create', line_id, {
             'username': username,
             'package_id': package_id
         })
 
-        # Invalidate cache to force refresh
-        CacheService.invalidate_all_lines()
+        # Parse expiration date if provided
+        exp_date = None
+        exp_date_str = result.get('exp_date')
+        if exp_date_str:
+            try:
+                if 'T' in exp_date_str:
+                    exp_date = datetime.fromisoformat(exp_date_str.replace('Z', '+00:00'))
+                else:
+                    exp_date = datetime.strptime(exp_date_str, '%Y-%m-%d')
+            except (ValueError, TypeError):
+                pass
+
+        # Add the new line to cache immediately
+        cache_line = LineCache(
+            golden_id=line_id,
+            username=result.get('username'),
+            password=result.get('password'),
+            full_name=full_name or None,
+            email=email or None,
+            package_id=result.get('package_id'),
+            package_name=result.get('package_name'),
+            is_trial=result.get('is_trial', False),
+            exp_date=exp_date,
+            enabled=result.get('enabled', True),
+            max_connections=result.get('max_connections', 1),
+            dns_link=result.get('dns_link'),
+            created_at=datetime.utcnow(),
+            cached_at=datetime.utcnow()
+        )
+        db.session.add(cache_line)
+        db.session.commit()
 
         flash(f'Ligne créée avec succès: {username}', 'success')
-        return redirect(url_for('lines.line_detail', golden_id=result.get('id')))
+        return redirect(url_for('lines.line_detail', golden_id=line_id))
 
     except GoldenAPIException as e:
         flash(f'Erreur API: {str(e)}', 'danger')
