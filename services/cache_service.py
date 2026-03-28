@@ -37,9 +37,21 @@ class CacheService:
 
                 cache.package_name = pkg.get('name', '')
                 cache.is_trial = pkg.get('is_trial', False)
-                cache.duration_days = pkg.get('duration_days')
                 cache.credits_cost = pkg.get('credits_cost')
                 cache.cached_at = datetime.utcnow()
+
+                # Calculate duration_days from official_duration
+                duration = pkg.get('official_duration', 0) or pkg.get('duration_days', 0)
+                duration_unit = pkg.get('official_duration_in', 'days')
+
+                if duration_unit == 'years':
+                    cache.duration_days = duration * 365
+                elif duration_unit == 'months':
+                    cache.duration_days = duration * 30
+                elif duration_unit == 'hours':
+                    cache.duration_days = max(1, duration // 24)  # Min 1 day
+                else:  # days or default
+                    cache.duration_days = duration
 
                 synced_count += 1
 

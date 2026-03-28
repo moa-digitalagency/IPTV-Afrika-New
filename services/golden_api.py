@@ -167,9 +167,14 @@ class GoldenAPIService:
         """Get line details"""
         try:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines/{line_id}"
+            print(f"📡 GET {url}")
             response = requests.get(url, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
+            print(f"   Status: {response.status_code}")
+            print(f"   Raw response: {response.text[:500]}")
             result = GoldenAPIService._handle_response(response)
-            return GoldenAPIService._extract_data(result)
+            extracted = GoldenAPIService._extract_data(result)
+            print(f"   Extracted data: {extracted}")
+            return extracted
         except GoldenAPIException as e:
             print(f"❌ Error fetching line {line_id}: {e}")
             raise

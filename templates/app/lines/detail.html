@@ -192,7 +192,7 @@
                 <div style="background: var(--bg-surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-gold); margin-bottom: 1rem;">
                     <div style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.5rem;">URL du Flux:</div>
                     <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <code id="m3uLink" style="color: var(--gold); font-size: 0.75rem; flex: 1; word-break: break-all; padding: 0.5rem;">{{ line.dns_link }}</code>
+                        <code id="m3uLink" style="color: var(--gold); font-size: 0.75rem; flex: 1; word-break: break-all; padding: 0.5rem;"></code>
                         <button type="button" onclick="copyM3ULink()" class="btn" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.875rem;">
                              Copier
                         </button>
@@ -476,19 +476,42 @@ document.getElementById('refundModal').addEventListener('click', (e) => {
 });
 
 // M3U Link Management
-const baseM3uLink = '{{ line.dns_link }}';
+const dnsLink = '{{ line.dns_link }}';
+const username = '{{ line.username }}';
+const password = '{{ line.password }}';
+
+function buildBaseM3ULink() {
+    // Construct M3U URL with username, password, and standard params
+    let url = dnsLink;
+
+    // Add query separator if not already present
+    if (!url.includes('?')) {
+        url += '?';
+    } else if (!url.endsWith('&') && !url.endsWith('?')) {
+        url += '&';
+    }
+
+    // Add username and password
+    const params = new URLSearchParams();
+    params.append('username', username);
+    params.append('password', password);
+    params.append('type', 'm3u_plus');
+    params.append('output', 'mpegts');
+
+    return url + params.toString();
+}
 
 function buildCustomM3ULink() {
     const quality = document.getElementById('m3uQuality').value;
     const format = document.getElementById('m3uFormat').value;
 
-    let link = baseM3uLink;
+    let link = buildBaseM3ULink();
 
     if (quality || format) {
         const params = [];
         if (quality) params.push(`quality=${encodeURIComponent(quality)}`);
         if (format) params.push(`format=${encodeURIComponent(format)}`);
-        link += '?' + params.join('&');
+        link += '&' + params.join('&');
     }
 
     document.getElementById('m3uCustomLink').textContent = link;
@@ -496,7 +519,7 @@ function buildCustomM3ULink() {
 }
 
 function copyM3ULink() {
-    const link = baseM3uLink;
+    const link = buildBaseM3ULink();
     navigator.clipboard.writeText(link).then(() => {
         const btn = event.target;
         const original = btn.textContent;
@@ -508,6 +531,12 @@ function copyM3ULink() {
         alert('Erreur lors de la copie');
     });
 }
+
+// Initialize M3U link on page load
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('m3uLink').textContent = buildBaseM3ULink();
+    buildCustomM3ULink();
+});
 
 function copyCustomM3ULink() {
     const link = document.getElementById('m3uCustomLink').textContent;

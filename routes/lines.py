@@ -196,6 +196,7 @@ def create_line():
     try:
         import random
         import string
+        from models.line import PackageCache
 
         username = request.form.get('username', '').strip()
         password = request.form.get('password', '').strip()
@@ -218,6 +219,10 @@ def create_line():
             flash('Veuillez sélectionner un package', 'danger')
             return redirect(url_for('lines.create_line'))
 
+        # Determine is_trial from package info
+        package = PackageCache.query.filter_by(golden_id=package_id).first()
+        is_trial = package.is_trial if package else False
+
         # Call GOLDEN API
         result = GoldenAPIService.create_line(username, password, package_id)
         if not result:
@@ -229,7 +234,8 @@ def create_line():
         # Log action
         log_action('create', line_id, {
             'username': username,
-            'package_id': package_id
+            'package_id': package_id,
+            'is_trial': is_trial
         })
 
         # Parse expiration date if provided
@@ -253,7 +259,7 @@ def create_line():
             email=email or None,
             package_id=result.get('package_id'),
             package_name=result.get('package_name'),
-            is_trial=result.get('is_trial', False),
+            is_trial=is_trial,
             exp_date=exp_date,
             enabled=result.get('enabled', True),
             max_connections=result.get('max_connections', 1),
@@ -264,16 +270,40 @@ def create_line():
         db.session.add(cache_line)
         db.session.commit()
 
-        # If dns_link is not provided, fetch full details from API
-        if not cache_line.dns_link:
+        # Fetch full details from API (create response may be incomplete)
+        if not cache_line.exp_date or not cache_line.dns_link:
             try:
                 full_details = GoldenAPIService.get_line(line_id)
+
                 if full_details:
-                    cache_line.dns_link = full_details.get('dns_link')
-                    cache_line.created_at = full_details.get('created_at')
+                    # Update missing fields
+                    if not cache_line.dns_link:
+                        cache_line.dns_link = full_details.get('dns_link')
+                    if not cache_line.created_at:
+                        cache_line.created_at = full_details.get('created_at')
+
+                    # Update expiration date if missing
+                    if not cache_line.exp_date:
+                        exp_date_str = full_details.get('exp_date')
+                        if exp_date_str:
+                            try:
+                                if 'T' in exp_date_str:
+                                    cache_line.exp_date = datetime.fromisoformat(exp_date_str.replace('Z', '+00:00'))
+                                else:
+                                    cache_line.exp_date = datetime.strptime(exp_date_str, '%Y-%m-%d')
+                            except (ValueError, TypeError):
+                                pass
+
                     db.session.commit()
             except Exception as e:
-                print(f"Warning: Could not fetch full line details: {e}")
+                pass
+
+        # If exp_date still missing, calculate from package duration
+        if not cache_line.exp_date and package:
+            duration_days = package.duration_days or 0
+            if duration_days > 0:
+                cache_line.exp_date = datetime.utcnow() + timedelta(days=duration_days)
+                db.session.commit()
 
         flash(f'Ligne créée avec succès: {username}', 'success')
         return redirect(url_for('lines.line_detail', golden_id=line_id))

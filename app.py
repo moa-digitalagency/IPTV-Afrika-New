@@ -69,6 +69,13 @@ def load_channels_data():
 with app.app_context():
     load_channels_data()
 
+    # Sync packages from GOLDEN API on startup
+    try:
+        from services.cache_service import CacheService
+        CacheService.sync_packages()
+    except Exception as e:
+        print(f"⚠️  Warning: Could not sync packages on startup: {e}")
+
 # Routes
 @app.route('/')
 def index():
