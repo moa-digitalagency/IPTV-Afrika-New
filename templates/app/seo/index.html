@@ -1,0 +1,207 @@
+{% extends "app/base.html" %}
+
+{% block title %}SEO & Meta - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">🔍 Gestion SEO</h1>
+    <p class="page-subtitle">Meta tags, robots.txt, sitemap</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('dashboard.index') }}" class="btn" style="text-decoration: none;">
+        ← Retour au tableau de bord
+    </a>
+</div>
+
+<!-- INFO PANEL -->
+<div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+    <h3 style="margin-top: 0; color: var(--gold);">ℹ️ À Propos de SEO</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+        Les meta tags aident les moteurs de recherche et réseaux sociaux à comprendre vos pages.
+        Chaque page peut avoir des meta titles, descriptions, et tags OpenGraph uniques.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+        <div>
+            <strong style="color: var(--gold);">📄 Meta Title</strong>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 0 0;">Titre affiché dans les SERP (max 60 chars)</p>
+        </div>
+        <div>
+            <strong style="color: var(--gold);">📝 Meta Description</strong>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 0 0;">Description affichée sous le titre (max 160 chars)</p>
+        </div>
+        <div>
+            <strong style="color: var(--gold);">🔗 Open Graph</strong>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 0 0;">Contrôle l'apparence lors de partages réseaux</p>
+        </div>
+        <div>
+            <strong style="color: var(--gold);">🤖 Robots</strong>
+            <p style="color: var(--text-muted); margin: 0.5rem 0 0 0;">Directives pour crawlers (index, follow, noindex)</p>
+        </div>
+    </div>
+</div>
+
+<!-- QUICK LINKS -->
+<div style="margin-bottom: 2rem;">
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1.5rem;">
+        <h3 style="margin-top: 0; color: var(--gold); font-size: 1rem;">⚡ Liens Rapides</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+            <a href="/robots.txt" target="_blank" class="btn" style="text-align: center; text-decoration: none;">
+                🤖 Voir robots.txt
+            </a>
+            <a href="/sitemap.xml" target="_blank" class="btn" style="text-align: center; text-decoration: none;">
+                🗺️ Voir sitemap.xml
+            </a>
+            <a href="https://search.google.com/search-console" target="_blank" class="btn" style="text-align: center; text-decoration: none;">
+                📊 Google Search Console
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- PAGES GRID -->
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Éditer Meta Tags par Page</h3>
+    </div>
+
+    <div style="padding: 1.5rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+            {% for slug, page in seo_pages.items() %}
+            <div style="
+                border: 1px solid var(--border-gold);
+                border-radius: 8px;
+                padding: 1.5rem;
+                background: var(--bg-surface);
+                transition: transform 0.2s, box-shadow 0.2s;
+            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(212, 165, 116, 0.2)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                <!-- Page Title -->
+                <h4 style="margin: 0 0 1rem 0; color: var(--gold); font-size: 1rem;">
+                    {{ page.title }}
+                </h4>
+
+                <!-- Status Badge -->
+                {% if page.has_meta %}
+                <div style="display: inline-block; background: rgba(39, 174, 96, 0.2); color: var(--success); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; margin-bottom: 1rem; font-weight: 600;">
+                    ✅ Configurée
+                </div>
+                {% else %}
+                <div style="display: inline-block; background: rgba(243, 156, 18, 0.2); color: var(--warning); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; margin-bottom: 1rem; font-weight: 600;">
+                    ⚠️ Par défaut
+                </div>
+                {% endif %}
+
+                <!-- Meta Preview -->
+                <div style="margin-bottom: 1rem;">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">
+                        Aperçu Meta
+                    </div>
+                    <div style="font-size: 0.9rem; color: var(--gold); font-weight: 600; margin-bottom: 0.25rem;">
+                        {{ page.meta_title[:40] }}{% if page.meta_title|length > 40 %}...{% endif %}
+                    </div>
+                    <div style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                        {{ page.meta_description[:70] }}{% if page.meta_description|length > 70 %}...{% endif %}
+                    </div>
+                </div>
+
+                <!-- Meta Info -->
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    <div>Mise à jour: {{ page.updated_at }}</div>
+                </div>
+
+                <!-- Edit Button -->
+                <a href="{{ url_for('seo.edit_page', slug=slug) }}" class="btn" style="width: 100%; text-align: center; text-decoration: none;">
+                    ✏️ Éditer
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- ROBOTS & SITEMAP INFO -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+    <!-- Robots.txt -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">🤖 robots.txt</h3>
+        </div>
+
+        <div style="padding: 1.5rem;">
+            <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                Généré automatiquement pour indiquer aux moteurs de recherche les pages à crawler.
+            </p>
+            <ul style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                <li>✅ Permet indexation du site public</li>
+                <li>❌ Bloque /app/* (admin)</li>
+                <li>⏱️ Crawl delay: 2 secondes</li>
+            </ul>
+            <a href="/robots.txt" target="_blank" class="btn" style="width: 100%; text-align: center; text-decoration: none;">
+                Voir le fichier
+            </a>
+        </div>
+    </div>
+
+    <!-- Sitemap.xml -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">🗺️ sitemap.xml</h3>
+        </div>
+
+        <div style="padding: 1.5rem;">
+            <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+                Plan du site généré automatiquement avec toutes les pages publiques.
+            </p>
+            <ul style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+                <li>📍 7 pages indexées</li>
+                <li>🔄 Mise à jour: quotidienne</li>
+                <li>⚡ Priorités configurées</li>
+            </ul>
+            <a href="/sitemap.xml" target="_blank" class="btn" style="width: 100%; text-align: center; text-decoration: none;">
+                Voir le sitemap
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- TESTING CHECKLIST -->
+<div class="content-card" style="margin-top: 2rem;">
+    <div class="card-header">
+        <h3 class="card-title">✅ Checklist SEO</h3>
+    </div>
+
+    <div style="padding: 1.5rem;">
+        <div style="display: grid; gap: 0.75rem;">
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;" checked>
+                <span style="color: var(--text-primary);">Meta titles pour toutes les pages (max 60 chars)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;" checked>
+                <span style="color: var(--text-primary);">Meta descriptions pour toutes les pages (max 160 chars)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;" checked>
+                <span style="color: var(--text-primary);">Open Graph tags (og:title, og:description, og:image)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;" checked>
+                <span style="color: var(--text-primary);">robots.txt généré et accessible</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;" checked>
+                <span style="color: var(--text-primary);">sitemap.xml généré et soumis à Google</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;">
+                <span style="color: var(--text-primary);">Liens canoniques configurés (si pages doublons)</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                <input type="checkbox" style="width: 18px; height: 18px;">
+                <span style="color: var(--text-primary);">Schema.json (données structurées) implémenté</span>
+            </label>
+        </div>
+    </div>
+</div>
+{% endblock %}

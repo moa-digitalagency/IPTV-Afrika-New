@@ -1,0 +1,514 @@
+{% extends "app/base.html" %}
+
+{% block title %}Détails - {{ line.username }} - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">👁️ Détails de l'Abonnement</h1>
+    <p class="page-subtitle">Informations complètes et actions disponibles</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="margin-bottom: 1.5rem;">
+    <a href="javascript:history.back()" class="btn" style="text-decoration: none;">
+        ← Retour
+    </a>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;">
+    <!-- MAIN INFO CARD -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">📋 Informations Principales</h3>
+            <span style="font-size: 0.875rem; color: var(--text-muted);">ID: {{ line.golden_id }}</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1.5rem;">
+            <!-- Utilisateur -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">🔤 Nom d'Utilisateur</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--gold); font-family: monospace;">{{ line.username }}</div>
+            </div>
+
+            <!-- Mot de passe -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">🔐 Mot de Passe</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary); font-family: monospace;">
+                    <span id="passwordDisplay" style="user-select: none;">••••••••</span>
+                    <button type="button" onclick="togglePassword()" style="
+                        background: none;
+                        border: none;
+                        color: var(--gold);
+                        cursor: pointer;
+                        margin-left: 0.5rem;
+                        font-size: 0.875rem;
+                    ">👁️</button>
+                </div>
+            </div>
+
+            <!-- Nom complet -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">👤 Nom Complet</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">{{ line.full_name or 'N/A' }}</div>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">✉️ Email</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
+                    {% if line.email %}
+                        <a href="mailto:{{ line.email }}" style="color: var(--gold); text-decoration: none;">{{ line.email }}</a>
+                    {% else %}
+                        <span style="color: var(--text-muted);">N/A</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Téléphone -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">☎️ Téléphone</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">{{ line.phone or 'N/A' }}</div>
+            </div>
+
+            <!-- Package -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">📦 Package</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
+                    <span class="badge {% if line.is_trial %}badge-gold{% else %}badge-success{% endif %}">{{ line.package_name or 'N/A' }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXPIRATION & STATUS -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">⏳ Statut et Expiration</h3>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; padding: 1.5rem;">
+            <!-- Type -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">🏷️ Type</div>
+                <div style="font-size: 1.25rem; font-weight: 600;">
+                    {% if line.is_trial %}
+                        <span style="color: var(--gold);">🧪 Testeur</span>
+                    {% else %}
+                        <span style="color: var(--success);">💳 Abonné</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Status -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">✅ Statut</div>
+                <div style="font-size: 1.25rem; font-weight: 600;">
+                    {% if line.enabled %}
+                        <span style="color: var(--success);">🟢 Actif</span>
+                    {% else %}
+                        <span style="color: var(--danger);">🔴 Inactif</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Expiration -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">📅 Expire le</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">
+                    {% if line.exp_date %}
+                        {{ line.exp_date.strftime('%d/%m/%Y') }}
+                    {% else %}
+                        <span style="color: var(--text-muted);">N/A</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Days left/ago -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">⏳ Durée</div>
+                <div style="font-size: 1.25rem; font-weight: 600;">
+                    {% if line.exp_date %}
+                        {% if days_left and days_left > 0 %}
+                            {% if days_left <= 7 %}
+                                <span style="color: var(--warning);">⚠️ {{ days_left }}j restants</span>
+                            {% elif days_left <= 30 %}
+                                <span style="color: var(--gold);">⏳ {{ days_left }}j restants</span>
+                            {% else %}
+                                <span style="color: var(--success);">✅ {{ days_left }}j restants</span>
+                            {% endif %}
+                        {% else %}
+                            {% set days_ago = (now() - line.exp_date).days %}
+                            <span style="color: var(--danger);">❌ Expiré il y a {{ days_ago }}j</span>
+                        {% endif %}
+                    {% else %}
+                        <span style="color: var(--text-muted);">N/A</span>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Connexions max -->
+            <div>
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">📺 Connexions Max</div>
+                <div style="font-size: 1.25rem; font-weight: 600; color: var(--text-primary);">{{ line.max_connections }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ADDITIONAL INFO -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">📝 Informations Additionnelles</h3>
+        </div>
+
+        <div style="padding: 1.5rem;">
+            <!-- Notes -->
+            {% if line.note %}
+            <div style="margin-bottom: 1.5rem;">
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">📌 Notes</div>
+                <div style="background: var(--bg-surface); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--gold); color: var(--text-primary); font-size: 0.95rem;">
+                    {{ line.note }}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- M3U Link with Options -->
+            {% if line.dns_link %}
+            <div style="margin-bottom: 1.5rem;">
+                <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">🔗 Lien M3U - Détails Complets</div>
+
+                <!-- M3U URL -->
+                <div style="background: var(--bg-surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-gold); margin-bottom: 1rem;">
+                    <div style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.5rem;">URL du Flux:</div>
+                    <div style="display: flex; gap: 0.5rem; align-items: center;">
+                        <code id="m3uLink" style="color: var(--gold); font-size: 0.75rem; flex: 1; word-break: break-all; padding: 0.5rem;">{{ line.dns_link }}</code>
+                        <button type="button" onclick="copyM3ULink()" class="btn" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                            📋 Copier
+                        </button>
+                    </div>
+                </div>
+
+                <!-- M3U Options -->
+                <div style="background: var(--bg-surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-gold); margin-bottom: 1rem;">
+                    <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem;">⚙️ Options du Flux:</div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; color: var(--text-primary); font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                Qualité:
+                            </label>
+                            <select id="m3uQuality" style="
+                                width: 100%;
+                                padding: 0.5rem;
+                                background: var(--bg-elevated);
+                                border: 1px solid var(--border-gold);
+                                border-radius: 6px;
+                                color: var(--text-primary);
+                                font-size: 0.875rem;
+                            ">
+                                <option value="">Auto</option>
+                                <option value="720p">720p</option>
+                                <option value="1080p">1080p (4K)</option>
+                                <option value="480p">480p (Low)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--text-primary); font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                Format:
+                            </label>
+                            <select id="m3uFormat" style="
+                                width: 100%;
+                                padding: 0.5rem;
+                                background: var(--bg-elevated);
+                                border: 1px solid var(--border-gold);
+                                border-radius: 6px;
+                                color: var(--text-primary);
+                                font-size: 0.875rem;
+                            ">
+                                <option value="">Défaut</option>
+                                <option value="hls">HLS (Streaming)</option>
+                                <option value="http">HTTP (Direct)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 1rem; padding: 0.75rem; background: var(--bg-elevated); border-radius: 6px;">
+                        <div style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.5rem;">Lien personnalisé:</div>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <code id="m3uCustomLink" style="color: var(--gold); font-size: 0.75rem; flex: 1; word-break: break-all;">{{ line.dns_link }}</code>
+                            <button type="button" onclick="copyCustomM3ULink()" class="btn" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                                📋 Copier
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Box -->
+                <div style="background: rgba(212, 165, 116, 0.1); border-left: 3px solid var(--gold); padding: 1rem; border-radius: 6px;">
+                    <div style="color: var(--gold); font-size: 0.875rem; margin-bottom: 0.5rem;">💡 Comment utiliser:</div>
+                    <ul style="color: var(--text-muted); font-size: 0.875rem; margin: 0; padding-left: 1.5rem;">
+                        <li>Copiez le lien M3U</li>
+                        <li>Ouvrez votre lecteur IPTV (VLC, Kodi, Smarters, etc.)</li>
+                        <li>Ajoutez une source de liste de lecture externe</li>
+                        <li>Collez le lien M3U dans le champ URL</li>
+                        <li>Utilisez vos identifiants ({{ line.username }} / ••••••••)</li>
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Dates -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                {% if line.created_at %}
+                <div>
+                    <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">📅 Créé le</div>
+                    <div style="color: var(--text-primary); font-size: 0.95rem;">{{ line.created_at.strftime('%d/%m/%Y %H:%M') }}</div>
+                </div>
+                {% endif %}
+                <div>
+                    <div style="color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">🔄 Mis en cache</div>
+                    <div style="color: var(--text-primary); font-size: 0.95rem;">{{ line.cached_at.strftime('%d/%m/%Y %H:%M') if line.cached_at else 'N/A' }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">⚙️ Actions</h3>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; padding: 1.5rem;">
+            {% if line.enabled and line.exp_date and (line.exp_date - now()).days > 0 %}
+            <button onclick="openExtendModal({{ line.golden_id }}, '{{ line.username }}')" class="btn btn-primary">
+                ⏱️ Prolonger
+            </button>
+            {% endif %}
+
+            <button onclick="toggleLineStatus({{ line.golden_id }})" class="btn" style="{% if line.enabled %}background: var(--danger);{% else %}background: var(--success);{% endif %} border: none;">
+                {% if line.enabled %}🔴 Désactiver{% else %}🟢 Activer{% endif %}
+            </button>
+
+            <button onclick="openRefundModal({{ line.golden_id }}, '{{ line.username }}')" class="btn btn-danger">
+                🗑️ Rembourser
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- EXTEND MODAL -->
+<div id="extendModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+    <div style="background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
+        <h3 style="margin-bottom: 1rem; color: var(--gold);">⏱️ Prolonger l'Abonnement</h3>
+        <p id="extendUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+
+        <form id="extendForm">
+            <input type="hidden" id="extendGoldenId" name="golden_id">
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase;">Nombre de jours</label>
+                <input type="number" name="days" min="1" max="365" value="30" required style="
+                    width: 100%;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                ">
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+                <button type="button" onclick="closeExtendModal()" class="btn" style="flex: 1;">Annuler</button>
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Prolonger</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- REFUND MODAL -->
+<div id="refundModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+    <div style="background: var(--bg-elevated); border: 1px solid var(--danger); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
+        <h3 style="margin-bottom: 1rem; color: var(--danger);">⚠️ Rembourser l'Abonnement</h3>
+        <p id="refundUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+        <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+            Cette action désactivera définitivement cette ligne.
+        </p>
+
+        <form id="refundForm">
+            <input type="hidden" id="refundGoldenId" name="golden_id">
+            <div style="display: flex; gap: 0.75rem;">
+                <button type="button" onclick="closeRefundModal()" class="btn" style="flex: 1;">Annuler</button>
+                <button type="submit" class="btn btn-danger" style="flex: 1;">Confirmer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+let passwordVisible = false;
+
+function togglePassword() {
+    const display = document.getElementById('passwordDisplay');
+    const btn = event.target;
+    passwordVisible = !passwordVisible;
+    display.textContent = passwordVisible ? '{{ line.password }}' : '••••••••';
+    btn.textContent = passwordVisible ? '👁️‍🗨️' : '👁️';
+}
+
+function openExtendModal(golden_id, username) {
+    document.getElementById('extendGoldenId').value = golden_id;
+    document.getElementById('extendUsername').textContent = `Utilisateur: ${username}`;
+    document.getElementById('extendModal').style.display = 'flex';
+}
+
+function closeExtendModal() {
+    document.getElementById('extendModal').style.display = 'none';
+    document.getElementById('extendForm').reset();
+}
+
+function openRefundModal(golden_id, username) {
+    document.getElementById('refundGoldenId').value = golden_id;
+    document.getElementById('refundUsername').textContent = `Utilisateur: ${username}`;
+    document.getElementById('refundModal').style.display = 'flex';
+}
+
+function closeRefundModal() {
+    document.getElementById('refundModal').style.display = 'none';
+    document.getElementById('refundForm').reset();
+}
+
+document.getElementById('extendForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const golden_id = document.getElementById('extendGoldenId').value;
+    const days = document.querySelector('#extendForm [name="days"]').value;
+
+    try {
+        const response = await fetch(`{{ url_for('lines.extend_line', golden_id='REPLACE') }}`.replace('REPLACE', golden_id), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+            },
+            body: `days=${days}`
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ ' + result.message);
+            closeExtendModal();
+            location.reload();
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+    }
+});
+
+document.getElementById('refundForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const golden_id = document.getElementById('refundGoldenId').value;
+
+    try {
+        const response = await fetch(`{{ url_for('lines.refund_line', golden_id='REPLACE') }}`.replace('REPLACE', golden_id), {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+            }
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ ' + result.message);
+            closeRefundModal();
+            location.reload();
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+    }
+});
+
+async function toggleLineStatus(golden_id) {
+    try {
+        const response = await fetch(`{{ url_for('lines.toggle_line', golden_id='REPLACE') }}`.replace('REPLACE', golden_id), {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+            }
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ ' + result.message);
+            location.reload();
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+    }
+}
+
+// Close modals when clicking outside
+document.getElementById('extendModal').addEventListener('click', (e) => {
+    if (e.target.id === 'extendModal') closeExtendModal();
+});
+
+document.getElementById('refundModal').addEventListener('click', (e) => {
+    if (e.target.id === 'refundModal') closeRefundModal();
+});
+
+// M3U Link Management
+const baseM3uLink = '{{ line.dns_link }}';
+
+function buildCustomM3ULink() {
+    const quality = document.getElementById('m3uQuality').value;
+    const format = document.getElementById('m3uFormat').value;
+
+    let link = baseM3uLink;
+
+    if (quality || format) {
+        const params = [];
+        if (quality) params.push(`quality=${encodeURIComponent(quality)}`);
+        if (format) params.push(`format=${encodeURIComponent(format)}`);
+        link += '?' + params.join('&');
+    }
+
+    document.getElementById('m3uCustomLink').textContent = link;
+    return link;
+}
+
+function copyM3ULink() {
+    const link = baseM3uLink;
+    navigator.clipboard.writeText(link).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = '✅ Copié!';
+        setTimeout(() => {
+            btn.textContent = original;
+        }, 2000);
+    }).catch(() => {
+        alert('Erreur lors de la copie');
+    });
+}
+
+function copyCustomM3ULink() {
+    const link = document.getElementById('m3uCustomLink').textContent;
+    navigator.clipboard.writeText(link).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = '✅ Copié!';
+        setTimeout(() => {
+            btn.textContent = original;
+        }, 2000);
+    }).catch(() => {
+        alert('Erreur lors de la copie');
+    });
+}
+
+// Update custom link when options change
+document.getElementById('m3uQuality')?.addEventListener('change', buildCustomM3ULink);
+document.getElementById('m3uFormat')?.addEventListener('change', buildCustomM3ULink);
+</script>
+{% endblock %}

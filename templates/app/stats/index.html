@@ -1,0 +1,466 @@
+{% extends "app/base.html" %}
+
+{% block title %}Statistiques - Mon IPTV Africa{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stat-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-gold);
+        border-radius: 8px;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-subtext {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+
+    .chart-container {
+        background: var(--bg-surface);
+        border: 1px solid var(--border-gold);
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        position: relative;
+        min-height: 300px;
+    }
+
+    .chart-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .chart-canvas {
+        max-height: 400px;
+    }
+
+    .error-alert {
+        background: rgba(231, 76, 60, 0.1);
+        border-left: 4px solid var(--danger);
+        border-radius: 4px;
+        padding: 1rem;
+        color: var(--danger);
+        margin-bottom: 1.5rem;
+    }
+
+    .loading {
+        text-align: center;
+        padding: 2rem;
+        color: var(--text-muted);
+    }
+
+    .spinner {
+        border: 3px solid var(--bg-elevated);
+        border-top: 3px solid var(--gold);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 1rem auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">📊 Statistiques</h1>
+    <p class="page-subtitle">Analyse complète de votre inventaire IPTV</p>
+</div>
+
+{% if error %}
+<div class="error-alert">
+    <strong>⚠️ Erreur:</strong> {{ error }}
+</div>
+{% endif %}
+
+<!-- KEY METRICS -->
+<div class="stat-grid">
+    <div class="stat-card">
+        <div class="stat-label">📺 Total Lignes</div>
+        <div class="stat-value" id="total-lines">-</div>
+        <div class="stat-subtext">Actives et inactives</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">🟢 Actifs</div>
+        <div class="stat-value" id="active-lines" style="color: var(--success);">-</div>
+        <div class="stat-subtext">Non expirés</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">⚠️ Expiration Proche</div>
+        <div class="stat-value" id="expiring-soon" style="color: var(--warning);">-</div>
+        <div class="stat-subtext">&lt; 7 jours</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">❌ Expirés</div>
+        <div class="stat-value" id="expired-lines" style="color: var(--danger);">-</div>
+        <div class="stat-subtext">À rembourser</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">🧪 Testeurs</div>
+        <div class="stat-value" id="trial-lines">-</div>
+        <div class="stat-subtext">Essais gratuits</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-label">💳 Abonnés</div>
+        <div class="stat-value" id="paid-lines">-</div>
+        <div class="stat-subtext">Payants</div>
+    </div>
+</div>
+
+<!-- CHARTS SECTION -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 2rem;">
+    <!-- Expiry Distribution -->
+    <div class="chart-container">
+        <div class="chart-title">⏳ Distribution des Expirations</div>
+        <div class="chart-canvas">
+            <canvas id="expiryChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Trial vs Paid -->
+    <div class="chart-container">
+        <div class="chart-title">🎭 Testeurs vs Abonnés</div>
+        <div class="chart-canvas">
+            <canvas id="trialPaidChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Activity Timeline -->
+<div class="chart-container" style="grid-column: 1 / -1;">
+    <div class="chart-title">📈 Activité (Derniers 30 Jours)</div>
+    <div class="chart-canvas">
+        <canvas id="activityChart"></canvas>
+    </div>
+</div>
+
+<!-- Packages Breakdown -->
+<div class="chart-container" style="grid-column: 1 / -1;">
+    <div class="chart-title">📦 Distribution par Package</div>
+    <div class="chart-canvas">
+        <canvas id="packagesChart"></canvas>
+    </div>
+</div>
+
+<!-- Cache Status -->
+<div class="chart-container">
+    <div class="chart-title">🔄 Statut du Cache</div>
+    <div style="padding: 1rem;">
+        <table style="width: 100%; font-size: 0.9rem;">
+            <tr style="border-bottom: 1px solid var(--border-gold);">
+                <td style="padding: 0.75rem; color: var(--text-muted);">Dernière Sync</td>
+                <td style="padding: 0.75rem; color: var(--text-primary); text-align: right;" id="last-sync">-</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-gold);">
+                <td style="padding: 0.75rem; color: var(--text-muted);">Lignes en Cache</td>
+                <td style="padding: 0.75rem; color: var(--text-primary); text-align: right;" id="cached-lines">-</td>
+            </tr>
+            <tr style="border-bottom: 1px solid var(--border-gold);">
+                <td style="padding: 0.75rem; color: var(--text-muted);">Packages en Cache</td>
+                <td style="padding: 0.75rem; color: var(--text-primary); text-align: right;" id="cached-packages">-</td>
+            </tr>
+            <tr>
+                <td style="padding: 0.75rem; color: var(--text-muted);">Age du Cache</td>
+                <td style="padding: 0.75rem; color: var(--text-primary); text-align: right;" id="cache-age">-</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- Export Data -->
+<div class="content-card" style="margin-top: 2rem;">
+    <div class="card-header">
+        <h3 class="card-title">📥 Export Données</h3>
+    </div>
+    <div style="padding: 1.5rem;">
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">Télécharger un rapport complet au format CSV pour analyse externe.</p>
+        <button onclick="exportStats()" class="btn btn-primary">
+            ⬇️ Télécharger Rapport
+        </button>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+// Chart instances
+let expiryChart = null;
+let trialPaidChart = null;
+let activityChart = null;
+let packagesChart = null;
+
+// Initialize charts on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadSummaryStats();
+    loadCharts();
+
+    // Refresh every 5 minutes
+    setInterval(loadSummaryStats, 300000);
+    setInterval(loadCharts, 300000);
+});
+
+async function loadSummaryStats() {
+    try {
+        const response = await fetch('{{ url_for("stats.api_summary") }}');
+        const data = await response.json();
+
+        if (data) {
+            document.getElementById('total-lines').textContent = data.total_lines || 0;
+            document.getElementById('active-lines').textContent = data.active_lines || 0;
+            document.getElementById('expiring-soon').textContent = data.expiring_soon || 0;
+            document.getElementById('expired-lines').textContent = data.expired_lines || 0;
+            document.getElementById('trial-lines').textContent = data.trial_lines || 0;
+            document.getElementById('paid-lines').textContent = data.paid_lines || 0;
+
+            if (data.last_sync) {
+                document.getElementById('last-sync').textContent = new Date(data.last_sync).toLocaleString('fr-FR');
+            }
+            document.getElementById('cached-lines').textContent = data.cached_lines || 0;
+            document.getElementById('cached-packages').textContent = data.cached_packages || 0;
+            document.getElementById('cache-age').textContent = data.cache_age || '-';
+        }
+    } catch (error) {
+        console.error('Error loading summary stats:', error);
+    }
+}
+
+async function loadCharts() {
+    try {
+        // Load all chart data in parallel
+        const [expiryData, trialPaidData, activityData, packagesData] = await Promise.all([
+            fetch('{{ url_for("stats.api_expiry_chart") }}').then(r => r.json()),
+            fetch('{{ url_for("stats.api_trial_vs_paid") }}').then(r => r.json()),
+            fetch('{{ url_for("stats.api_activity_chart") }}').then(r => r.json()),
+            fetch('{{ url_for("stats.api_packages_chart") }}').then(r => r.json())
+        ]);
+
+        updateExpiryChart(expiryData);
+        updateTrialPaidChart(trialPaidData);
+        updateActivityChart(activityData);
+        updatePackagesChart(packagesData);
+    } catch (error) {
+        console.error('Error loading charts:', error);
+    }
+}
+
+function updateExpiryChart(data) {
+    const ctx = document.getElementById('expiryChart').getContext('2d');
+
+    if (expiryChart) {
+        expiryChart.destroy();
+    }
+
+    expiryChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: data.labels || [],
+            datasets: [{
+                data: data.data || [],
+                backgroundColor: data.colors || [],
+                borderColor: 'var(--bg-surface)',
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: 'var(--text-primary)',
+                        font: { family: "'Montserrat', sans-serif" }
+                    }
+                }
+            }
+        }
+    });
+}
+
+function updateTrialPaidChart(data) {
+    const ctx = document.getElementById('trialPaidChart').getContext('2d');
+
+    if (trialPaidChart) {
+        trialPaidChart.destroy();
+    }
+
+    trialPaidChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels || [],
+            datasets: [{
+                label: 'Nombre de Lignes',
+                data: data.data || [],
+                backgroundColor: data.colors || [],
+                borderRadius: 8,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'var(--text-primary)',
+                        font: { family: "'Montserrat', sans-serif" }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: 'var(--text-muted)' },
+                    grid: { color: 'var(--bg-elevated)' }
+                },
+                y: {
+                    ticks: { color: 'var(--text-muted)' },
+                    grid: { color: 'var(--bg-elevated)' }
+                }
+            }
+        }
+    });
+}
+
+function updateActivityChart(data) {
+    const ctx = document.getElementById('activityChart').getContext('2d');
+
+    if (activityChart) {
+        activityChart.destroy();
+    }
+
+    activityChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.labels || [],
+            datasets: [{
+                label: 'Actions Utilisateur',
+                data: data.data || [],
+                borderColor: data.color || 'var(--gold)',
+                backgroundColor: 'rgba(212, 165, 116, 0.1)',
+                borderWidth: 2,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: data.color || 'var(--gold)',
+                pointBorderColor: 'var(--bg-surface)',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'var(--text-primary)',
+                        font: { family: "'Montserrat', sans-serif" }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: 'var(--text-muted)' },
+                    grid: { color: 'var(--bg-elevated)' }
+                },
+                y: {
+                    ticks: { color: 'var(--text-muted)' },
+                    grid: { color: 'var(--bg-elevated)' },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+function updatePackagesChart(data) {
+    const ctx = document.getElementById('packagesChart').getContext('2d');
+
+    if (packagesChart) {
+        packagesChart.destroy();
+    }
+
+    packagesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.labels || [],
+            datasets: [{
+                label: 'Nombre de Lignes',
+                data: data.data || [],
+                backgroundColor: data.colors || [],
+                borderRadius: 8,
+                borderSkipped: false
+            }]
+        },
+        options: {
+            indexAxis: 'x',
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'var(--text-primary)',
+                        font: { family: "'Montserrat', sans-serif" }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: 'var(--text-muted)' },
+                    grid: { color: 'var(--bg-elevated)' }
+                },
+                y: {
+                    ticks: { color: 'var(--text-muted)' },
+                    grid: { color: 'var(--bg-elevated)' },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+function exportStats() {
+    alert('ℹ️ Fonctionnalité de rapport CSV — Phase 5.2');
+    // TODO: Implement CSV export with Flask response
+}
+</script>
+{% endblock %}

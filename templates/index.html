@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IPTV Afrika - 22,000+ chaines et 120,000+ films en HD/4K. L'Afrique regarde autrement.">
-    <title>IPTV Afrika — L'Afrique regarde autrement</title>
+    <meta name="description" content="Mon IPTV Africa - 26,694+ chaînes mondiales incluant toutes les chaînes africaines, européennes, américaines et plus. Accès à plus de 485 régions du monde. L'alternative abordable aux services VOD premium.">
+    <title>Mon IPTV Africa - Chaînes Africaines & Internationales | Alternative à Canal+, Netflix</title>
 
-    <!-- Font -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,527 +18,1286 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        'inter': ['Inter', 'system-ui', 'sans-serif'],
+                        'serif': ['Cormorant', 'Georgia', 'serif'],
+                        'sans': ['Montserrat', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
 
-    <style>
-        :root {
-            --bg-deep: #050505;
-            --bg-elevated: #0C0C0C;
-            --surface: rgba(255,255,255,0.04);
-            --text-primary: #FAFAFA;
-            --text-muted: #737373;
-            --accent: #E67E22;
-            --accent-glow: rgba(230,126,34,0.15);
-            --border: rgba(255,255,255,0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-            background: var(--bg-deep);
-            color: var(--text-primary);
-            overflow-x: hidden;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-deep); }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Scroll chevron bounce */
-        @keyframes scrollBounce {
-            0%, 100% { transform: translateY(0); opacity: 0.5; }
-            50% { transform: translateY(10px); opacity: 1; }
-        }
-        .scroll-indicator { animation: scrollBounce 2s ease-in-out infinite; }
-
-        /* FAQ toggle */
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .faq-item.open .faq-answer {
-            max-height: 200px;
-        }
-        .faq-item.open .faq-chevron {
-            transform: rotate(180deg);
-        }
-        .faq-chevron {
-            transition: transform 0.3s ease;
-        }
-
-        /* Accent line */
-        .accent-line {
-            width: 48px;
-            height: 2px;
-            background: var(--accent);
-        }
-    </style>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../statics/css/style.css">
+    <link rel="stylesheet" href="../statics/css/index.css">
 </head>
 <body>
 
     <!-- ========== NAVIGATION ========== -->
-    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background: rgba(5,5,5,0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);">
-        <div class="max-w-7xl mx-auto px-6 lg:px-10 flex justify-between items-center h-16">
-            <a href="#" class="cursor-pointer" style="font-weight: 700; font-size: 15px; letter-spacing: 0.15em; color: var(--text-primary);">IPTV AFRIKA</a>
-            <div class="hidden md:flex items-center gap-10">
-                <a href="#channels" class="cursor-pointer transition-colors duration-200" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='#737373'">Chaines</a>
-                <a href="#pricing" class="cursor-pointer transition-colors duration-200" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='#737373'">Tarifs</a>
-                <a href="#contact" class="cursor-pointer transition-colors duration-200" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='#737373'">Contact</a>
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="#" class="font-heading text-xl lg:text-2xl font-bold italic tracking-wider" style="color: var(--gold); letter-spacing: 3px;">
+                Mon IPTV Africa
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/catalog" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">CHAÎNES</a>
+                <a href="#pricing" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="#about" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A PROPOS</a>
+                <a href="#contact" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">CONTACT</a>
             </div>
-            <a href="#pricing" class="cursor-pointer px-6 py-2.5 transition-all duration-200" style="background: var(--accent); color: #fff; font-weight: 600; font-size: 13px; letter-spacing: 0.02em;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">S'abonner</a>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="#pricing" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Montserrat', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2" onclick="toggleMobileMenu()">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden" style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
+            <div class="px-6 py-6 flex flex-col gap-5">
+                <a href="/catalog" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">CHAÎNES</a>
+                <a href="#pricing" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">ABONNEMENTS</a>
+                <a href="#about" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">A PROPOS</a>
+                <a href="#contact" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">CONTACT</a>
+                <a href="#pricing" class="gold-gradient-bg text-center text-sm font-semibold px-6 py-3 rounded-full mt-2" style="color: var(--bg);" onclick="toggleMobileMenu()">S'abonner</a>
+            </div>
         </div>
     </nav>
 
-    <!-- ========== HERO ========== -->
-    <section class="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <!-- Video Background -->
-        <video class="absolute inset-0 w-full h-full object-cover" autoplay muted loop playsinline style="filter: brightness(0.7);">
-            <source src="../statics/img/large_2x.mp4" type="video/mp4">
-        </video>
-
-        <!-- Radial Gradient Overlay -->
-        <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(5,5,5,0.2) 0%, rgba(5,5,5,0.85) 70%, rgba(5,5,5,0.98) 100%);"></div>
-
-        <!-- Content -->
-        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <h1 class="reveal" style="font-weight: 900; font-size: clamp(3rem, 8vw, 7rem); line-height: 1.05; letter-spacing: -0.03em; color: var(--text-primary);">
-                L'Afrique regarde<br>autrement
-            </h1>
-            <p class="mt-8 reveal" style="font-weight: 400; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.7; color: var(--text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
-                22,000 chaines en direct. 120,000 films a la demande.<br>Qualite 4K. Zero publicite.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12 reveal">
-                <a href="#pricing" class="cursor-pointer px-10 py-4 text-white transition-all duration-200 inline-block text-center" style="background: var(--accent); font-weight: 600; font-size: 15px;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-                    Decouvrir les offres
-                </a>
-                <a href="#channels" class="cursor-pointer px-10 py-4 text-white transition-all duration-200 inline-block text-center" style="border: 1px solid rgba(255,255,255,0.3); font-weight: 500; font-size: 15px; background: transparent;" onmouseover="this.style.borderColor='rgba(255,255,255,0.6)';this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.3)';this.style.background='transparent'">
-                    Explorer les chaines
-                </a>
-            </div>
+        <div class="hero-video-wrap">
+            <video autoplay muted loop playsinline poster="">
+                <source src="../statics/img/large_2x.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay-gradient"></div>
+            <div class="hero-overlay-noise"></div>
+            <div class="hero-overlay-vignette"></div>
         </div>
 
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 scroll-indicator">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center max-w-5xl mx-auto px-6 pt-24 pb-16">
+            <!-- Badge -->
+            <div class="reveal inline-flex items-center gap-2 px-5 py-2 rounded-full mb-10" style="border: 1px solid var(--border-gold); background: rgba(212,165,116,0.06);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                <span class="label-text-wide" style="color: var(--gold); font-size: 10px;">CANAL+ + NETFLIX + AMAZON + APPLE TV EN UN SEUL ABONNEMENT</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="font-heading font-bold leading-none mb-8 hero-title reveal reveal-delay-1" style="font-size: 6rem;">
+                <span style="color: var(--text-primary);">Centralisez</span><br>
+                <span class="italic gold-gradient-text">Tous Vos Divertissements</span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="font-sans font-normal text-xl max-w-3xl mx-auto mb-6 leading-relaxed reveal reveal-delay-2 hero-subtitle" style="color: var(--text-muted);">
+                Un seul abonnement pour toutes les chaînes francophones, Canal+, Netflix, Amazon Prime et Apple TV réunis. Via internet, sur tous vos écrans.
+            </p>
+
+            <!-- Value Props -->
+            <div class="flex flex-wrap items-center justify-center gap-4 mb-16 reveal reveal-delay-2">
+                <div class="glass-surface px-6 py-3 rounded-full text-sm" style="border: 1px solid var(--border-gold); color: var(--gold);">
+                    ✓ Canal+ + Netflix + Amazon + Apple TV
+                </div>
+                <div class="glass-surface px-6 py-3 rounded-full text-sm" style="border: 1px solid var(--border-gold); color: var(--gold);">
+                    ✓ Sur Smart TV, PC, tablette, téléphone
+                </div>
+                <div class="glass-surface px-6 py-3 rounded-full text-sm" style="border: 1px solid var(--border-gold); color: var(--gold);">
+                    ✓ Milliers de chaînes + Films & Séries
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5 mb-16 reveal reveal-delay-3">
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20voudrais%20commencer%20mon%20exp%C3%A9rience%20avec%20Mon%20IPTV%20Africa" target="_blank" class="gold-gradient-bg px-10 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 flex items-center gap-2" style="color: var(--bg);">
+                    Commencer l'Experience
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="#chaines" class="glass-surface px-10 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:border-opacity-60" style="color: var(--gold); border-color: var(--border-gold);">
+                    Parcourir le Catalogue
+                </a>
+            </div>
+
+            <!-- Decorative Line -->
+            <div class="ornament reveal" style="max-width: 200px;">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator mt-8 reveal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="mx-auto opacity-60">
+                    <polyline points="6 9 12 15 18 9"/>
+                </svg>
+            </div>
         </div>
     </section>
 
-    <!-- ========== STATS BAR ========== -->
-    <section class="relative" style="background: var(--bg-elevated);">
-        <div class="max-w-7xl mx-auto px-6 lg:px-10 py-10 reveal">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+
+    <!-- ========== TRUSTED NUMBERS ========== -->
+    <section class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold); border-bottom: 1px solid var(--border-gold);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="stats-grid grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4 text-center">
                 <!-- Stat 1 -->
-                <div class="text-center py-4 md:py-0" style="border-right: 1px solid var(--border);">
-                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">22,000+</div>
-                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Chaines</div>
+                <div class="reveal">
+                    <div class="font-heading font-bold text-5xl mb-3" style="color: var(--gold);">22 000+</div>
+                    <div class="font-sans font-normal text-sm" style="color: var(--text-muted);">Chaines en Direct</div>
                 </div>
                 <!-- Stat 2 -->
-                <div class="text-center py-4 md:py-0 md:border-r" style="border-right-color: var(--border); border-right-width: 1px; border-right-style: solid;">
-                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">120,000+</div>
-                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Films & Series</div>
+                <div class="reveal reveal-delay-1">
+                    <div class="font-heading font-bold text-5xl mb-3" style="color: var(--gold);">120 000+</div>
+                    <div class="font-sans font-normal text-sm" style="color: var(--text-muted);">Films & Series</div>
                 </div>
                 <!-- Stat 3 -->
-                <div class="text-center py-4 md:py-0" style="border-right: 1px solid var(--border);">
-                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">4K</div>
-                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Ultra HD</div>
+                <div class="reveal reveal-delay-2">
+                    <div class="font-heading font-bold text-5xl mb-3" style="color: var(--gold);">150+</div>
+                    <div class="font-sans font-normal text-sm" style="color: var(--text-muted);">Pays Couverts</div>
                 </div>
                 <!-- Stat 4 -->
-                <div class="text-center py-4 md:py-0">
-                    <div style="font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--text-primary);">0</div>
-                    <div class="mt-1" style="font-weight: 400; font-size: 14px; color: var(--text-muted);">Publicite</div>
+                <div class="reveal reveal-delay-3">
+                    <div class="font-heading font-bold text-5xl mb-3" style="color: var(--gold);">99.9%</div>
+                    <div class="font-sans font-normal text-sm" style="color: var(--text-muted);">Disponibilite</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FEATURES ========== -->
-    <section id="channels" class="py-32 md:py-48 px-6" style="background: var(--bg-deep);">
-        <div class="max-w-6xl mx-auto">
+
+    <!-- ========== FREE TRIAL SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Text -->
+                <div class="reveal">
+                    <div class="label-text mb-6" style="color: var(--gold);">ZERO RISQUE</div>
+                    <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-8" style="color: var(--text-primary);">
+                        Testez <span class="italic gold-gradient-text">Gratuitement</span>
+                    </h2>
+                    <p class="font-sans font-normal text-lg mb-8 leading-relaxed" style="color: var(--text-muted);">
+                        Découvrez la richesse de notre catalogue sans crainte. <strong style="color: var(--gold);">24 heures d'accès complet gratuit</strong> à Canal+, Netflix, Amazon Prime et Apple TV. Aucune carte bancaire requise pour commencer.
+                    </p>
+                    <div class="space-y-4 mb-10">
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">24h gratuit, pas de carte nécessaire</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Accès complet à tous les contenus</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-base" style="color: var(--text-primary);">Engagement zéro - cancellation à tout moment</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20voudrais%20commencer%20mon%20test%20gratuit%20de%2024h%20avec%20Mon%20IPTV%20Africa" target="_blank" class="inline-flex gold-gradient-bg px-10 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" style="color: var(--bg);">
+                        Commencer le Test Gratuit
+                    </a>
+                </div>
+
+                <!-- Right Stats -->
+                <div class="reveal reveal-delay-1">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-5xl mb-2" style="color: var(--gold);">24<span style="font-size: 1.5rem;">H</span></div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Gratuit</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-5xl mb-2" style="color: var(--gold);">0</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Risque</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">+22K</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Chaînes</div>
+                        </div>
+                        <div class="glass-surface rounded-2xl p-8 text-center gold-glow-hover">
+                            <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">+120K</div>
+                            <div class="font-sans text-sm" style="color: var(--text-muted);">Films & Séries</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== WORLD COVERAGE SECTION ========== -->
+    <section class="relative py-32 lg:py-40" style="background: var(--bg); overflow: hidden;">
+        <!-- Subtle background decoration -->
+        <div style="position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(212,165,116,0.03) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <!-- Decorative line -->
+            <div class="mb-20 flex items-center justify-center reveal">
+                <div style="flex: 1; max-width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+                <div style="width: 8px; height: 8px; background: var(--gold); margin: 0 1.5rem; transform: rotate(45deg);"></div>
+                <div style="flex: 1; max-width: 150px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent);"></div>
+            </div>
+
+            <!-- Section Intro -->
+            <div class="text-center mb-20 reveal">
+                <span class="label-text" style="color: var(--gold); letter-spacing: 4px;">COUVERTURE MONDIALE</span>
+                <h2 class="font-heading text-6xl lg:text-7xl font-bold mt-4 mb-6">
+                    <span style="color: var(--text-primary);">Disponible en </span><span class="italic gold-gradient-text">Afrique et Partout</span>
+                </h2>
+            </div>
+
+            <!-- Countries Cards -->
+            <div class="flex flex-wrap justify-center gap-6 mb-16 lg:mb-24">
+                <!-- Côte d'Ivoire -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20en%20C%C3%B4te%20d%27Ivoire%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.1s;">
+                    <div class="country-badge-icon">🇨🇮</div>
+                    <div class="country-badge-name">Côte d'Ivoire</div>
+                </a>
+
+                <!-- Gabon -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Gabon%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.2s;">
+                    <div class="country-badge-icon">🇬🇦</div>
+                    <div class="country-badge-name">Gabon</div>
+                </a>
+
+                <!-- Congo RDC -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20en%20Congo%20RDC%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.3s;">
+                    <div class="country-badge-icon">🇨🇩</div>
+                    <div class="country-badge-name">Congo RDC</div>
+                </a>
+
+                <!-- Sénégal -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Sénégal%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.4s;">
+                    <div class="country-badge-icon">🇸🇳</div>
+                    <div class="country-badge-name">Sénégal</div>
+                </a>
+
+                <!-- Maroc -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20au%20Maroc%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.5s;">
+                    <div class="country-badge-icon">🇲🇦</div>
+                    <div class="country-badge-name">Maroc</div>
+                </a>
+
+                <!-- Autres Pays -->
+                <a href="https://wa.me/243860493345?text=Bonjour%20je%20suis%20d%27un%20autre%20pays%20et%20intéressé%20par%20Mon%20IPTV%20Africa.%20J%27aimerais%20avoir%20plus%20d%27informations" target="_blank" class="country-badge reveal cursor-pointer" style="animation-delay: 0.6s;">
+                    <div class="country-badge-icon">🌍</div>
+                    <div class="country-badge-name">Autres Pays</div>
+                </a>
+            </div>
+
+            <!-- Rest of World Statement -->
+            <div class="text-center reveal" style="animation-delay: 0.6s;">
+                <div style="font-size: 1.125rem; color: var(--text-muted); margin-bottom: 1rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 500;">Et aussi</div>
+                <div class="font-heading text-4xl lg:text-5xl font-bold gold-gradient-text italic mb-6">
+                    Le Reste de l'Afrique et du Monde Entier
+                </div>
+                <p class="font-sans text-base lg:text-lg" style="color: var(--text-muted); max-width: 2xl; margin: 0 auto;">
+                    Il suffit d'avoir une <span style="color: var(--gold);">Smart TV</span>, <span style="color: var(--gold);">Android TV</span> ou <span style="color: var(--gold);">Box Android</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== COMPARISON SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
             <!-- Section Header -->
-            <div class="mb-20 reveal">
-                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Une experience premium</h2>
-                <div class="accent-line mt-6"></div>
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Pourquoi Choisir </span><span class="italic gold-gradient-text">Mon IPTV Africa?</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                    Un seul abonnement pour Canal+, Netflix, Amazon Prime et Apple TV. Tout ce dont vous avez besoin, au prix d'un seul service.
+                </p>
             </div>
 
-            <!-- Feature Cards Grid -->
-            <div class="grid md:grid-cols-3 gap-6">
-                <!-- Feature 1: Streaming Ultra-Rapide -->
-                <div class="p-8 transition-all duration-300 reveal cursor-default" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;" onmouseover="this.style.borderColor='rgba(230,126,34,0.3)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-                    <!-- Zap/Lightning Icon -->
-                    <svg class="mb-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                    </svg>
-                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Streaming Ultra-Rapide</h3>
-                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Serveurs optimises en Afrique et Europe. Aucun buffering, aucun temps de chargement. Votre contenu demarre instantanement.</p>
+            <!-- VOD Services Included -->
+            <div class="mb-20 reveal">
+                <div class="text-center mb-12">
+                    <div class="label-text mb-4" style="color: var(--gold);">SERVICES INCLUS</div>
+                    <h3 class="font-heading text-2xl font-semibold mb-8" style="color: var(--text-primary);">Tous vos services VOD en un</h3>
                 </div>
 
-                <!-- Feature 2: Compatibilite Totale -->
-                <div class="p-8 transition-all duration-300 reveal cursor-default" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;" onmouseover="this.style.borderColor='rgba(230,126,34,0.3)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-                    <!-- Smartphone Icon -->
-                    <svg class="mb-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-                        <line x1="12" y1="18" x2="12.01" y2="18"></line>
-                    </svg>
-                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Compatibilite Totale</h3>
-                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Smart TV, telephone, tablette, ordinateur, box Android. Une seule souscription, tous vos ecrans.</p>
+                <div class="flex flex-wrap items-center justify-center gap-8 lg:gap-12">
+                    <!-- Disney+ -->
+                    <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex items-center justify-center" style="border: 1px solid var(--border-gold); width: 160px; height: 120px;">
+                        <img src="/statics/img/disney-plus-qc5xy48n5sog945zznqzqnjsf9u7p5wgeys24vdmno.webp" alt="Disney+" class="max-w-28 max-h-24 object-contain">
+                    </div>
+
+                    <!-- Hulu -->
+                    <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex items-center justify-center" style="border: 1px solid var(--border-gold); width: 160px; height: 120px;">
+                        <img src="/statics/img/hulu-qa50taawa293yeonboede6593c3kmbq01kwp432bbw-qc5xy56hcmpqkq4mu65mb5b90npkwv06r3fjm5c8hg.webp" alt="Hulu" class="max-w-28 max-h-24 object-contain">
+                    </div>
+
+                    <!-- Prime Video -->
+                    <div class="glass-surface rounded-2xl p-6 lg:p-8 gold-glow-hover flex items-center justify-center" style="border: 1px solid var(--border-gold); width: 160px; height: 120px;">
+                        <img src="/statics/img/prime-video-qc5xy64bjgr0wc39ook8vn2pm1ky4k3x38313faub8.webp" alt="Prime Video" class="max-w-28 max-h-24 object-contain">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm border-collapse" style="border: 1px solid var(--border-gold);">
+                    <thead>
+                        <tr style="border-bottom: 1px solid var(--border-gold); background: var(--surface);">
+                            <th class="px-6 py-4 text-left" style="color: var(--text-primary); font-family: 'Cormorant', serif; font-weight: 600; font-size: 1.1rem;">Caracteristique</th>
+                            <th class="px-6 py-4 text-center" style="color: var(--gold); font-family: 'Cormorant', serif; font-weight: 600; font-size: 1.1rem; border-left: 1px solid var(--border-gold);">Mon IPTV Africa</th>
+                            <th class="px-6 py-4 text-center" style="color: var(--text-muted); font-family: 'Cormorant', serif; font-weight: 600; border-left: 1px solid var(--border-gold);">Canal+</th>
+                            <th class="px-6 py-4 text-center" style="color: var(--text-muted); font-family: 'Cormorant', serif; font-weight: 600; border-left: 1px solid var(--border-gold);">Netflix</th>
+                            <th class="px-6 py-4 text-center" style="color: var(--text-muted); font-family: 'Cormorant', serif; font-weight: 600; border-left: 1px solid var(--border-gold);">Amazon Prime</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Chaines en Direct</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;">22 000+</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~200</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">0</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">0</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Films & Series</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;">120 000+</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~5 000</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~6 000</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~7 000</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Prix (Offre Premium)</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;"><div>3 490 FCFA</div><div class="font-sans text-xs" style="color: var(--text-muted); font-weight: normal; margin-top: 4px;">à partir de/mois</div></td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~75 000 FCFA</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~55 000 FCFA</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">~50 000 FCFA</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Publicites (Premium)</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;">✓ Sans pub</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">✗ Avec pub</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">✓ Sans pub</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">✓ Sans pub</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Chaînes Africaines + Internationales</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;">✓ Complet</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">Limité</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">Limité</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">Limité</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Support 24/7 Local</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;">✓ Francais</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">Appels payants</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">Email</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">Chat</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border-gold);">
+                            <td class="px-6 py-4" style="color: var(--text-primary);">Qualite 4K</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--gold); border-left: 1px solid var(--border-gold); font-weight: 600;">✓ Ultra HD</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">✓ 4K</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">✓ 4K</td>
+                            <td class="px-6 py-4 text-center" style="color: var(--text-muted); border-left: 1px solid var(--border-gold);">✓ 4K</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pricing Summary -->
+            <div class="mt-16 p-8 rounded-2xl glass-surface reveal" style="border: 1px solid var(--border-gold);">
+                <h3 class="font-heading font-bold text-2xl mb-8 text-center" style="color: var(--text-primary);">
+                    Nos Tarifs <span class="italic gold-gradient-text">Simplifiés</span>
+                </h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">3 490</div>
+                        <div class="font-sans text-sm mb-4" style="color: var(--text-muted);">FCFA/mois</div>
+                        <div class="font-sans text-xs px-3 py-2 rounded-full" style="background: rgba(212,165,116,0.1); color: var(--gold);">Flexibilité maximale</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">20 940</div>
+                        <div class="font-sans text-sm mb-4" style="color: var(--text-muted);">pour 6 mois</div>
+                        <div class="font-sans text-xs px-3 py-2 rounded-full" style="background: rgba(212,165,116,0.1); color: var(--gold);">Bonne affaire</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="font-heading font-bold text-4xl mb-2" style="color: var(--gold);">34 900</div>
+                        <div class="font-sans text-sm mb-4" style="color: var(--text-muted);">par an (-17%)</div>
+                        <div class="font-sans text-xs px-3 py-2 rounded-full" style="background: rgba(212,165,116,0.2); color: var(--gold);">Meilleure économie</div>
+                    </div>
+                </div>
+                <p class="font-sans text-sm mt-8 text-center" style="color: var(--text-muted);">
+                    <span style="color: var(--gold);">↓ 80%</span> moins cher que Canal+ seul, avec accès à Netflix, Amazon Prime et Apple TV inclus
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== FEATURES SECTION ========== -->
+    <section id="about" class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">L'Experience </span><span class="italic gold-gradient-text">Ultime du Streaming</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+                    Tous vos divertissements en un seul endroit, sur tous vos écrans
+                </p>
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-surface rounded-2xl p-8 lg:p-10 gold-glow-hover reveal">
+                    <div class="mb-6">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-2xl mb-4" style="color: var(--text-primary);">Qualite Cinematique</h3>
+                    <p class="font-sans font-normal text-base leading-relaxed" style="color: var(--text-muted);">
+                        Profitez de vos programmes en resolution 4K Ultra HD avec son Dolby. Nos serveurs haute performance garantissent une image cristalline sans aucune interruption.
+                    </p>
                 </div>
 
-                <!-- Feature 3: Contenu Mis a Jour -->
-                <div class="p-8 transition-all duration-300 reveal cursor-default" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;" onmouseover="this.style.borderColor='rgba(230,126,34,0.3)';this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.08)';this.style.background='rgba(255,255,255,0.04)'">
-                    <!-- Film/Play Icon -->
-                    <svg class="mb-6" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-                        <line x1="7" y1="2" x2="7" y2="22"></line>
-                        <line x1="17" y1="2" x2="17" y2="22"></line>
-                        <line x1="2" y1="12" x2="22" y2="12"></line>
-                        <line x1="2" y1="7" x2="7" y2="7"></line>
-                        <line x1="2" y1="17" x2="7" y2="17"></line>
-                        <line x1="17" y1="7" x2="22" y2="7"></line>
-                        <line x1="17" y1="17" x2="22" y2="17"></line>
-                    </svg>
-                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Contenu Mis a Jour</h3>
-                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Nouvelles chaines et films ajoutes chaque semaine. Restez a jour avec les dernieres sorties et evenements sportifs en direct.</p>
+                <!-- Feature 2 -->
+                <div class="glass-surface rounded-2xl p-8 lg:p-10 gold-glow-hover reveal reveal-delay-1">
+                    <div class="mb-6">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-2xl mb-4" style="color: var(--text-primary);">Un Seul Service</h3>
+                    <p class="font-sans font-normal text-base leading-relaxed" style="color: var(--text-muted);">
+                        Plus besoin de plusieurs abonnements. Canal+, Netflix, Amazon Prime et Apple TV centralisés dans une seule application IPTV. Économies garanties.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-surface rounded-2xl p-8 lg:p-10 gold-glow-hover reveal reveal-delay-2">
+                    <div class="mb-6">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-semibold text-2xl mb-4" style="color: var(--text-primary);">Liberte Totale</h3>
+                    <p class="font-sans font-normal text-base leading-relaxed" style="color: var(--text-muted);">
+                        Regardez sur Smart TV, smartphone, tablette ou ordinateur. Passez d'un ecran a l'autre sans perdre votre programme. Votre contenu vous suit partout.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- ========== HOW IT WORKS ========== -->
-    <section class="py-32 md:py-48 px-6" style="background: var(--bg-elevated);">
-        <div class="max-w-6xl mx-auto">
+    <section class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
             <!-- Section Header -->
-            <div class="mb-20 reveal">
-                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Comment ca fonctionne</h2>
-                <div class="accent-line mt-6"></div>
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Votre Parcours </span><span class="italic gold-gradient-text">Premium</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+                    Quatre etapes simples vers le divertissement sans limites
+                </p>
             </div>
 
             <!-- Steps -->
-            <div class="grid md:grid-cols-3 gap-12 md:gap-8">
-                <!-- Step 01 -->
-                <div class="reveal">
-                    <div class="flex items-center justify-center w-14 h-14 mb-8" style="border: 1px solid var(--border); border-radius: 50%; font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: 0.05em;">01</div>
-                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Choisissez votre forfait</h3>
-                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Selectionnez l'offre adaptee a vos besoins parmi nos 3 plans.</p>
+            <div class="grid md:grid-cols-4 gap-8 lg:gap-12 relative">
+                <!-- Connector lines (desktop only) -->
+                <div class="hidden md:block absolute top-10 left-[12%] right-[12%] h-px" style="background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.2;"></div>
+
+                <!-- Step 1 -->
+                <div class="text-center reveal">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 relative" style="border: 1.5px solid var(--gold); background: var(--surface);">
+                        <span class="font-heading font-bold text-2xl" style="color: var(--gold);">1</span>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Installez l'Application</h3>
+                    <p class="font-sans font-normal text-sm leading-relaxed" style="color: var(--text-muted);">
+                        IBO Player ou IBO Player Pro selon votre TV
+                    </p>
                 </div>
 
-                <!-- Step 02 -->
-                <div class="reveal">
-                    <div class="flex items-center justify-center w-14 h-14 mb-8" style="border: 1px solid var(--border); border-radius: 50%; font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: 0.05em;">02</div>
-                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Recevez vos acces</h3>
-                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Identifiants envoyes par email et WhatsApp en moins de 5 minutes.</p>
+                <!-- Step 2 -->
+                <div class="text-center reveal reveal-delay-1">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 relative" style="border: 1.5px solid var(--gold); background: var(--surface);">
+                        <span class="font-heading font-bold text-2xl" style="color: var(--gold);">2</span>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Commencez Votre Test</h3>
+                    <p class="font-sans font-normal text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Testez gratuitement pendant 24 heures sans engagement
+                    </p>
                 </div>
 
-                <!-- Step 03 -->
-                <div class="reveal">
-                    <div class="flex items-center justify-center w-14 h-14 mb-8" style="border: 1px solid var(--border); border-radius: 50%; font-weight: 600; font-size: 14px; color: var(--accent); letter-spacing: 0.05em;">03</div>
-                    <h3 class="mb-3" style="font-weight: 700; font-size: 18px; color: var(--text-primary);">Regardez partout</h3>
-                    <p style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Installez l'application sur votre appareil et profitez immediatement.</p>
+                <!-- Step 3 -->
+                <div class="text-center reveal reveal-delay-2">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 relative" style="border: 1.5px solid var(--gold); background: var(--surface);">
+                        <span class="font-heading font-bold text-2xl" style="color: var(--gold);">3</span>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Activez Votre Abonnement</h3>
+                    <p class="font-sans font-normal text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Choisissez et payez votre forfait pour activer l'abonnement
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="text-center reveal reveal-delay-3">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8 relative" style="border: 1.5px solid var(--gold); background: var(--surface);">
+                        <span class="font-heading font-bold text-2xl" style="color: var(--gold);">4</span>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Consommez Sans Limite</h3>
+                    <p class="font-sans font-normal text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Accedez a 26 694 chaines dans le monde
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== PRICING ========== -->
-    <section id="pricing" class="py-32 md:py-48 px-6" style="background: var(--bg-deep);">
-        <div class="max-w-6xl mx-auto">
-            <!-- Section Header -->
-            <div class="mb-20 reveal">
-                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Nos tarifs</h2>
-                <div class="accent-line mt-6"></div>
+
+    <!-- ========== PRICING SECTION ========== -->
+    <section id="pricing" class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
             </div>
 
-            <!-- Pricing Cards -->
-            <div class="grid md:grid-cols-3 gap-6 items-start">
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Mon IPTV Africa </span><span class="italic gold-gradient-text">Abonnement Premium</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-2xl mx-auto mb-10" style="color: var(--text-muted);">
+                    Un seul plan. Une qualite premiere. Economisez jusqu'à 15% avec un abonnement long terme.
+                </p>
+            </div>
 
-                <!-- BASIQUE -->
-                <div class="p-8 md:p-10 transition-all duration-300 reveal" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
-                    <div class="mb-8">
-                        <p style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Basique</p>
-                        <div class="mt-4 flex items-baseline gap-2">
-                            <span style="font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--text-primary);">2,990</span>
-                            <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">FCFA/mois</span>
+            <!-- Important Note -->
+            <div class="mb-12 p-6 rounded-2xl glass-surface reveal" style="border: 1px solid var(--border-gold);">
+                <div class="flex items-start gap-4">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-1">
+                        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                    </svg>
+                    <p class="font-sans text-sm" style="color: var(--text-muted);">
+                        <span style="color: var(--gold); font-weight: 600;">Important:</span> Un abonnement = un seul appareil à la fois. L'abonnement est personnel et incessible.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Pricing Cards Grid (4 Plans) -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Test Gratuit 24h -->
+                <div class="pricing-card glass-surface rounded-2xl p-6 gold-glow-hover reveal flex flex-col h-full">
+                    <div class="label-text mb-4" style="color: var(--gold);">DECOUVERTE</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl" style="color: var(--orange);">Gratuit</span>
+                    </div>
+                    <div class="font-sans text-sm mb-6" style="color: var(--text-muted);">24 heures</div>
+
+                    <div class="space-y-2 mb-6 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Acces complet 24h</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Aucune carte requise</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Zero engagement</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
                         </div>
                     </div>
-                    <a href="#" class="cursor-pointer block text-center py-3.5 mb-8 transition-all duration-200" style="border: 1px solid rgba(255,255,255,0.2); color: var(--text-primary); font-weight: 600; font-size: 14px;" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='transparent'">Choisir</a>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Qualite HD
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            1 ecran
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Support WhatsApp
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Mise a jour hebdomadaire
-                        </li>
-                    </ul>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.15); color: var(--orange);">
+                        <span style="font-weight: 600;">IBO Player: </span>Test gratuit 5 jours
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20essayer%20gratuitement%20Mon%20IPTV%20Africa%20pendant%2024%20heures" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5" style="color: var(--orange); border: 1px solid var(--orange); background: transparent;">
+                        Essayer Gratuitement
+                    </a>
                 </div>
 
-                <!-- PRO (Featured) -->
-                <div class="p-8 md:p-10 transition-all duration-300 reveal relative md:-mt-4 md:mb-[-16px]" style="background: rgba(230,126,34,0.06); border: 1.5px solid rgba(230,126,34,0.4); border-radius: 4px; box-shadow: 0 0 60px rgba(230,126,34,0.08);">
-                    <div class="mb-8">
-                        <div class="flex items-center gap-3 mb-4">
-                            <p style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent);">Pro</p>
-                            <span class="px-3 py-0.5" style="font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; background: var(--accent); color: #fff; border-radius: 2px;">Populaire</span>
+                <!-- 1 Mois -->
+                <div class="pricing-card glass-surface rounded-2xl p-6 gold-glow-hover reveal reveal-delay-1 flex flex-col h-full">
+                    <div class="label-text mb-4" style="color: var(--gold);">FLEXIBILITE</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl" style="color: var(--text-primary);">3 490</span>
+                        <span class="font-sans text-xs" style="color: var(--text-muted);">FCFA</span>
+                    </div>
+                    <div class="font-sans text-sm mb-6" style="color: var(--text-muted);">par mois</div>
+
+                    <div class="space-y-2 mb-4 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
                         </div>
-                        <div class="flex items-baseline gap-2">
-                            <span style="font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--text-primary);">5,990</span>
-                            <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">FCFA/mois</span>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Canal+, Netflix, Amazon Prime, Apple TV</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Test gratuit 24h inclus</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Support 24/7</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
                         </div>
                     </div>
-                    <a href="#" class="cursor-pointer block text-center py-3.5 mb-8 transition-all duration-200" style="background: var(--accent); color: #fff; font-weight: 600; font-size: 14px;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Choisir</a>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            4K Ultra HD
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            4 ecrans simultanes
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Support prioritaire
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            VOD complete
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: rgba(255,255,255,0.7);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Replay 7 jours
-                        </li>
-                    </ul>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.15); color: var(--orange);">
+                        <span style="font-weight: 600;">IBO Player: </span>5 000 FCFA/an
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20m%27abonner%20au%20pack%201%20mois%20de%20Mon%20IPTV%20Africa%20%283%20490%20FCFA%29" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5" style="color: var(--gold); border: 1px solid var(--border-gold); background: var(--surface);">
+                        S'abonner
+                    </a>
                 </div>
 
-                <!-- PREMIUM -->
-                <div class="p-8 md:p-10 transition-all duration-300 reveal" style="background: var(--surface); border: 1px solid var(--border); border-radius: 4px;">
-                    <div class="mb-8">
-                        <p style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Premium</p>
-                        <div class="mt-4 flex items-baseline gap-2">
-                            <span style="font-weight: 800; font-size: 40px; letter-spacing: -0.03em; color: var(--text-primary);">9,990</span>
-                            <span style="font-weight: 400; font-size: 14px; color: var(--text-muted);">FCFA/mois</span>
+                <!-- 6 Mois -->
+                <div class="pricing-card glass-surface rounded-2xl p-6 gold-glow-hover reveal reveal-delay-2 flex flex-col h-full">
+                    <div class="label-text mb-4" style="color: var(--gold);">ECONOMIE</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl" style="color: var(--text-primary);">20 940</span>
+                        <span class="font-sans text-xs" style="color: var(--text-muted);">FCFA</span>
+                    </div>
+                    <div class="font-sans text-sm mb-1" style="color: var(--text-muted);">pour 6 mois</div>
+                    <div class="font-sans text-xs mb-6" style="color: var(--gold);">3 490/mois</div>
+
+                    <div class="space-y-2 mb-4 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Canal+, Netflix, Amazon Prime, Apple TV</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Test gratuit 24h inclus</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Support prioritaire</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
                         </div>
                     </div>
-                    <a href="#" class="cursor-pointer block text-center py-3.5 mb-8 transition-all duration-200" style="border: 1px solid rgba(255,255,255,0.2); color: var(--text-primary); font-weight: 600; font-size: 14px;" onmouseover="this.style.borderColor='rgba(255,255,255,0.5)';this.style.background='rgba(255,255,255,0.04)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.2)';this.style.background='transparent'">Choisir</a>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            4K Ultra HD
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Ecrans illimites
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Support VIP dedie
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            VOD + exclusivites
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Replay 30 jours
-                        </li>
-                        <li class="flex items-center gap-3" style="font-size: 14px; color: var(--text-muted);">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#E67E22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                            Multi-room
-                        </li>
-                    </ul>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.15); color: var(--orange);">
+                        <span style="font-weight: 600;">IBO Player: </span>5 000 FCFA/an
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20m%27abonner%20au%20pack%206%20mois%20de%20Mon%20IPTV%20Africa%20%2820%20940%20FCFA%29" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5" style="color: var(--gold); border: 1px solid var(--border-gold); background: var(--surface);">
+                        S'abonner
+                    </a>
                 </div>
 
+                <!-- 12 Mois (Featured) -->
+                <div class="pricing-featured rounded-2xl p-6 relative reveal reveal-delay-3 flex flex-col h-full" style="background: var(--surface); backdrop-filter: blur(12px);">
+                    <!-- Popular Badge -->
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 gold-gradient-bg px-6 py-2 rounded-full shadow-lg" style="box-shadow: 0 8px 32px rgba(212,165,116,0.25);">
+                        <span class="label-text" style="color: var(--bg); font-size: 10px; letter-spacing: 2px; white-space: nowrap;">★ MEILLEURE OFFRE ★</span>
+                    </div>
+
+                    <div class="label-text mb-4" style="color: var(--gold);">ANNUEL</div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="font-heading font-bold text-4xl gold-gradient-text">34 900</span>
+                        <span class="font-sans text-xs" style="color: var(--text-muted);">FCFA</span>
+                    </div>
+                    <div class="font-sans text-sm mb-1" style="color: var(--text-muted);">par an</div>
+                    <div class="font-sans text-xs mb-4" style="color: var(--gold);">2 908/mois (-17%)</div>
+                    <div class="font-sans text-xs font-medium mb-6 px-3 py-2 rounded-full" style="background: rgba(230,126,34,0.2); color: var(--orange); text-align: center;">🎁 <span style="font-weight: 600;">2 mois offert</span></div>
+
+                    <div class="space-y-2 mb-4 text-xs" style="color: var(--text-muted); flex-grow: 1;">
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>22K+ chaines, 120K+ films</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Canal+, Netflix, Amazon Prime, Apple TV</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Test gratuit 24h inclus</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Support prioritaire 24/7</span>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 mt-0.5"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span>Option activation des chaînes adulte</span>
+                        </div>
+                    </div>
+                    <div class="text-xs mb-6 px-3 py-2 rounded-full" style="background: rgba(212,165,116,0.2); color: var(--gold);">
+                        <span style="font-weight: 600;">IBO Player: </span><span style="text-decoration: line-through; opacity: 0.6;">5 000 FCFA</span> <span style="font-weight: 600; color: var(--orange);">OFFERT</span>
+                    </div>
+
+                    <a href="https://wa.me/243860493345?text=Bonjour%20je%20veux%20m%27abonner%20au%20pack%20annuel%20de%20Mon%20IPTV%20Africa%20%2834%20900%20FCFA%20avec%202%20mois%20offerts%29" target="_blank" class="block text-center w-full py-3 rounded-full font-semibold text-sm gold-gradient-bg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg" style="color: var(--bg);">
+                        S'abonner Maintenant
+                    </a>
+                </div>
+            </div>
+
+            <!-- Features included -->
+            <div class="mt-20 grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="reveal">
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Votre Catalogue Unique</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Tous les contenus de Canal+</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Films & séries Netflix réunis</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Amazon Prime + Apple TV inclus</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Milliers de chaînes francophones</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <h3 class="font-heading font-semibold text-xl mb-4" style="color: var(--text-primary);">Support & Avantages</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Support 24/7 en francais</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Pas de publicites</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Activation instant (< 5 min)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            <span class="font-sans text-sm" style="color: var(--text-primary);">Chaînes africaines + internationales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="mt-20 reveal text-center">
+                <div class="label-text mb-6" style="color: var(--gold);">MOYENS DE PAIEMENT ACCEPTES</div>
+                <div class="glass-surface rounded-2xl p-8 flex items-center justify-center" style="border: 1px solid var(--border-gold);">
+                    <img src="/statics/img/payments.png" alt="Moyens de paiement" class="max-w-sm max-h-32 object-contain">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FAQ ========== -->
-    <section id="contact" class="py-32 md:py-48 px-6" style="background: var(--bg-elevated);">
-        <div class="max-w-3xl mx-auto">
+
+    <!-- ========== DEVICES SECTION ========== -->
+    <section id="chaines" class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-5xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
             <!-- Section Header -->
-            <div class="mb-20 reveal">
-                <h2 style="font-weight: 800; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.03em; color: var(--text-primary);">Questions frequentes</h2>
-                <div class="accent-line mt-6"></div>
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Compatible avec </span><span class="italic gold-gradient-text">Tous Vos Ecrans</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-xl mx-auto" style="color: var(--text-muted);">
+                    Votre divertissement, ou que vous soyez
+                </p>
+            </div>
+
+            <!-- Devices Grid -->
+            <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Xbox -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/XBOX.webp" alt="Xbox" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- PlayStation -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/PLAYSTATION.webp" alt="PlayStation" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- Amazon Fire TV -->
+                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/AMAZONFIRETV.webp" alt="Amazon Fire TV" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- Android TV -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/ANDORIEDTV.webp" alt="Android TV" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- Android Phone -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/ANDORIED.webp" alt="Android Phone" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- MAG Box -->
+                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/MAGBOX.webp" alt="MAG Box" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- Engine Box -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/ENGINEBOX.webp" alt="Engine Box" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- EOKU -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/EOKU.webp" alt="EOKU" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- Windows -->
+                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/WINDOWZ.webp" alt="Windows" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- VLC -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/VLC.webp" alt="VLC" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+                <!-- XBMC -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 1/1;">
+                    <div class="w-full h-full rounded-xl p-4 flex items-center justify-center gold-glow-hover transition-all duration-300" style="border: 1px solid var(--border-gold); background: var(--surface);">
+                        <img src="/statics/img/XBMC.webp" alt="XBMC" class="w-16 h-16 object-contain">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== SPORTS SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">⚽ Sports </span><span class="italic gold-gradient-text">En Direct</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                    Tous les grands championnats et événements sportifs mondiaux en direct
+                </p>
+            </div>
+
+            <!-- Sports Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- LaLiga -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/laliga.webp" alt="LaLiga" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Premier League -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/premier-lelague.webp" alt="Premier League" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Ligue 1 -->
+                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/ligue-1.webp" alt="Ligue 1" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Serie A -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/serie-a-is-back.webp" alt="Serie A" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- UFC -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/ufc.webp" alt="UFC" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- US Open -->
+                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/usopen.webp" alt="US Open" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Volley -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/vollevboll.webp" alt="Volley" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== CONTENT SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg-elevated);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">🎬 Contenu </span><span class="italic gold-gradient-text">Disponible</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                    Des milliers de films, séries et contenus exclusifs à votre portée
+                </p>
+            </div>
+
+            <!-- Content Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Anime -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/anime.jpg" alt="Anime" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Attack -->
+                <div class="reveal reveal-delay-1 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/attack.jpg" alt="Attack" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Messi -->
+                <div class="reveal reveal-delay-2 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/messi.webp" alt="Messi" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- One Piece -->
+                <div class="reveal reveal-delay-3 group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/one-piece.jpg" alt="One Piece" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <!-- Spider -->
+                <div class="reveal group overflow-hidden rounded-xl cursor-pointer" style="aspect-ratio: 3/4;">
+                    <img src="/statics/img/spider.jpg" alt="Spider" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== TESTIMONIALS SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">⭐ Avis </span><span class="italic gold-gradient-text">Clients</span>
+                </h2>
+                <p class="font-sans font-normal text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                    Découvrez ce que disent nos utilisateurs satisfaits
+                </p>
+            </div>
+
+            <!-- Testimonials Carousel -->
+            <div class="relative mb-16">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Testimonial 1 -->
+                    <div class="glass-surface rounded-2xl overflow-hidden reveal gold-glow-hover" style="border: 1px solid var(--border-gold);">
+                        <img src="/statics/img/rev-1-scaled-1.jpg" alt="Avis Client 1" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <span style="color: var(--gold); font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <p class="font-sans text-sm text-center leading-relaxed" style="color: var(--text-muted);">
+                                Service excellent ! J'ai enfin trouvé une alternative abordable à Canal+ avec plus de chaînes.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="glass-surface rounded-2xl overflow-hidden reveal reveal-delay-1 gold-glow-hover" style="border: 1px solid var(--border-gold);">
+                        <img src="/statics/img/rev2-scaled-1.jpg" alt="Avis Client 2" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <span style="color: var(--gold); font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <p class="font-sans text-sm text-center leading-relaxed" style="color: var(--text-muted);">
+                                La qualité 4K est incroyable. Aucune interruption, aucune publicité. Vraiment recommandé !
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="glass-surface rounded-2xl overflow-hidden reveal reveal-delay-2 gold-glow-hover" style="border: 1px solid var(--border-gold);">
+                        <img src="/statics/img/rev3-scaled-1.jpg" alt="Avis Client 3" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <span style="color: var(--gold); font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <p class="font-sans text-sm text-center leading-relaxed" style="color: var(--text-muted);">
+                                Le support WhatsApp est super réactif. J'ai reçu mes identifiants en 5 minutes !
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="glass-surface rounded-2xl overflow-hidden reveal gold-glow-hover" style="border: 1px solid var(--border-gold);">
+                        <img src="/statics/img/rev4-scaled-1.jpg" alt="Avis Client 4" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <span style="color: var(--gold); font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <p class="font-sans text-sm text-center leading-relaxed" style="color: var(--text-muted);">
+                                Compatible avec tous mes appareils. L'expérience est fluide sur la TV et le téléphone.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="glass-surface rounded-2xl overflow-hidden reveal reveal-delay-1 gold-glow-hover" style="border: 1px solid var(--border-gold);">
+                        <img src="/statics/img/rev5-scaled-1.jpg" alt="Avis Client 5" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <span style="color: var(--gold); font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <p class="font-sans text-sm text-center leading-relaxed" style="color: var(--text-muted);">
+                                Meilleur rapport qualité-prix du marché. Presque 3x moins cher que les concurrents !
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="glass-surface rounded-2xl overflow-hidden reveal reveal-delay-2 gold-glow-hover" style="border: 1px solid var(--border-gold);">
+                        <img src="/statics/img/rev-6-scaled-1.jpg" alt="Avis Client 6" class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <div class="flex items-center justify-center mb-4">
+                                <span style="color: var(--gold); font-size: 1.2rem;">★★★★★</span>
+                            </div>
+                            <p class="font-sans text-sm text-center leading-relaxed" style="color: var(--text-muted);">
+                                J'ai stoppé Canal+ ! Avec Mon IPTV Africa, j'ai tout ce qu'il me faut et bien plus.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ SECTION ========== -->
+    <section class="relative py-28 lg:py-32" style="background: var(--bg);">
+        <div class="max-w-3xl mx-auto px-6">
+            <!-- Ornament -->
+            <div class="ornament reveal">
+                <div class="ornament-diamond"></div>
+            </div>
+
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-heading text-5xl lg:text-6xl font-bold mb-6">
+                    <span style="color: var(--text-primary);">Questions </span><span class="italic gold-gradient-text">Frequentes</span>
+                </h2>
             </div>
 
             <!-- FAQ Items -->
-            <div class="space-y-0 reveal">
-
-                <!-- Q1 -->
-                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
-                    <div class="flex items-center justify-between py-6">
-                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Quels appareils sont compatibles ?</h3>
-                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Smart TV (Samsung, LG), Android TV, Box Android (MAG, Formuler), smartphone et tablette, ordinateur via VLC ou navigateur.</p>
-                    </div>
-                </div>
-
-                <!-- Q2 -->
-                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
-                    <div class="flex items-center justify-between py-6">
-                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Comment recevoir mes acces ?</h3>
-                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Apres paiement, vos identifiants sont envoyes par email et WhatsApp sous 5 minutes.</p>
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="glass-surface rounded-xl overflow-hidden reveal">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                        <span class="font-heading font-semibold text-xl pr-4" style="color: var(--text-primary);">Comment fonctionne le service Mon IPTV Africa ?</span>
+                        <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="font-sans text-base leading-relaxed pb-6" style="color: var(--text-muted);">
+                            Apres votre inscription, vous recevez des identifiants personnalises par email et WhatsApp en moins de 5 minutes. Il vous suffit de telecharger une application compatible (IPTV Smarters, TiviMate, ou similaire) sur votre appareil, d'entrer vos identifiants et de profiter instantanement de plus de 22 000 chaines et 120 000 contenus a la demande.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Q3 -->
-                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
-                    <div class="flex items-center justify-between py-6">
-                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Puis-je tester avant d'acheter ?</h3>
-                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Oui, nous proposons un essai de 24h pour decouvrir notre service.</p>
-                    </div>
-                </div>
-
-                <!-- Q4 -->
-                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
-                    <div class="flex items-center justify-between py-6">
-                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Le service fonctionne-t-il en Afrique ?</h3>
-                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Oui, nos serveurs sont optimises pour l'Afrique centrale et de l'ouest. Le service fonctionne aussi parfaitement en Europe et dans le reste du monde.</p>
+                <!-- FAQ 2 -->
+                <div class="glass-surface rounded-xl overflow-hidden reveal reveal-delay-1">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                        <span class="font-heading font-semibold text-xl pr-4" style="color: var(--text-primary);">Quels appareils sont compatibles ?</span>
+                        <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="font-sans text-base leading-relaxed pb-6" style="color: var(--text-muted);">
+                            Notre service est compatible avec pratiquement tous les ecrans : Smart TV (Samsung, LG, Sony), Android TV, Box MAG, Amazon Fire Stick, smartphones et tablettes (Android et iOS), ainsi que les ordinateurs (Windows, macOS). Vous pouvez basculer entre vos appareils a tout moment sans interruption.
+                        </p>
                     </div>
                 </div>
 
-                <!-- Q5 -->
-                <div class="faq-item cursor-pointer" style="border-bottom: 1px solid var(--border);" onclick="this.classList.toggle('open')">
-                    <div class="flex items-center justify-between py-6">
-                        <h3 style="font-weight: 600; font-size: 16px; color: var(--text-primary);">Quels moyens de paiement acceptez-vous ?</h3>
-                        <svg class="faq-chevron flex-shrink-0 ml-4" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                    </div>
-                    <div class="faq-answer">
-                        <p class="pb-6" style="font-weight: 400; font-size: 15px; line-height: 1.7; color: var(--text-muted);">Nous acceptons Orange Money, MTN Mobile Money, Wave, virement bancaire et PayPal. Le paiement est simple et securise.</p>
+                <!-- FAQ 3 -->
+                <div class="glass-surface rounded-xl overflow-hidden reveal reveal-delay-1">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                        <span class="font-heading font-semibold text-xl pr-4" style="color: var(--text-primary);">La qualite d'image est-elle garantie ?</span>
+                        <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="font-sans text-base leading-relaxed pb-6" style="color: var(--text-muted);">
+                            Absolument. Nos serveurs haute performance assurent une diffusion fluide en HD et 4K Ultra HD selon votre formule. Avec une disponibilite de 99.9%, vous beneficiez d'une experience sans coupure ni mise en memoire tampon, a condition de disposer d'une connexion internet d'au moins 10 Mbps.
+                        </p>
                     </div>
                 </div>
 
+                <!-- FAQ 4 -->
+                <div class="glass-surface rounded-xl overflow-hidden reveal reveal-delay-2">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                        <span class="font-heading font-semibold text-xl pr-4" style="color: var(--text-primary);">Puis-je changer de formule en cours de mois ?</span>
+                        <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="font-sans text-base leading-relaxed pb-6" style="color: var(--text-muted);">
+                            Oui, vous pouvez passer a une formule superieure a tout moment. La difference de tarif sera calculee au prorata des jours restants. Contactez notre equipe via WhatsApp pour une mise a niveau instantanee de votre abonnement.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="glass-surface rounded-xl overflow-hidden reveal reveal-delay-2">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFaq(this)">
+                        <span class="font-heading font-semibold text-xl pr-4" style="color: var(--text-primary);">Quels modes de paiement acceptez-vous ?</span>
+                        <svg class="faq-chevron flex-shrink-0" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer px-6">
+                        <p class="font-sans text-base leading-relaxed pb-6" style="color: var(--text-muted);">
+                            Nous acceptons les paiements par Mobile Money (Airtel Money, Moov Money), les virements bancaires, ainsi que les paiements par carte via notre plateforme securisee. Toutes les transactions sont protegees et vous recevez une confirmation instantanee.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
-    <footer style="background: var(--bg-deep); border-top: 1px solid var(--border);">
-        <div class="max-w-7xl mx-auto px-6 lg:px-10 py-20">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
 
-                <!-- Col 1: Branding -->
-                <div class="col-span-2 md:col-span-1">
-                    <p style="font-weight: 700; font-size: 15px; letter-spacing: 0.15em; color: var(--text-primary);">IPTV AFRIKA</p>
-                    <p class="mt-4" style="font-weight: 400; font-size: 14px; line-height: 1.7; color: var(--text-muted);">La television reinventee pour l'Afrique. Streaming premium, sans compromis.</p>
+    <!-- ========== FOOTER ========== -->
+    <footer id="contact" class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1: Logo -->
+                <div class="md:col-span-1">
+                    <div class="font-heading text-2xl font-bold italic mb-4" style="color: var(--gold); letter-spacing: 2px;">Mon IPTV Africa</div>
+                    <p class="font-sans text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Mon IPTV Africa. Centralisez Canal+, Netflix, Amazon Prime et Apple TV en un seul abonnement. Tous vos divertissements via internet.
+                    </p>
                 </div>
 
                 <!-- Col 2: Navigation -->
                 <div>
-                    <p class="mb-4" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Navigation</p>
-                    <ul class="space-y-3">
-                        <li><a href="#channels" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Chaines</a></li>
-                        <li><a href="#pricing" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Tarifs</a></li>
-                        <li><a href="#contact" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">FAQ</a></li>
-                    </ul>
+                    <div class="label-text mb-6" style="color: var(--gold);">NAVIGATION</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Accueil</a>
+                        <a href="#chaines" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Chaines</a>
+                        <a href="#pricing" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Abonnements</a>
+                        <a href="#about" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A propos</a>
+                    </div>
                 </div>
 
-                <!-- Col 3: Support -->
+                <!-- Col 3: Contact -->
                 <div>
-                    <p class="mb-4" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Support</p>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">WhatsApp</a></li>
-                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Email</a></li>
-                        <li><a href="#contact" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">FAQ</a></li>
-                    </ul>
+                    <div class="label-text mb-6" style="color: var(--gold);">CONTACT</div>
+                    <div class="space-y-3">
+                        <div>
+                            <a href="https://wa.me/243860493345" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp RDC
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+243 86 049 33 45</div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/212699140001" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp Maroc
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+212 699 14 000 1</div>
+                        </div>
+                        <a href="mailto:contact@iptv-afrika.com" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Col 4: Legal -->
                 <div>
-                    <p class="mb-4" style="font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted);">Legal</p>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">CGV</a></li>
-                        <li><a href="#" class="cursor-pointer transition-colors duration-200" style="font-size: 14px; color: rgba(255,255,255,0.4);" onmouseover="this.style.color='#FAFAFA'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">Politique de confidentialite</a></li>
-                    </ul>
+                    <div class="label-text mb-6" style="color: var(--gold);">LEGAL</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Conditions generales</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Politique de confidentialite</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Mentions legales</a>
+                    </div>
                 </div>
-
             </div>
 
             <!-- Bottom Bar -->
-            <div class="mt-16 pt-8" style="border-top: 1px solid var(--border);">
-                <p class="text-center" style="font-weight: 400; font-size: 13px; color: rgba(255,255,255,0.25);">&copy; 2026 IPTV Afrika. Tous droits reserves.</p>
+            <div class="pt-8" style="border-top: 1px solid var(--border-gold);">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        &copy; 2026 Mon IPTV Africa. Tous droits reserves.
+                    </p>
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        Designed with <span style="color: var(--gold);">&#9670;</span> in Africa
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- ========== SCRIPTS ========== -->
-    <script>
-        // Scroll Reveal with IntersectionObserver
-        document.addEventListener('DOMContentLoaded', function() {
-            const revealElements = document.querySelectorAll('.reveal');
 
-            // Immediately reveal elements already in viewport
-            revealElements.forEach(function(el) {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.classList.add('visible');
-                }
-            });
-
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, {
-                threshold: 0.1,
-                rootMargin: '0px 0px -40px 0px'
-            });
-
-            revealElements.forEach(function(el) {
-                if (!el.classList.contains('visible')) {
-                    observer.observe(el);
-                }
-            });
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="../statics/js/script.js"></script>
+    <script src="../statics/js/index.js"></script>
 
 </body>
 </html>

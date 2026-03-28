@@ -1,0 +1,439 @@
+{% extends "app/base.html" %}
+
+{% block title %}Paramètres - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">⚙️ Paramètres Système</h1>
+    <p class="page-subtitle">Configuration GOLDEN API, branding, notifications</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('dashboard.index') }}" class="btn" style="text-decoration: none;">
+        ← Retour au tableau de bord
+    </a>
+</div>
+
+<div style="max-width: 1000px;">
+    <!-- TABS -->
+    <div style="display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 2px solid var(--border-gold); flex-wrap: wrap;">
+        <button class="tab-btn active" onclick="switchTab('golden-api')" style="
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+        " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
+            🔑 GOLDEN API
+        </button>
+        <button class="tab-btn" onclick="switchTab('branding')" style="
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+        " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
+            🎨 Branding
+        </button>
+        <button class="tab-btn" onclick="switchTab('notifications')" style="
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+        " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
+            🔔 Notifications
+        </button>
+        <button class="tab-btn" onclick="switchTab('cache')" style="
+            padding: 1rem 1.5rem;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+        " onmouseover="if (!this.classList.contains('active')) this.style.color='var(--gold)'" onmouseout="if (!this.classList.contains('active')) this.style.color='var(--text-muted)'">
+            ⚡ Cache TTL
+        </button>
+    </div>
+
+    <!-- TAB: GOLDEN API -->
+    <div id="golden-api" class="tab-content">
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="card-title">🔑 Clés GOLDEN API</h3>
+            </div>
+
+            <form method="POST" action="{{ url_for('settings.update_golden_api') }}" style="padding: 1.5rem;">
+                <!-- Info Panel -->
+                <div style="background: rgba(212, 165, 116, 0.1); border-left: 4px solid var(--gold); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+                        ℹ️ Ces paramètres contrôlent la connexion à l'API GOLDEN pour la synchronisation des lignes.
+                    </p>
+                </div>
+
+                <!-- API Key -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Clé API <span style="color: var(--danger);">*</span>
+                    </label>
+                    <input type="password" name="api_key" value="" placeholder="sk_live_..." required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: monospace;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Clé secrète fournie par GOLDEN
+                    </p>
+                </div>
+
+                <!-- API URL -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        URL API <span style="color: var(--danger);">*</span>
+                    </label>
+                    <input type="url" name="api_url" value="https://api.goldenv1.com" placeholder="https://api.goldenv1.com" required style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                </div>
+
+                <!-- Test Connection -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button type="button" onclick="testConnection()" class="btn" style="width: 100%;">
+                        🧪 Tester la Connexion
+                    </button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        💾 Sauvegarder
+                    </button>
+                </div>
+
+                <!-- Status -->
+                <div id="test-result" style="padding: 1rem; border-radius: 8px; display: none; margin-bottom: 1rem;"></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TAB: BRANDING -->
+    <div id="branding" class="tab-content" style="display: none;">
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="card-title">🎨 Identité Visuelle</h3>
+            </div>
+
+            <form method="POST" action="{{ url_for('settings.update_branding') }}" style="padding: 1.5rem;">
+                <!-- App Name -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Nom de l'Application
+                    </label>
+                    <input type="text" name="app_name" value="Mon IPTV Africa" placeholder="Mon IPTV Africa" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                </div>
+
+                <!-- App Description -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Description
+                    </label>
+                    <textarea name="app_description" placeholder="Description courte de l'application" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                        min-height: 80px;
+                        resize: vertical;
+                    ">Service IPTV de qualité en Afrique</textarea>
+                </div>
+
+                <!-- Logo URL -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Logo (URL)
+                    </label>
+                    <input type="url" name="logo_url" placeholder="https://example.com/logo.png" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                </div>
+
+                <!-- Primary Color -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Couleur Primaire
+                    </label>
+                    <div style="display: flex; gap: 1rem; align-items: center;">
+                        <input type="color" name="primary_color" value="#D4A574" style="width: 80px; height: 40px; border: 1px solid var(--border-gold); border-radius: 4px; cursor: pointer;">
+                        <code style="color: var(--text-muted);">#D4A574</code>
+                    </div>
+                </div>
+
+                <!-- Save Button -->
+                <div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        💾 Sauvegarder
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TAB: NOTIFICATIONS -->
+    <div id="notifications" class="tab-content" style="display: none;">
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="card-title">🔔 Notifications</h3>
+            </div>
+
+            <form method="POST" action="{{ url_for('settings.update_notifications') }}" style="padding: 1.5rem;">
+                <!-- Expiry Notifications -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" name="notify_expiry" value="on" checked style="width: 20px; height: 20px; cursor: pointer;">
+                        <span style="color: var(--text-primary); font-weight: 600;">Notifier les expirations</span>
+                    </label>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Envoyer des notifications Telegram avant l'expiration d'une ligne
+                    </p>
+                </div>
+
+                <!-- Expiry Days Threshold -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Notifier X jours avant expiration
+                    </label>
+                    <input type="number" name="expiry_days" value="7" min="1" max="30" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Une notification sera envoyée 7 jours avant l'expiration
+                    </p>
+                </div>
+
+                <!-- Notification Template -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        Template de Message
+                    </label>
+                    <textarea name="notification_template" placeholder="Votre ligne {username} expire le {exp_date}" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                        min-height: 80px;
+                        resize: vertical;
+                    ">Attention: Votre ligne {username} expire le {exp_date} ({days_left} jours)</textarea>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Variables: {username}, {exp_date}, {days_left}, {package}
+                    </p>
+                </div>
+
+                <!-- Save Button -->
+                <div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        💾 Sauvegarder
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TAB: CACHE TTL -->
+    <div id="cache" class="tab-content" style="display: none;">
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="card-title">⚡ Configuration du Cache</h3>
+            </div>
+
+            <form method="POST" action="{{ url_for('settings.update_cache_ttl') }}" style="padding: 1.5rem;">
+                <!-- Info -->
+                <div style="background: rgba(212, 165, 116, 0.1); border-left: 4px solid var(--gold); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">
+                        ℹ️ TTL = Time To Live. Durée avant invalidation du cache et re-sync depuis GOLDEN.
+                    </p>
+                </div>
+
+                <!-- Lines Cache TTL -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        TTL Lignes (secondes)
+                    </label>
+                    <input type="number" name="cache_ttl_lines" value="900" min="60" step="60" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Défaut: 900s (15 minutes) — Minimum: 60s
+                    </p>
+                </div>
+
+                <!-- Packages Cache TTL -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                        TTL Packages (secondes)
+                    </label>
+                    <input type="number" name="cache_ttl_packages" value="3600" min="300" step="300" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        Défaut: 3600s (1 heure) — Minimum: 300s
+                    </p>
+                </div>
+
+                <!-- Save Button -->
+                <div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">
+                        💾 Sauvegarder
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+function switchTab(tabName) {
+    // Hide all tabs
+    document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.style.display = 'none';
+    });
+
+    // Remove active class from all buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        btn.style.borderBottomColor = 'transparent';
+        btn.style.color = 'var(--text-muted)';
+    });
+
+    // Show selected tab
+    document.getElementById(tabName).style.display = 'block';
+
+    // Set active button
+    event.target.classList.add('active');
+    event.target.style.borderBottomColor = 'var(--gold)';
+    event.target.style.color = 'var(--gold)';
+}
+
+function testConnection() {
+    const apiKey = document.querySelector('[name="api_key"]').value;
+    const apiUrl = document.querySelector('[name="api_url"]').value;
+
+    if (!apiKey || !apiUrl) {
+        alert('⚠️ Remplissez API key et URL avant de tester');
+        return;
+    }
+
+    const resultDiv = document.getElementById('test-result');
+    resultDiv.style.display = 'block';
+    resultDiv.style.background = 'rgba(243, 156, 18, 0.2)';
+    resultDiv.style.color = 'var(--warning)';
+    resultDiv.textContent = '⏳ Test en cours...';
+
+    fetch('{{ url_for("settings.test_api") }}', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+        }
+    })
+    .then(r => r.json())
+    .then(data => {
+        resultDiv.style.display = 'block';
+        if (data.success) {
+            resultDiv.style.background = 'rgba(39, 174, 96, 0.2)';
+            resultDiv.style.color = 'var(--success)';
+            resultDiv.textContent = '✅ ' + data.message;
+        } else {
+            resultDiv.style.background = 'rgba(231, 76, 60, 0.2)';
+            resultDiv.style.color = 'var(--danger)';
+            resultDiv.textContent = '❌ ' + data.message;
+        }
+    })
+    .catch(e => {
+        resultDiv.style.display = 'block';
+        resultDiv.style.background = 'rgba(231, 76, 60, 0.2)';
+        resultDiv.style.color = 'var(--danger)';
+        resultDiv.textContent = '❌ Erreur: ' + e.message;
+    });
+}
+
+// Focus styles
+document.querySelectorAll('input, textarea, select').forEach(el => {
+    el.addEventListener('focus', function() {
+        this.style.borderColor = 'var(--gold)';
+        this.style.boxShadow = '0 0 0 2px rgba(212, 165, 116, 0.2)';
+    });
+    el.addEventListener('blur', function() {
+        this.style.borderColor = 'var(--border-gold)';
+        this.style.boxShadow = 'none';
+    });
+});
+</script>
+{% endblock %}

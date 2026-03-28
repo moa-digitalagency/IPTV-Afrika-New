@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin - Mon IPTV Africa{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- TOPBAR -->
+    <div class="topbar">
+        <div class="topbar-brand">
+            <span class="topbar-brand-icon">📺</span>
+            <span>Mon IPTV Africa</span>
+        </div>
+
+        <div class="topbar-right">
+            <button class="menu-toggle" onclick="toggleSidebar()" title="Toggle Menu">
+                ☰
+            </button>
+
+            <div class="topbar-user">
+                <div>
+                    <div class="topbar-user-name">{{ current_user.username }}</div>
+                    <div class="topbar-user-role">{{ current_user.role }}</div>
+                </div>
+                <a href="{{ url_for('auth.logout') }}" style="color: var(--danger); text-decoration: none; font-weight: 600;">
+                    🚪
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar hidden">
+        <div class="sidebar-content">
+            <!-- Dashboard -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Principal</div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('dashboard.index') }}" class="sidebar-link">
+                            <span class="sidebar-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Lines Management -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Abonnements</div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('lines.testers_active') }}" class="sidebar-link">
+                            <span class="sidebar-icon">✅</span>
+                            <span>Testeurs Actifs</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('lines.testers_expired') }}" class="sidebar-link">
+                            <span class="sidebar-icon">❌</span>
+                            <span>Testeurs Expirés</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('lines.subs_active') }}" class="sidebar-link">
+                            <span class="sidebar-icon">🎬</span>
+                            <span>Abonnés Actifs</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('lines.subs_expired') }}" class="sidebar-link">
+                            <span class="sidebar-icon">⏰</span>
+                            <span>Abonnés Expirés</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('lines.create_line') }}" class="sidebar-link">
+                            <span class="sidebar-icon">➕</span>
+                            <span>Créer une Ligne</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Analytics -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Analyse</div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('stats.index') }}" class="sidebar-link">
+                            <span class="sidebar-icon">📈</span>
+                            <span>Statistiques</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Telegram -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Intégration</div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('telegram.config') }}" class="sidebar-link">
+                            <span class="sidebar-icon">💬</span>
+                            <span>Telegram Bot</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Admin -->
+            <div class="sidebar-section">
+                <div class="sidebar-section-title">Administration</div>
+                <ul class="sidebar-menu">
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('users.index') }}" class="sidebar-link">
+                            <span class="sidebar-icon">👥</span>
+                            <span>Utilisateurs</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('seo.index') }}" class="sidebar-link">
+                            <span class="sidebar-icon">🔍</span>
+                            <span>SEO</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{{ url_for('settings.index') }}" class="sidebar-link">
+                            <span class="sidebar-icon">⚙️</span>
+                            <span>Paramètres</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-container">
+        <div class="page-content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div style="margin-bottom: 2rem;">
+                        {% for category, message in messages %}
+                            <div style="
+                                padding: 1rem;
+                                border-radius: 8px;
+                                margin-bottom: 0.5rem;
+                                border-left: 4px solid;
+                                {% if category == 'success' %}
+                                    background: rgba(39,174,96,0.1);
+                                    border-color: var(--success);
+                                    color: var(--success);
+                                {% elif category == 'danger' %}
+                                    background: rgba(231,76,60,0.1);
+                                    border-color: var(--danger);
+                                    color: var(--danger);
+                                {% elif category == 'warning' %}
+                                    background: rgba(243,156,18,0.1);
+                                    border-color: var(--warning);
+                                    color: var(--warning);
+                                {% else %}
+                                    background: rgba(212,165,116,0.1);
+                                    border-color: var(--gold);
+                                    color: var(--gold);
+                                {% endif %}
+                            ">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

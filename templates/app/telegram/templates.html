@@ -1,0 +1,96 @@
+{% extends "app/base.html" %}
+
+{% block title %}Templates Telegram - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">📝 Templates de Messages</h1>
+    <p class="page-subtitle">Personnalisez les messages envoyés aux utilisateurs</p>
+</div>
+
+<!-- INFO PANEL -->
+<div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+    <h3 style="margin-top: 0; color: var(--gold);">🔤 Variables Disponibles</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1rem;">Utilisez ces placeholders dans vos templates:</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
+            <div style="color: var(--gold); margin-bottom: 0.25rem;">{username}</div>
+            <div style="color: var(--text-muted);">Nom d'utilisateur M3U</div>
+        </div>
+        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
+            <div style="color: var(--gold); margin-bottom: 0.25rem;">{package}</div>
+            <div style="color: var(--text-muted);">Nom du package</div>
+        </div>
+        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
+            <div style="color: var(--gold); margin-bottom: 0.25rem;">{exp_date}</div>
+            <div style="color: var(--text-muted);">Date d'expiration (DD/MM/YYYY)</div>
+        </div>
+        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
+            <div style="color: var(--gold); margin-bottom: 0.25rem;">{days_left}</div>
+            <div style="color: var(--text-muted);">Jours restants</div>
+        </div>
+        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
+            <div style="color: var(--gold); margin-bottom: 0.25rem;">{dns_link}</div>
+            <div style="color: var(--text-muted);">Lien M3U</div>
+        </div>
+        <div style="background: var(--bg-elevated); padding: 0.75rem; border-radius: 4px; font-family: monospace; font-size: 0.85rem;">
+            <div style="color: var(--gold); margin-bottom: 0.25rem;">{max_connections}</div>
+            <div style="color: var(--text-muted);">Max connexions simultanées</div>
+        </div>
+    </div>
+</div>
+
+<!-- TEMPLATES LIST -->
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Messages Disponibles</h3>
+    </div>
+
+    {% if templates %}
+    <div style="padding: 1.5rem;">
+        <div style="display: grid; gap: 1.5rem;">
+            {% for template in templates %}
+            <div style="border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem; background: var(--bg-surface);">
+                <!-- Header -->
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; gap: 1rem; flex-wrap: wrap;">
+                    <div>
+                        <div style="font-size: 1.1rem; font-weight: 600; color: var(--gold);">{{ template.title }}</div>
+                        <div style="font-size: 0.85rem; color: var(--text-muted);">
+                            🏷️ {{ template.slug }}
+                            {% if template.lang == 'fr' %}
+                                <span style="color: var(--gold);">🇫🇷</span>
+                            {% elif template.lang == 'en' %}
+                                <span style="color: var(--gold);">🇬🇧</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div>
+                        {% if template.is_active %}
+                        <span class="badge badge-success" style="display: inline-block;">✅ Actif</span>
+                        {% else %}
+                        <span class="badge badge-danger" style="display: inline-block;">⚪ Inactif</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div style="background: var(--bg-elevated); padding: 1rem; border-radius: 6px; margin-bottom: 1rem; border-left: 3px solid var(--gold); white-space: pre-wrap; word-break: break-word; color: var(--text-primary); font-size: 0.9rem;">{{ template.body }}</div>
+
+                <!-- Action -->
+                <div>
+                    <a href="{{ url_for('telegram.template_edit', slug=template.slug) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
+                        ✏️ Éditer
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <p>Aucun template disponible</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

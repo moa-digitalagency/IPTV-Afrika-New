@@ -1,0 +1,211 @@
+{% extends "app/base.html" %}
+
+{% block title %}Testeurs Actifs - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">✅ Testeurs Actifs</h1>
+    <p class="page-subtitle">Lignes de test actuellement valides</p>
+</div>
+
+<!-- FILTERS & ACTIONS -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 200px;">
+        <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom d'utilisateur..." style="
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.875rem;
+        ">
+    </div>
+    <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary">
+        ➕ Créer une Ligne
+    </a>
+</div>
+
+<!-- STATS -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Total</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--gold); margin-top: 0.5rem;">{{ total }}</div>
+    </div>
+</div>
+
+<!-- LINES TABLE -->
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Liste des Testeurs</h3>
+        <span style="font-size: 0.875rem; color: var(--text-muted);">{{ lines|length }} / {{ total }}</span>
+    </div>
+
+    {% if lines %}
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Nom Complet</th>
+                    <th>Email</th>
+                    <th>Package</th>
+                    <th>Expire dans</th>
+                    <th>Connexions</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for line in lines %}
+                <tr>
+                    <td style="font-family: monospace; font-weight: 600;">{{ line.username }}</td>
+                    <td>{{ line.full_name or 'N/A' }}</td>
+                    <td style="font-size: 0.875rem;">{{ line.email or 'N/A' }}</td>
+                    <td><span class="badge badge-gold">{{ line.package_name or 'N/A' }}</span></td>
+                    <td>
+                        {% if line.exp_date %}
+                            {% set days_left = (line.exp_date - now()).days %}
+                            {% if days_left <= 7 %}
+                                <span style="color: var(--warning);">⚠️ {{ days_left }}j</span>
+                            {% else %}
+                                <span style="color: var(--success);">✅ {{ days_left }}j</span>
+                            {% endif %}
+                        {% else %}
+                            <span style="color: var(--text-muted);">N/A</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ line.max_connections }}</td>
+                    <td style="text-align: center; gap: 0.5rem;">
+                        <a href="{{ url_for('lines.line_detail', golden_id=line.golden_id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
+                            👁️
+                        </a>
+                        <button class="btn btn-sm" onclick="extendLine({{ line.golden_id }}, '{{ line.username }}')" style="margin-left: 0.25rem;">
+                            ⏱️
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    {% if pages > 1 %}
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+        {% if current_page > 1 %}
+        <a href="?page=1" class="btn btn-sm">« Début</a>
+        <a href="?page={{ current_page - 1 }}" class="btn btn-sm">‹ Précédent</a>
+        {% endif %}
+
+        {% for page_num in range(max(1, current_page - 2), min(pages + 1, current_page + 3)) %}
+            {% if page_num == current_page %}
+            <button class="btn btn-sm" style="background: var(--gold); color: var(--bg); border: none;">{{ page_num }}</button>
+            {% else %}
+            <a href="?page={{ page_num }}" class="btn btn-sm">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if current_page < pages %}
+        <a href="?page={{ current_page + 1 }}" class="btn btn-sm">Suivant ›</a>
+        <a href="?page={{ pages }}" class="btn btn-sm">Fin »</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <p>Aucun testeur actif pour le moment</p>
+        <a href="{{ url_for('lines.create_line') }}" class="btn btn-primary" style="margin-top: 1rem;">
+            ➕ Créer le premier
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- EXTEND LINE MODAL -->
+<div id="extendModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+    <div style="background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
+        <h3 style="margin-bottom: 1rem; color: var(--gold);">⏱️ Prolonger la Ligne</h3>
+        <p id="extendUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+
+        <form id="extendForm">
+            <input type="hidden" id="extendGoldenId" name="golden_id">
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase;">Nombre de jours</label>
+                <input type="number" name="days" min="1" max="365" value="30" required style="
+                    width: 100%;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                ">
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+                <button type="button" onclick="closeExtendModal()" class="btn" style="flex: 1;">Annuler</button>
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Prolonger</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function extendLine(golden_id, username) {
+    document.getElementById('extendGoldenId').value = golden_id;
+    document.getElementById('extendUsername').textContent = `Utilisateur: ${username}`;
+    document.getElementById('extendModal').style.display = 'flex';
+}
+
+function closeExtendModal() {
+    document.getElementById('extendModal').style.display = 'none';
+    document.getElementById('extendForm').reset();
+}
+
+document.getElementById('extendForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const golden_id = document.getElementById('extendGoldenId').value;
+    const days = document.querySelector('[name="days"]').value;
+
+    try {
+        const response = await fetch(`{{ url_for('lines.extend_line', golden_id='REPLACE') }}`.replace('REPLACE', golden_id), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+            },
+            body: `days=${days}`
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ ' + result.message);
+            closeExtendModal();
+            location.reload();
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+    }
+});
+
+// Close modal when clicking outside
+document.getElementById('extendModal').addEventListener('click', (e) => {
+    if (e.target.id === 'extendModal') {
+        closeExtendModal();
+    }
+});
+
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('table tbody tr').forEach(row => {
+        const username = row.querySelector('td').textContent.toLowerCase();
+        row.style.display = username.includes(term) ? '' : 'none';
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+/* ===== CHANNEL LIST PAGE STYLES ===== */
+
+/* Reset and Base */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* ===== HERO SECTION ANIMATIONS ===== */
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.animated-gradient {
+    background: linear-gradient(-45deg, #1A1410, #2D1F15, #3D2A1F, #2D1F15);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* ===== FLOATING PARTICLES ===== */
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 0.7; }
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.particle-1 {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(212, 165, 116, 0.3) 0%, transparent 70%);
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle-2 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(230, 126, 34, 0.2) 0%, transparent 70%);
+    top: 50%;
+    right: 5%;
+    animation-delay: 2s;
+}
+
+.particle-3 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(193, 68, 14, 0.2) 0%, transparent 70%);
+    bottom: 10%;
+    left: 20%;
+    animation-delay: 4s;
+}
+
+/* ===== GLASSMORPHISM ===== */
+.glass {
+    background: rgba(26, 20, 16, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(212, 165, 116, 0.1);
+    border-radius: 16px;
+}
+
+/* ===== GLOW TEXT ===== */
+.glow-text {
+    background: linear-gradient(135deg, #D4A574 0%, #E67E22 50%, #C1440E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+    .particle {
+        display: none;
+    }
+}

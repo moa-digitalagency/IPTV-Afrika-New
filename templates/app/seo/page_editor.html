@@ -1,0 +1,316 @@
+{% extends "app/base.html" %}
+
+{% block title %}Éditer {{ page_title }} - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">✏️ Éditer Meta Tags</h1>
+    <p class="page-subtitle">{{ page_title }}</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('seo.index') }}" class="btn" style="text-decoration: none;">
+        ← Retour à SEO
+    </a>
+</div>
+
+<div style="display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; max-width: 1200px;">
+    <!-- FORM -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">📝 Meta Tags</h3>
+        </div>
+
+        <form method="POST" style="padding: 1.5rem;">
+            <!-- Meta Title -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                    📄 Meta Title <span style="color: var(--danger);">*</span>
+                    <span id="titleLength" style="float: right; color: var(--text-muted); font-weight: 400; text-transform: none;">0/60</span>
+                </label>
+                <input type="text" name="meta_title" maxlength="60" value="{{ seo.meta_title or '' }}" required placeholder="Titre pour les SERP (max 60 chars)" style="
+                    width: 100%;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 1rem;
+                " oninput="updateLength('meta_title', 'titleLength', 60)">
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                    💡 Affiché dans les résultats de recherche Google
+                </p>
+            </div>
+
+            <!-- Meta Description -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                    📝 Meta Description <span style="color: var(--danger);">*</span>
+                    <span id="descLength" style="float: right; color: var(--text-muted); font-weight: 400; text-transform: none;">0/160</span>
+                </label>
+                <textarea name="meta_description" maxlength="160" required placeholder="Description pour les SERP (max 160 chars)" style="
+                    width: 100%;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 1rem;
+                    min-height: 80px;
+                    resize: vertical;
+                " oninput="updateLength('meta_description', 'descLength', 160)">{{ seo.meta_description or '' }}</textarea>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                    💡 Affiché sous le titre dans les résultats
+                </p>
+            </div>
+
+            <!-- Open Graph Section -->
+            <div style="border-top: 1px solid var(--border-gold); padding-top: 1.5rem; margin-bottom: 1.5rem;">
+                <h4 style="color: var(--gold); margin-bottom: 1rem; font-size: 0.95rem;">🔗 Open Graph (Réseaux Sociaux)</h4>
+
+                <!-- OG Title -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem;">
+                        Titre OG
+                    </label>
+                    <input type="text" name="og_title" maxlength="100" value="{{ seo.og_title or '' }}" placeholder="Titre lors du partage (laissez vide = meta_title)" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                </div>
+
+                <!-- OG Description -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem;">
+                        Description OG
+                    </label>
+                    <textarea name="og_description" maxlength="160" placeholder="Description lors du partage (laissez vide = meta_description)" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                        min-height: 60px;
+                        resize: vertical;
+                    ">{{ seo.og_description or '' }}</textarea>
+                </div>
+
+                <!-- OG Image -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem;">
+                        Image OG (URL)
+                    </label>
+                    <input type="url" name="og_image_url" value="{{ seo.og_image_url or '' }}" placeholder="https://example.com/image.jpg" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        💡 Image affichée lors du partage (recommandé: 1200x630px)
+                    </p>
+                </div>
+
+                <!-- OG Type -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem;">
+                        Type OG
+                    </label>
+                    <select name="og_type" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                        <option value="website" {% if not seo or seo.og_type == 'website' %}selected{% endif %}>website</option>
+                        <option value="article" {% if seo and seo.og_type == 'article' %}selected{% endif %}>article</option>
+                        <option value="product" {% if seo and seo.og_type == 'product' %}selected{% endif %}>product</option>
+                        <option value="video" {% if seo and seo.og_type == 'video' %}selected{% endif %}>video</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Advanced SEO -->
+            <div style="border-top: 1px solid var(--border-gold); padding-top: 1.5rem; margin-bottom: 1.5rem;">
+                <h4 style="color: var(--gold); margin-bottom: 1rem; font-size: 0.95rem;">⚙️ SEO Avancé</h4>
+
+                <!-- Canonical URL -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem;">
+                        URL Canonique
+                    </label>
+                    <input type="url" name="canonical_url" value="{{ seo.canonical_url or '' }}" placeholder="https://example.com/page" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        💡 URL maître si contenu dupliqué
+                    </p>
+                </div>
+
+                <!-- Robots Directive -->
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem;">
+                        Directives Robots
+                    </label>
+                    <input type="text" name="robots_directive" value="{{ seo.robots_directive or 'index, follow' }}" placeholder="index, follow" style="
+                        width: 100%;
+                        padding: 0.75rem 1rem;
+                        border: 1px solid var(--border-gold);
+                        border-radius: 8px;
+                        background: var(--bg-surface);
+                        color: var(--text-primary);
+                        font-family: 'Montserrat', sans-serif;
+                        font-size: 1rem;
+                    ">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                        💡 Options: index/noindex, follow/nofollow
+                    </p>
+                </div>
+            </div>
+
+            <!-- Save Button -->
+            <div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    💾 Sauvegarder
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- PREVIEW -->
+    <div>
+        <!-- Google SERP Preview -->
+        <div class="content-card" style="margin-bottom: 1.5rem;">
+            <div class="card-header">
+                <h3 class="card-title">🔍 Aperçu SERP</h3>
+            </div>
+
+            <div style="padding: 1.5rem;">
+                <div style="background: #fff; color: #000; border-radius: 4px; padding: 1rem;">
+                    <!-- SERP URL -->
+                    <div style="font-size: 0.8rem; color: #006621; margin-bottom: 0.25rem;">
+                        iptvafrika.com › {{ page_slug }}
+                    </div>
+
+                    <!-- SERP Title -->
+                    <div style="font-size: 1.25rem; color: #1a0dff; margin-bottom: 0.25rem; font-weight: bold; cursor: pointer;" onmouseover="this.textDecoration='underline'" onmouseout="this.textDecoration='none'">
+                        <span id="serp-title">{{ (seo.meta_title or 'Page Title') if seo else 'Page Title' }}</span>
+                    </div>
+
+                    <!-- SERP Description -->
+                    <div style="font-size: 0.9rem; color: #545454; line-height: 1.4;">
+                        <span id="serp-desc">{{ (seo.meta_description or 'Description de la page...' ) if seo else 'Description de la page...' }}</span>
+                    </div>
+                </div>
+
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem;">
+                    💡 Aperçu de l'apparence dans Google
+                </p>
+            </div>
+        </div>
+
+        <!-- Social Media Preview -->
+        <div class="content-card">
+            <div class="card-header">
+                <h3 class="card-title">📱 Aperçu Réseaux</h3>
+            </div>
+
+            <div style="padding: 1.5rem;">
+                <!-- Facebook Preview -->
+                <div style="background: #fff; color: #000; border-radius: 8px; padding: 1rem; border: 1px solid #e4e6eb; margin-bottom: 1rem;">
+                    <div style="font-size: 0.75rem; color: #65676b; margin-bottom: 0.5rem;">
+                        Aperçu Facebook
+                    </div>
+                    <div style="font-weight: bold; color: #1c1e21; font-size: 1rem; margin-bottom: 0.25rem;">
+                        <span id="og-title">{{ (seo.og_title or seo.meta_title or 'Titre') if seo else 'Titre' }}</span>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #65676b; line-height: 1.3;">
+                        <span id="og-desc">{{ (seo.og_description or seo.meta_description or 'Description...') if seo else 'Description...' }}</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: #8a8d91; margin-top: 0.5rem;">
+                        iptvafrika.com
+                    </div>
+                </div>
+
+                <p style="font-size: 0.75rem; color: var(--text-muted);">
+                    💡 Aperçu du partage sur Facebook/WhatsApp
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function updateLength(fieldId, displayId, max) {
+    const field = document.querySelector(`[name="${fieldId}"]`);
+    const display = document.getElementById(displayId);
+    const length = field.value.length;
+    display.textContent = `${length}/${max}`;
+
+    // Color coding
+    if (length < 10) {
+        display.style.color = 'var(--warning)';
+    } else if (length >= max) {
+        display.style.color = 'var(--danger)';
+    } else {
+        display.style.color = 'var(--text-muted)';
+    }
+
+    // Update SERP preview
+    if (fieldId === 'meta_title') {
+        document.getElementById('serp-title').textContent = field.value || 'Page Title';
+        document.getElementById('og-title').textContent = field.value || 'Titre';
+    } else if (fieldId === 'meta_description') {
+        document.getElementById('serp-desc').textContent = field.value || 'Description...';
+        document.getElementById('og-desc').textContent = field.value || 'Description...';
+    }
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', function() {
+    const titleField = document.querySelector('[name="meta_title"]');
+    const descField = document.querySelector('[name="meta_description"]');
+    if (titleField) updateLength('meta_title', 'titleLength', 60);
+    if (descField) updateLength('meta_description', 'descLength', 160);
+});
+
+// Focus styles
+document.querySelectorAll('input:not([type="text"]), textarea, select').forEach(el => {
+    el.addEventListener('focus', function() {
+        this.style.borderColor = 'var(--gold)';
+        this.style.boxShadow = '0 0 0 2px rgba(212, 165, 116, 0.2)';
+    });
+    el.addEventListener('blur', function() {
+        this.style.borderColor = 'var(--border-gold)';
+        this.style.boxShadow = 'none';
+    });
+});
+</script>
+{% endblock %}

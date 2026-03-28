@@ -1,0 +1,175 @@
+{% extends "app/base.html" %}
+
+{% block title %}Éditer Template - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">✏️ Éditer Template</h1>
+    <p class="page-subtitle">{{ template.title }}</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1200px;">
+    <!-- FORM -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">📝 Édition</h3>
+        </div>
+
+        <form method="POST" style="padding: 1.5rem;">
+            <!-- Title -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                    📌 Titre
+                </label>
+                <input type="text" name="title" value="{{ template.title }}" required style="
+                    width: 100%;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 1rem;
+                ">
+            </div>
+
+            <!-- Body -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                    💬 Message <span style="color: var(--danger);">*</span>
+                </label>
+                <textarea name="body" required style="
+                    width: 100%;
+                    min-height: 250px;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                    font-size: 0.95rem;
+                    resize: vertical;
+                ">{{ template.body }}</textarea>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Utilisez les variables entre accolades: {username}, {package}, {exp_date}, {days_left}, {dns_link}
+                </p>
+            </div>
+
+            <!-- Active -->
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" name="is_active" {% if template.is_active %}checked{% endif %} style="width: 20px; height: 20px; cursor: pointer;">
+                    <span style="color: var(--text-primary); font-weight: 600;">Actif</span>
+                </label>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">
+                    Les templates inactifs ne seront pas utilisés
+                </p>
+            </div>
+
+            <!-- Buttons -->
+            <div style="display: flex; gap: 1rem;">
+                <a href="{{ url_for('telegram.templates') }}" class="btn" style="flex: 1; text-align: center;">
+                    ← Retour
+                </a>
+                <button type="submit" class="btn btn-primary" style="flex: 1;">
+                    💾 Sauvegarder
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="content-card">
+        <div class="card-header">
+            <h3 class="card-title">👁️ Aperçu</h3>
+        </div>
+
+        <div style="padding: 1.5rem;">
+            <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1rem;">
+                Exemple avec données fictives:
+            </p>
+
+            <!-- Mock Data -->
+            <div style="background: var(--bg-elevated); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; font-size: 0.85rem;">
+                <div style="color: var(--gold); margin-bottom: 0.5rem;">📊 Données Fictives</div>
+                <table style="width: 100%; font-family: monospace;">
+                    <tr style="border-bottom: 1px solid var(--border-gold);">
+                        <td style="padding: 0.5rem; color: var(--text-muted);">username</td>
+                        <td style="padding: 0.5rem; color: var(--text-primary);">user_test123</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-gold);">
+                        <td style="padding: 0.5rem; color: var(--text-muted);">package</td>
+                        <td style="padding: 0.5rem; color: var(--text-primary);">Premium 4K</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-gold);">
+                        <td style="padding: 0.5rem; color: var(--text-muted);">exp_date</td>
+                        <td style="padding: 0.5rem; color: var(--text-primary);">15/04/2026</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-gold);">
+                        <td style="padding: 0.5rem; color: var(--text-muted);">days_left</td>
+                        <td style="padding: 0.5rem; color: var(--text-primary);">18</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--border-gold);">
+                        <td style="padding: 0.5rem; color: var(--text-muted);">dns_link</td>
+                        <td style="padding: 0.5rem; color: var(--text-primary); word-break: break-all;">http://example.com/m3u/user123</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.5rem; color: var(--text-muted);">max_connections</td>
+                        <td style="padding: 0.5rem; color: var(--text-primary);">4</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Preview Box -->
+            <div style="background: var(--bg-elevated); border: 2px solid var(--border-gold); border-radius: 8px; padding: 1.5rem; min-height: 200px;">
+                <div id="preview" style="white-space: pre-wrap; word-break: break-word; color: var(--text-primary); font-size: 0.95rem; font-family: 'Montserrat', sans-serif; line-height: 1.6;">
+                    Tapez votre message pour voir l'aperçu...
+                </div>
+            </div>
+
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">
+                ℹ️ Cet aperçu utilise des données fictives
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Mock data for preview
+const mockData = {
+    username: 'user_test123',
+    package: 'Premium 4K',
+    exp_date: '15/04/2026',
+    days_left: '18',
+    dns_link: 'http://example.com/m3u/user123',
+    max_connections: '4',
+    created_at: '28/03/2026'
+};
+
+function updatePreview() {
+    const textarea = document.querySelector('textarea[name="body"]');
+    let text = textarea.value;
+
+    // Replace variables
+    for (const [key, value] of Object.entries(mockData)) {
+        text = text.replace(new RegExp(`{${key}}`, 'g'), value);
+    }
+
+    document.getElementById('preview').textContent = text || 'Tapez votre message pour voir l\'aperçu...';
+}
+
+// Update preview on input
+document.querySelector('textarea[name="body"]').addEventListener('input', updatePreview);
+
+// Initial preview
+updatePreview();
+</script>
+
+<style>
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
+}
+</style>
+{% endblock %}

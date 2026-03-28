@@ -1,0 +1,130 @@
+{% extends "app/base.html" %}
+
+{% block title %}Activité {{ user.username }} - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">📊 Journal d'Activité</h1>
+    <p class="page-subtitle">Historique des actions de {{ user.username }}</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('users.edit', user_id=user.id) }}" class="btn" style="text-decoration: none;">
+        ← Retour
+    </a>
+</div>
+
+<!-- STATS -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Total Activités</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--gold); margin-top: 0.5rem;">{{ total }}</div>
+    </div>
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Dernière Action</div>
+        <div style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-top: 0.5rem;">
+            {% if activities %}
+                {{ activities[0].created_at.strftime('%d/%m/%Y %H:%M') }}
+            {% else %}
+                N/A
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- ACTIVITY TABLE -->
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Historique des Actions</h3>
+        <span style="font-size: 0.875rem; color: var(--text-muted);">{{ activities|length }} / {{ total }}</span>
+    </div>
+
+    {% if activities %}
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Cible</th>
+                    <th>Détails</th>
+                    <th>IP Address</th>
+                    <th>Date & Heure</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for activity in activities %}
+                <tr>
+                    <td>
+                        {% if activity.action.startswith('user_') %}
+                            👥 {{ activity.action.replace('user_', '').replace('_', ' ')|upper }}
+                        {% elif activity.action.startswith('line_') %}
+                            📺 {{ activity.action.replace('line_', '').replace('_', ' ')|upper }}
+                        {% elif activity.action.startswith('telegram_') %}
+                            💬 {{ activity.action.replace('telegram_', '').replace('_', ' ')|upper }}
+                        {% else %}
+                            🔧 {{ activity.action.replace('_', ' ')|upper }}
+                        {% endif %}
+                    </td>
+                    <td style="font-size: 0.9rem;">
+                        {% if activity.target_type %}
+                            <span style="color: var(--text-muted);">{{ activity.target_type }}</span>
+                            {% if activity.target_id %}
+                                <span style="color: var(--gold); font-weight: 600;">#{{ activity.target_id }}</span>
+                            {% endif %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td style="font-size: 0.85rem; color: var(--text-muted);">
+                        {% if activity.detail %}
+                            {% for key, value in activity.detail.items() %}
+                                <div>{{ key }}: {{ value }}</div>
+                            {% endfor %}
+                        {% else %}
+                            -
+                        {% endif %}
+                    </td>
+                    <td style="font-family: monospace; font-size: 0.85rem;">
+                        {{ activity.ip_address }}
+                    </td>
+                    <td style="font-size: 0.9rem; white-space: nowrap;">
+                        {{ activity.created_at.strftime('%d/%m/%Y %H:%M:%S') if activity.created_at else 'N/A' }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    {% if pages > 1 %}
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+        {% if current_page > 1 %}
+        <a href="?page=1" class="btn btn-sm">« Début</a>
+        <a href="?page={{ current_page - 1 }}" class="btn btn-sm">‹ Précédent</a>
+        {% endif %}
+
+        {% for page_num in range(max(1, current_page - 2), min(pages + 1, current_page + 3)) %}
+            {% if page_num == current_page %}
+            <button class="btn btn-sm" style="background: var(--gold); color: var(--bg); border: none;">{{ page_num }}</button>
+            {% else %}
+            <a href="?page={{ page_num }}" class="btn btn-sm">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if current_page < pages %}
+        <a href="?page={{ current_page + 1 }}" class="btn btn-sm">Suivant ›</a>
+        <a href="?page={{ pages }}" class="btn btn-sm">Fin »</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <p>Aucune activité enregistrée</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

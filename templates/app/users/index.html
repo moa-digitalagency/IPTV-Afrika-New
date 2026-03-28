@@ -1,0 +1,159 @@
+{% extends "app/base.html" %}
+
+{% block title %}Utilisateurs - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">👥 Gestion des Utilisateurs</h1>
+    <p class="page-subtitle">Administrez les comptes et les permissions</p>
+</div>
+
+<!-- FILTERS & ACTIONS -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 200px;">
+        <input type="text" id="searchInput" placeholder="🔍 Rechercher par nom d'utilisateur..." style="
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-gold);
+            border-radius: 8px;
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.875rem;
+        ">
+    </div>
+    <a href="{{ url_for('users.create') }}" class="btn btn-primary">
+        ➕ Nouvel Utilisateur
+    </a>
+</div>
+
+<!-- STATS -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Total</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--gold); margin-top: 0.5rem;">{{ total }}</div>
+    </div>
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Actifs</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--success); margin-top: 0.5rem;">{{ users|selectattr('is_active')|list|length }}</div>
+    </div>
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem;">
+        <div style="font-size: 0.875rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px;">Superadmins</div>
+        <div style="font-size: 1.75rem; font-weight: 700; color: var(--gold); margin-top: 0.5rem;">{{ users|selectattr('role', 'equalto', 'superadmin')|list|length }}</div>
+    </div>
+</div>
+
+<!-- USERS TABLE -->
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Liste des Utilisateurs</h3>
+        <span style="font-size: 0.875rem; color: var(--text-muted);">{{ users|length }} / {{ total }}</span>
+    </div>
+
+    {% if users %}
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Email</th>
+                    <th>Rôle</th>
+                    <th>Statut</th>
+                    <th>Créé</th>
+                    <th>Dernière Connexion</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td style="font-family: monospace; font-weight: 600;">{{ user.username }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        {% if user.role == 'superadmin' %}
+                            <span class="badge badge-danger">🔴 Superadmin</span>
+                        {% elif user.role == 'admin' %}
+                            <span class="badge badge-gold">🟠 Admin</span>
+                        {% else %}
+                            <span class="badge badge-success">🟢 Opérateur</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.is_active %}
+                            <span style="color: var(--success);">✅ Actif</span>
+                        {% else %}
+                            <span style="color: var(--text-muted);">⚪ Inactif</span>
+                        {% endif %}
+                    </td>
+                    <td style="font-size: 0.875rem;">
+                        {{ user.created_at.strftime('%d/%m/%Y') if user.created_at else 'N/A' }}
+                    </td>
+                    <td style="font-size: 0.875rem;">
+                        {% if user.last_login %}
+                            {{ user.last_login.strftime('%d/%m/%Y %H:%M') }}
+                        {% else %}
+                            Jamais
+                        {% endif %}
+                    </td>
+                    <td style="text-align: center; gap: 0.5rem;">
+                        <a href="{{ url_for('users.edit', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block;">
+                            ✏️
+                        </a>
+                        <a href="{{ url_for('users.permissions', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block; margin-left: 0.25rem;" title="Permissions">
+                            🔐
+                        </a>
+                        <a href="{{ url_for('users.activity', user_id=user.id) }}" class="btn btn-sm" style="text-decoration: none; display: inline-block; margin-left: 0.25rem;" title="Activité">
+                            📊
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    {% if pages > 1 %}
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+        {% if current_page > 1 %}
+        <a href="?page=1" class="btn btn-sm">« Début</a>
+        <a href="?page={{ current_page - 1 }}" class="btn btn-sm">‹ Précédent</a>
+        {% endif %}
+
+        {% for page_num in range(max(1, current_page - 2), min(pages + 1, current_page + 3)) %}
+            {% if page_num == current_page %}
+            <button class="btn btn-sm" style="background: var(--gold); color: var(--bg); border: none;">{{ page_num }}</button>
+            {% else %}
+            <a href="?page={{ page_num }}" class="btn btn-sm">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if current_page < pages %}
+        <a href="?page={{ current_page + 1 }}" class="btn btn-sm">Suivant ›</a>
+        <a href="?page={{ pages }}" class="btn btn-sm">Fin »</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">👥</div>
+        <p>Aucun utilisateur</p>
+        <a href="{{ url_for('users.create') }}" class="btn btn-primary" style="margin-top: 1rem;">
+            ➕ Créer le premier
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+// Search functionality
+document.getElementById('searchInput').addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('table tbody tr').forEach(row => {
+        const username = row.querySelector('td').textContent.toLowerCase();
+        row.style.display = username.includes(term) ? '' : 'none';
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends "app/base.html" %}
+
+{% block title %}Créer Utilisateur - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">➕ Nouvel Utilisateur</h1>
+    <p class="page-subtitle">Ajouter un nouveau compte administrateur</p>
+</div>
+
+<div class="content-card" style="max-width: 600px; margin: 0 auto;">
+    <div class="card-header">
+        <h3 class="card-title">📝 Formulaire de Création</h3>
+    </div>
+
+    <form method="POST" style="padding: 2rem;">
+        <!-- Nom d'utilisateur -->
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                🔤 Nom d'Utilisateur <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="text" name="username" placeholder="admin_user" required style="
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--border-gold);
+                border-radius: 8px;
+                background: var(--bg-surface);
+                color: var(--text-primary);
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1rem;
+                transition: border-color 0.3s;
+            ">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Identifiant unique, caractères alphanumériques et tirets</p>
+        </div>
+
+        <!-- Email -->
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                ✉️ Email <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="email" name="email" placeholder="admin@example.com" required style="
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--border-gold);
+                border-radius: 8px;
+                background: var(--bg-surface);
+                color: var(--text-primary);
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1rem;
+            ">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Adresse email pour connexion et notifications</p>
+        </div>
+
+        <!-- Mot de passe -->
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                🔐 Mot de Passe <span style="color: var(--danger);">*</span>
+            </label>
+            <input type="password" name="password" placeholder="••••••••••" required style="
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--border-gold);
+                border-radius: 8px;
+                background: var(--bg-surface);
+                color: var(--text-primary);
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1rem;
+            ">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Au minimum 8 caractères (lettres, chiffres, symboles recommandés)</p>
+        </div>
+
+        <!-- Rôle -->
+        <div style="margin-bottom: 1.5rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: var(--text-primary); font-weight: 600; font-size: 0.875rem; text-transform: uppercase;">
+                👤 Rôle <span style="color: var(--danger);">*</span>
+            </label>
+            <select name="role" required style="
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 1px solid var(--border-gold);
+                border-radius: 8px;
+                background: var(--bg-surface);
+                color: var(--text-primary);
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1rem;
+            ">
+                <option value="">-- Sélectionner un rôle --</option>
+                <option value="operator">🟢 Opérateur - Gestion basique des lignes</option>
+                <option value="admin">🟠 Admin - Gestion complète</option>
+                <option value="superadmin">🔴 Superadmin - Accès total + configuration</option>
+            </select>
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Les permissions seront affectées selon le rôle</p>
+        </div>
+
+        <!-- Roles Info Panel -->
+        <div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1rem; margin-bottom: 1.5rem; border-radius: 4px;">
+            <p style="margin: 0; color: var(--text-muted); font-size: 0.875rem;">
+                <strong>🟢 Opérateur</strong>: Voir + gérer les lignes, pas d'accès config<br>
+                <strong>🟠 Admin</strong>: Accès complet sauf utilisateurs/SEO/settings<br>
+                <strong>🔴 Superadmin</strong>: Accès total à tous les modules
+            </p>
+        </div>
+
+        <!-- Boutons -->
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <a href="{{ url_for('users.index') }}" class="btn" style="flex: 1; text-align: center;">
+                ← Annuler
+            </a>
+            <button type="submit" class="btn btn-primary" style="flex: 1;">
+                ✅ Créer l'Utilisateur
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 2px rgba(212, 165, 116, 0.2);
+}
+</style>
+{% endblock %}

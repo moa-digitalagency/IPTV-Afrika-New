@@ -1,0 +1,2125 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "GOLDEN API Documentation",
+        "description": "Complete REST API for IPTV subscription management (Lines, MAGs, Active Codes)",
+        "contact": {
+            "name": "API Support"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "/api",
+            "description": "API Server"
+        }
+    ],
+    "paths": {
+        "/v1/active-codes": {
+            "post": {
+                "tags": [
+                    "Active Codes"
+                ],
+                "summary": "Create a new activation code",
+                "description": "Create a single inactive activation code. The code is generated automatically and can later be activated by end users on the specified device type. All bouquets from the selected package will be automatically used based on the is_adult parameter.",
+                "operationId": "createActiveCode",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "package_id"
+                                ],
+                                "properties": {
+                                    "package_id": {
+                                        "description": "Package ID to subscribe to",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "is_adult": {
+                                        "description": "Include adult content in bouquets",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "notes": {
+                                        "description": "Notes for the subscription",
+                                        "type": "string",
+                                        "maxLength": 1000,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Activation code created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Activation code created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "Activation code ID",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "code": {
+                                                    "description": "The generated activation code",
+                                                    "type": "string",
+                                                    "example": "ABC123DEF"
+                                                },
+                                                "package_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "expires_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-01 00:00:00"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "package": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Premium Package"
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "credits_used": {
+                                                    "type": "number",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "description": "Remaining account credit balance",
+                                                    "type": "number",
+                                                    "example": 990
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to create activation codes"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/active-codes/{codeId}/extend": {
+            "post": {
+                "tags": [
+                    "Active Codes"
+                ],
+                "summary": "Extend activated active code subscription",
+                "description": "Extend an activated active code subscription with a new package. The code must be activated first. The new package cannot be a trial or paid trial package.",
+                "operationId": "extendActiveCode",
+                "parameters": [
+                    {
+                        "name": "codeId",
+                        "in": "path",
+                        "description": "Active code ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "package_id": {
+                                        "description": "ID of the new package to extend with",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Active code extended successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Active code extended successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "code": {
+                                                    "type": "string",
+                                                    "example": "ABC123"
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "USER1234"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "PASS123"
+                                                },
+                                                "exp_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "package": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Premium Package"
+                                                },
+                                                "credits_used": {
+                                                    "type": "number",
+                                                    "example": 50
+                                                },
+                                                "duration": {
+                                                    "type": "string",
+                                                    "example": "30 days"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "type": "number",
+                                                    "example": 110.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Active code not found or not activated"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to extend this active code"
+                    },
+                    "422": {
+                        "description": "Validation error or invalid package (trial/paid trial or not allowed for your role)"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/active-codes/{codeId}/refund": {
+            "post": {
+                "tags": [
+                    "Active Codes"
+                ],
+                "summary": "Refund activated active code subscription",
+                "description": "Refund an activated active code subscription, optionally refunding all subscription history (mass refund). The code must be activated first.",
+                "operationId": "refundActiveCode",
+                "parameters": [
+                    {
+                        "name": "codeId",
+                        "in": "path",
+                        "description": "Active code ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "mass_refund": {
+                                        "description": "Whether to refund all subscription history",
+                                        "type": "boolean",
+                                        "example": false
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Active code refunded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Subscription refunded successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "code_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "code": {
+                                                    "type": "string",
+                                                    "example": "ABC123"
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "USER1234"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "PASS123"
+                                                },
+                                                "mass_refund": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "type": "number",
+                                                    "example": 110.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Active code not found or not activated"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to refund this active code"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/active-codes/{codeId}": {
+            "get": {
+                "tags": [
+                    "Active Codes"
+                ],
+                "summary": "Get activation code details (preview)",
+                "description": "Retrieve detailed information about a specific activation code including bouquets. If the code is activated, also includes subscription details, subscription history, and online activity. The code must belong to the authenticated user.",
+                "operationId": "getActiveCode",
+                "parameters": [
+                    {
+                        "name": "codeId",
+                        "in": "path",
+                        "description": "Activation code ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Activation code details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Activation code details retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "code": {
+                                                    "type": "string",
+                                                    "example": "ABC123DEF"
+                                                },
+                                                "username": {
+                                                    "description": "Only returned if the code is activated",
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "password": {
+                                                    "description": "Only returned if the code is activated",
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "dns_link": {
+                                                    "description": "Only returned if the code is activated",
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "package": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "package_name": {
+                                                            "type": "string",
+                                                            "example": "Premium Package"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "template": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Default Template"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                },
+                                                "creator": {
+                                                    "properties": {
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "admin"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "is_adult": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "is_paid": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "is_used": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "full_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "country": {
+                                                    "type": "string",
+                                                    "example": "ALL"
+                                                },
+                                                "expires_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59",
+                                                    "nullable": true
+                                                },
+                                                "used_at": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "note": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                },
+                                                "subscription": {
+                                                    "description": "Subscription details if code is activated",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "USER1234"
+                                                        },
+                                                        "password": {
+                                                            "type": "string",
+                                                            "example": "PASS123"
+                                                        },
+                                                        "exp_date": {
+                                                            "type": "string",
+                                                            "format": "date-time",
+                                                            "example": "2025-12-31 23:59:59"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Activation code not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to view this activation code"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/lines": {
+            "post": {
+                "tags": [
+                    "Lines"
+                ],
+                "summary": "Create a new M3U line subscription",
+                "description": "Create a single M3U line subscription with the provided username and password. All bouquets from the selected package will be automatically used based on the is_adult parameter.",
+                "operationId": "createLine",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "package_id",
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "package_id": {
+                                        "description": "Package ID to subscribe to",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "username": {
+                                        "description": "Username for the line (must be unique)",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "user123"
+                                    },
+                                    "password": {
+                                        "description": "Password for the line",
+                                        "type": "string",
+                                        "maxLength": 255,
+                                        "example": "pass123"
+                                    },
+                                    "is_adult": {
+                                        "description": "Include adult content in bouquets",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "max_connections": {
+                                        "description": "Maximum number of simultaneous connections allowed",
+                                        "type": "integer",
+                                        "default": 1,
+                                        "minimum": 1,
+                                        "example": 1,
+                                        "nullable": true
+                                    },
+                                    "notes": {
+                                        "description": "Notes for the subscription",
+                                        "type": "string",
+                                        "maxLength": 1000,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Line created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Line created successfully"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "username": {
+                                                        "type": "string",
+                                                        "example": "user123"
+                                                    },
+                                                    "password": {
+                                                        "type": "string",
+                                                        "example": "pass123"
+                                                    },
+                                                    "exp_date": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-12-31 23:59:59"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "example": "2025-01-01 00:00:00"
+                                                    },
+                                                    "is_trial": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "max_connections": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    },
+                                                    "package_id": {
+                                                        "type": "integer",
+                                                        "example": 1
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "package": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Premium Package"
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "credits_used": {
+                                                    "type": "number",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to create lines"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/lines/{lineId}/extend": {
+            "post": {
+                "tags": [
+                    "Lines"
+                ],
+                "summary": "Extend M3U line subscription",
+                "description": "Extend a line subscription with a new package. The new package cannot be a trial or paid trial package.",
+                "operationId": "extendLine",
+                "parameters": [
+                    {
+                        "name": "lineId",
+                        "in": "path",
+                        "description": "Line subscription ID (user ID)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "package_id"
+                                ],
+                                "properties": {
+                                    "package_id": {
+                                        "description": "ID of the new package to extend with",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Line extended successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Line extended successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "USER1234"
+                                                },
+                                                "exp_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "package": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Premium Package"
+                                                },
+                                                "credits_used": {
+                                                    "type": "number",
+                                                    "example": 10.5
+                                                },
+                                                "duration": {
+                                                    "type": "string",
+                                                    "example": "30 days"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "type": "number",
+                                                    "example": 100.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Line or package not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to extend this line"
+                    },
+                    "422": {
+                        "description": "Validation error or invalid package (trial/paid trial)"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/lines/{lineId}/refund": {
+            "post": {
+                "tags": [
+                    "Lines"
+                ],
+                "summary": "Refund M3U line subscription",
+                "description": "Refund a line subscription, optionally refunding all subscription history (mass refund).",
+                "operationId": "refundLine",
+                "parameters": [
+                    {
+                        "name": "lineId",
+                        "in": "path",
+                        "description": "Line subscription ID (user ID)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "mass_refund": {
+                                        "description": "Whether to refund all subscription history",
+                                        "type": "boolean",
+                                        "example": false
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Line refunded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Subscription refunded successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "line_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "mass_refund": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "type": "number",
+                                                    "example": 110.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Line not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to refund this line"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/lines/{lineId}": {
+            "get": {
+                "tags": [
+                    "Lines"
+                ],
+                "summary": "Get M3U line subscription details (preview)",
+                "description": "Retrieve detailed information about a specific M3U line subscription including bouquets, subscription history, and online activity. The subscription must belong to the authenticated user.",
+                "operationId": "getLine",
+                "parameters": [
+                    {
+                        "name": "lineId",
+                        "in": "path",
+                        "description": "Line subscription ID (user ID)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Line details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Line details retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "username": {
+                                                    "type": "string",
+                                                    "example": "USER1234"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "PASS123"
+                                                },
+                                                "full_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "package": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "package_name": {
+                                                            "type": "string",
+                                                            "example": "Premium Package"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "template": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Default Template"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                },
+                                                "creator": {
+                                                    "properties": {
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "admin"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "exp_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                },
+                                                "enabled": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "admin_enabled": {
+                                                    "description": "Only returned for admin users",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "max_connections": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "note": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "dns_link": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "forced_country": {
+                                                    "type": "string",
+                                                    "example": "ALL"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Line not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to view this line"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/mags": {
+            "post": {
+                "tags": [
+                    "MAGs"
+                ],
+                "summary": "Create a new MAG device subscription",
+                "description": "Create a single MAG device subscription with a MAC address. All bouquets from the selected package will be automatically used based on the is_adult parameter.",
+                "operationId": "createMag",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "package_id",
+                                    "mac"
+                                ],
+                                "properties": {
+                                    "package_id": {
+                                        "description": "Package ID to subscribe to",
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "mac": {
+                                        "description": "MAC address in standard format (XX:XX:XX:XX:XX:XX)",
+                                        "type": "string",
+                                        "example": "00:1A:79:AC:BE:CF"
+                                    },
+                                    "is_adult": {
+                                        "description": "Include adult content in bouquets",
+                                        "type": "boolean",
+                                        "default": false,
+                                        "nullable": true
+                                    },
+                                    "notes": {
+                                        "description": "Notes for the subscription",
+                                        "type": "string",
+                                        "maxLength": 1000,
+                                        "nullable": true
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "MAG device created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "MAG device created successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "MAG device ID",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "description": "Associated user ID",
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "mac": {
+                                                    "description": "MAC address",
+                                                    "type": "string",
+                                                    "example": "00:1A:79:AC:BE:CF"
+                                                },
+                                                "exp_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-01-01 00:00:00"
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "package_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "package": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Premium Package"
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "credits_used": {
+                                                    "description": "Total credits consumed",
+                                                    "type": "number",
+                                                    "example": 10
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "description": "Remaining account credit balance",
+                                                    "type": "number",
+                                                    "example": 990
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error or duplicate MAC address",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation failed"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to create MAG devices"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/mags/{magId}/extend": {
+            "post": {
+                "tags": [
+                    "MAGs"
+                ],
+                "summary": "Extend MAG device subscription",
+                "description": "Extend a MAG device subscription with a new package. The new package cannot be a trial or paid trial package.",
+                "operationId": "extendMag",
+                "parameters": [
+                    {
+                        "name": "magId",
+                        "in": "path",
+                        "description": "MAG device ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "package_id": {
+                                        "description": "ID of the new package to extend with",
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "MAG device extended successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "MAG device extended successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 123
+                                                },
+                                                "mac": {
+                                                    "type": "string",
+                                                    "example": "00:1B:44:11:3A:B7"
+                                                },
+                                                "exp_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "package": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Premium Package"
+                                                },
+                                                "credits_used": {
+                                                    "type": "number",
+                                                    "example": 50
+                                                },
+                                                "duration": {
+                                                    "type": "string",
+                                                    "example": "30 days"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "type": "number",
+                                                    "example": 110.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "MAG device not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to extend this MAG device"
+                    },
+                    "422": {
+                        "description": "Validation error or invalid package (trial/paid trial or not allowed for your role)"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/mags/{magId}/refund": {
+            "post": {
+                "tags": [
+                    "MAGs"
+                ],
+                "summary": "Refund MAG device subscription",
+                "description": "Refund a MAG device subscription, optionally refunding all subscription history (mass refund).",
+                "operationId": "refundMag",
+                "parameters": [
+                    {
+                        "name": "magId",
+                        "in": "path",
+                        "description": "MAG device ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "mass_refund": {
+                                        "description": "Whether to refund all subscription history",
+                                        "type": "boolean",
+                                        "example": false
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "MAG device refunded successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Subscription refunded successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "mag_id": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 123
+                                                },
+                                                "mass_refund": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "account": {
+                                            "properties": {
+                                                "remaining_credit": {
+                                                    "type": "number",
+                                                    "example": 110.5
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "MAG device not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to refund this MAG device"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/mags/{magId}": {
+            "get": {
+                "tags": [
+                    "MAGs"
+                ],
+                "summary": "Get MAG device subscription details (preview)",
+                "description": "Retrieve detailed information about a specific MAG device subscription including bouquets, subscription history, and online activity. The subscription must belong to the authenticated user.",
+                "operationId": "getMag",
+                "parameters": [
+                    {
+                        "name": "magId",
+                        "in": "path",
+                        "description": "MAG device ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "MAG device details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "MAG device details retrieved successfully"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "description": "MAG device ID",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "user_id": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "mac": {
+                                                    "type": "string",
+                                                    "example": "00:1A:79:AC:BE:CF"
+                                                },
+                                                "full_name": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "email": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "phone": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "package": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "package_name": {
+                                                            "type": "string",
+                                                            "example": "Premium Package"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "template": {
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "name": {
+                                                            "type": "string",
+                                                            "example": "Default Template"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                },
+                                                "creator": {
+                                                    "properties": {
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "admin"
+                                                        }
+                                                    },
+                                                    "type": "object",
+                                                    "nullable": true
+                                                },
+                                                "is_trial": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "exp_date": {
+                                                    "type": "string",
+                                                    "format": "date-time",
+                                                    "example": "2025-12-31 23:59:59"
+                                                },
+                                                "enabled": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "admin_enabled": {
+                                                    "description": "Only returned for admin users",
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "note": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "country": {
+                                                    "type": "string",
+                                                    "example": "ALL"
+                                                },
+                                                "forced_country": {
+                                                    "type": "string",
+                                                    "example": "ALL"
+                                                },
+                                                "portal_link": {
+                                                    "type": "string",
+                                                    "example": "ALL"
+                                                },
+                                                "created_at": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "MAG device not found"
+                    },
+                    "403": {
+                        "description": "Forbidden - You do not have permission to view this MAG device"
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        },
+        "/v1/packages": {
+            "get": {
+                "tags": [
+                    "Packages"
+                ],
+                "summary": "Get list of accessible packages",
+                "description": "Retrieve a paginated list of packages accessible to the authenticated user with filtering, searching, and sorting capabilities",
+                "operationId": "getPackages",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "Search term to filter packages by name or ID",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 255
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Number of items per page (1-100)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10,
+                            "maximum": 100,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Page number",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1,
+                            "minimum": 1
+                        }
+                    },
+                    {
+                        "name": "is_official",
+                        "in": "query",
+                        "description": "Filter by official packages",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "is_paid_trial",
+                        "in": "query",
+                        "description": "Filter by paid trial packages",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "has_adult",
+                        "in": "query",
+                        "description": "Filter packages with adult content",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "sort_by",
+                        "in": "query",
+                        "description": "Field to sort by",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "package_name",
+                                "created_at",
+                                "id"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "sort_order",
+                        "in": "query",
+                        "description": "Sort order",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "packages": {
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "type": "integer",
+                                                                "example": 1
+                                                            },
+                                                            "package_name": {
+                                                                "type": "string",
+                                                                "example": "Premium Package"
+                                                            },
+                                                            "is_official": {
+                                                                "type": "boolean",
+                                                                "example": true
+                                                            },
+                                                            "is_paid_trial": {
+                                                                "type": "boolean",
+                                                                "example": false
+                                                            },
+                                                            "has_adult": {
+                                                                "type": "boolean",
+                                                                "example": false
+                                                            },
+                                                            "refund_policies": {
+                                                                "description": "Refund policies for this package",
+                                                                "type": "array",
+                                                                "items": {
+                                                                    "properties": {
+                                                                        "id": {
+                                                                            "type": "integer",
+                                                                            "example": 1
+                                                                        },
+                                                                        "passed_days": {
+                                                                            "description": "Number of days after which this policy applies",
+                                                                            "type": "integer",
+                                                                            "example": 7
+                                                                        },
+                                                                        "refund_amount": {
+                                                                            "description": "Refund amount in credits",
+                                                                            "type": "number",
+                                                                            "format": "float",
+                                                                            "example": 50.5
+                                                                        }
+                                                                    },
+                                                                    "type": "object"
+                                                                }
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "current_page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "last_page": {
+                                                    "type": "integer",
+                                                    "example": 5
+                                                },
+                                                "per_page": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 50
+                                                },
+                                                "from": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "to": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                },
+                                                "prev_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                },
+                                                "next_page_url": {
+                                                    "type": "string",
+                                                    "nullable": true
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        "filters": {
+                                            "properties": {
+                                                "search": {
+                                                    "type": "string",
+                                                    "example": ""
+                                                },
+                                                "is_official": {
+                                                    "type": "boolean",
+                                                    "nullable": true
+                                                },
+                                                "is_paid_trial": {
+                                                    "type": "boolean",
+                                                    "nullable": true
+                                                },
+                                                "has_adult": {
+                                                    "type": "boolean",
+                                                    "nullable": true
+                                                },
+                                                "sort_by": {
+                                                    "type": "string",
+                                                    "example": "package_name"
+                                                },
+                                                "sort_order": {
+                                                    "type": "string",
+                                                    "example": "asc"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Validation error"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid or missing API key"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "description": "Toutes les routes API nécessitent un token d'authentification. Vous pouvez générer votre token depuis votre tableau de bord.",
+                "name": "X-API-Key",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Packages",
+            "description": "Package management endpoints"
+        },
+        {
+            "name": "Lines",
+            "description": "M3U line management"
+        },
+        {
+            "name": "MAGs",
+            "description": "MAG device management"
+        },
+        {
+            "name": "Active Codes",
+            "description": "Active code management"
+        }
+    ],
+    "security": [
+        {
+            "api_key": []
+        }
+    ]
+}

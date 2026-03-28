@@ -1,0 +1,114 @@
+{% extends "app/base.html" %}
+
+{% block title %}Permissions {{ user.username }} - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">🔐 Gestion des Permissions</h1>
+    <p class="page-subtitle">{{ user.username }} ({{ user.role }})</p>
+</div>
+
+<!-- BACK BUTTON -->
+<div style="margin-bottom: 1.5rem;">
+    <a href="{{ url_for('users.edit', user_id=user.id) }}" class="btn" style="text-decoration: none;">
+        ← Retour
+    </a>
+</div>
+
+<!-- INFO PANEL -->
+<div style="background: var(--bg-surface); border-left: 4px solid var(--gold); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+    <h3 style="margin-top: 0; color: var(--gold);">ℹ️ À Propos des Permissions</h3>
+    <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.6;">
+        Les permissions granulaires permettent un contrôle précis sur chaque ressource.
+        Chaque ressource peut avoir des permissions en lecture et/ou écriture.
+        Les permissions sont vérifiées en plus du rôle utilisateur.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+        <div>
+            <strong style="color: var(--gold);">📖 Lecture (Read)</strong>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0 0 0;">Voir/accéder à la ressource</p>
+        </div>
+        <div>
+            <strong style="color: var(--gold);">✏️ Écriture (Write)</strong>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0.5rem 0 0 0;">Créer, modifier, supprimer la ressource</p>
+        </div>
+    </div>
+</div>
+
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Permissions par Ressource</h3>
+    </div>
+
+    <form method="POST" style="padding: 1.5rem;">
+        <div style="display: grid; gap: 1.5rem;">
+            {% for resource, actions in resources %}
+            <div style="border: 1px solid var(--border-gold); border-radius: 8px; padding: 1rem; background: var(--bg-surface);">
+                <div style="font-weight: 600; color: var(--gold); margin-bottom: 1rem; font-size: 1rem;">
+                    {{ resource }}
+                </div>
+
+                <div style="display: grid; gap: 0.75rem;">
+                    {% for action in actions %}
+                    {% set perm_key = 'perm_' + resource.replace('.', '_') + '_' + action %}
+                    {% set has_perm = current_permissions|selectattr('resource', 'equalto', resource)|selectattr('can_' + action, 'equalto', True)|list|length > 0 %}
+
+                    <label style="display: flex; align-items: center; gap: 0.75rem; cursor: pointer;">
+                        <input type="checkbox" name="{{ perm_key }}" {% if has_perm %}checked{% endif %} style="width: 18px; height: 18px; cursor: pointer;">
+                        <span style="color: var(--text-primary);">
+                            {% if action == 'read' %}📖 Lecture{% elif action == 'write' %}✏️ Écriture{% endif %}
+                        </span>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Save -->
+        <div style="margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                💾 Sauvegarder les Permissions
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- QUICK PRESETS -->
+<div class="content-card" style="margin-top: 2rem;">
+    <div class="card-header">
+        <h3 class="card-title">⚡ Présets Rapides</h3>
+    </div>
+
+    <div style="padding: 1.5rem;">
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Appliquer rapidement des permissions par rôle:</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <button type="button" onclick="applyPreset('operator')" class="btn">
+                🟢 Opérateur
+            </button>
+            <button type="button" onclick="applyPreset('admin')" class="btn">
+                🟠 Admin
+            </button>
+            <button type="button" onclick="applyPreset('superadmin')" class="btn">
+                🔴 Superadmin
+            </button>
+            <button type="button" onclick="clearAll()" class="btn btn-danger">
+                ❌ Tout Effacer
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function applyPreset(role) {
+    alert('ℹ️ Présets — Phase 7.1\n\nFonctionnalité venant bientôt pour appliquer automatiquement les permissions selon le rôle.');
+    // TODO: Implement preset permission application
+}
+
+function clearAll() {
+    if (!confirm('⚠️ Êtes-vous sûr?\n\nToutes les permissions seront supprimées.')) return;
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+}
+</script>
+{% endblock %}

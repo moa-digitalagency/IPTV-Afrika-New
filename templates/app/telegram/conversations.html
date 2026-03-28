@@ -1,0 +1,254 @@
+{% extends "app/base.html" %}
+
+{% block title %}Conversations Telegram - Mon IPTV Africa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">💬 Conversations Telegram</h1>
+    <p class="page-subtitle">Gérez les discussions avec les utilisateurs</p>
+</div>
+
+<!-- FILTERS -->
+<div style="margin-bottom: 1.5rem;">
+    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+        {% for status in statuses %}
+        <a href="?status={{ status }}" class="btn {% if status_filter == status or (status_filter == 'all' and status == 'all') %}btn-primary{% else %}btn{% endif %}" style="text-decoration: none; display: inline-block;">
+            {% if status == 'pending' %}⏳ En Attente{% elif status == 'active' %}💬 Active{% elif status == 'validated' %}✅ Validée{% elif status == 'closed' %}❌ Fermée{% elif status == 'all' %}📊 Tous{% endif %}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- CONVERSATIONS TABLE -->
+<div class="content-card">
+    <div class="card-header">
+        <h3 class="card-title">📋 Liste des Conversations</h3>
+        <span style="font-size: 0.875rem; color: var(--text-muted);">{{ conversations|length }} / {{ total }}</span>
+    </div>
+
+    {% if conversations %}
+    <div class="table-responsive">
+        <table>
+            <thead>
+                <tr>
+                    <th>Utilisateur Telegram</th>
+                    <th>Ligne M3U</th>
+                    <th>Statut</th>
+                    <th>Débutée</th>
+                    <th>Dernière Activité</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for conv in conversations %}
+                <tr>
+                    <td style="font-family: monospace; font-weight: 600;">
+                        @{{ conv.telegram_username }}<br>
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">ID: {{ conv.telegram_user_id }}</span>
+                    </td>
+                    <td>
+                        {% if conv.line %}
+                            <div style="font-weight: 600;">{{ conv.line.username }}</div>
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">{{ conv.line.package_name or 'N/A' }}</div>
+                        {% else %}
+                            <span style="color: var(--text-muted);">N/A</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if conv.status == 'pending' %}
+                            <span style="color: var(--warning);">⏳ En Attente</span>
+                        {% elif conv.status == 'active' %}
+                            <span style="color: var(--gold);">💬 Active</span>
+                        {% elif conv.status == 'validated' %}
+                            <span style="color: var(--success);">✅ Validée</span>
+                        {% elif conv.status == 'closed' %}
+                            <span style="color: var(--text-muted);">❌ Fermée</span>
+                        {% endif %}
+                    </td>
+                    <td style="font-size: 0.9rem;">
+                        {{ conv.started_at.strftime('%d/%m/%Y %H:%M') if conv.started_at else 'N/A' }}
+                    </td>
+                    <td style="font-size: 0.9rem;">
+                        {{ conv.last_message_at.strftime('%d/%m/%Y %H:%M') if conv.last_message_at else 'N/A' }}
+                    </td>
+                    <td style="text-align: center; gap: 0.5rem;">
+                        {% if conv.status != 'closed' %}
+                        <button class="btn btn-sm" onclick="validateConversation({{ conv.id }}, '{{ conv.telegram_username }}')" title="Valider">
+                            ✅
+                        </button>
+                        {% endif %}
+                        <button class="btn btn-sm" onclick="closeConversation({{ conv.id }}, '{{ conv.telegram_username }}')" style="margin-left: 0.25rem;" title="Fermer">
+                            ❌
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PAGINATION -->
+    {% if pages > 1 %}
+    <div style="margin-top: 1.5rem; display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+        {% if current_page > 1 %}
+        <a href="?page=1&status={{ status_filter }}" class="btn btn-sm">« Début</a>
+        <a href="?page={{ current_page - 1 }}&status={{ status_filter }}" class="btn btn-sm">‹ Précédent</a>
+        {% endif %}
+
+        {% for page_num in range(max(1, current_page - 2), min(pages + 1, current_page + 3)) %}
+            {% if page_num == current_page %}
+            <button class="btn btn-sm" style="background: var(--gold); color: var(--bg); border: none;">{{ page_num }}</button>
+            {% else %}
+            <a href="?page={{ page_num }}&status={{ status_filter }}" class="btn btn-sm">{{ page_num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if current_page < pages %}
+        <a href="?page={{ current_page + 1 }}&status={{ status_filter }}" class="btn btn-sm">Suivant ›</a>
+        <a href="?page={{ pages }}&status={{ status_filter }}" class="btn btn-sm">Fin »</a>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% else %}
+    <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📭</div>
+        <p>Aucune conversation</p>
+    </div>
+    {% endif %}
+</div>
+
+<!-- VALIDATE MODAL -->
+<div id="validateModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+    <div style="background: var(--bg-elevated); border: 1px solid var(--border-gold); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
+        <h3 style="margin-bottom: 1rem; color: var(--gold);">✅ Valider Conversation</h3>
+        <p id="validateUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+
+        <form id="validateForm">
+            <input type="hidden" id="validateConvId" name="conversation_id">
+            <div style="margin-bottom: 1rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.875rem; text-transform: uppercase;">Notes (Optionnel)</label>
+                <textarea name="notes" placeholder="Raison de la validation..." style="
+                    width: 100%;
+                    min-height: 80px;
+                    padding: 0.75rem 1rem;
+                    border: 1px solid var(--border-gold);
+                    border-radius: 8px;
+                    background: var(--bg-surface);
+                    color: var(--text-primary);
+                    font-family: 'Montserrat', sans-serif;
+                "></textarea>
+            </div>
+            <div style="display: flex; gap: 0.75rem;">
+                <button type="button" onclick="closeValidateModal()" class="btn" style="flex: 1;">Annuler</button>
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Valider</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- CLOSE MODAL -->
+<div id="closeModal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
+    <div style="background: var(--bg-elevated); border: 1px solid var(--danger); border-radius: 12px; padding: 2rem; max-width: 400px; width: 90%;">
+        <h3 style="margin-bottom: 1rem; color: var(--danger);">⚠️ Fermer Conversation</h3>
+        <p id="closeUsername" style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;"></p>
+        <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.875rem;">
+            La conversation sera marquée comme fermée et ne pourra plus être réactivée.
+        </p>
+
+        <form id="closeForm">
+            <input type="hidden" id="closeConvId" name="conversation_id">
+            <div style="display: flex; gap: 0.75rem;">
+                <button type="button" onclick="closeCloseModal()" class="btn" style="flex: 1;">Annuler</button>
+                <button type="submit" class="btn btn-danger" style="flex: 1;">Fermer</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function validateConversation(conv_id, username) {
+    document.getElementById('validateConvId').value = conv_id;
+    document.getElementById('validateUsername').textContent = `Utilisateur: @${username}`;
+    document.getElementById('validateModal').style.display = 'flex';
+}
+
+function closeValidateModal() {
+    document.getElementById('validateModal').style.display = 'none';
+    document.getElementById('validateForm').reset();
+}
+
+function closeConversation(conv_id, username) {
+    document.getElementById('closeConvId').value = conv_id;
+    document.getElementById('closeUsername').textContent = `Utilisateur: @${username}`;
+    document.getElementById('closeModal').style.display = 'flex';
+}
+
+function closeCloseModal() {
+    document.getElementById('closeModal').style.display = 'none';
+    document.getElementById('closeForm').reset();
+}
+
+document.getElementById('validateForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const conv_id = document.getElementById('validateConvId').value;
+    const notes = document.querySelector('#validateForm textarea[name="notes"]').value;
+
+    try {
+        const response = await fetch(`{{ url_for('telegram.conversation_validate', conversation_id='REPLACE') }}`.replace('REPLACE', conv_id), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+            },
+            body: `notes=${encodeURIComponent(notes)}`
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ ' + result.message);
+            closeValidateModal();
+            location.reload();
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+    }
+});
+
+document.getElementById('closeForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const conv_id = document.getElementById('closeConvId').value;
+
+    try {
+        const response = await fetch(`{{ url_for('telegram.conversation_close', conversation_id='REPLACE') }}`.replace('REPLACE', conv_id), {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+            }
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert('✅ ' + result.message);
+            closeCloseModal();
+            location.reload();
+        } else {
+            alert('❌ ' + result.message);
+        }
+    } catch (error) {
+        alert('❌ Erreur: ' + error.message);
+    }
+});
+
+// Close modals when clicking outside
+document.getElementById('validateModal').addEventListener('click', (e) => {
+    if (e.target.id === 'validateModal') closeValidateModal();
+});
+
+document.getElementById('closeModal').addEventListener('click', (e) => {
+    if (e.target.id === 'closeModal') closeCloseModal();
+});
+</script>
+{% endblock %}
