@@ -1,0 +1,37 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="200" height="200" fill="#0A0806"/>
+
+  <!-- TV Screen frame -->
+  <rect x="30" y="40" width="140" height="100" fill="none" stroke="#D4A574" stroke-width="3" rx="8"/>
+
+  <!-- Screen content - streaming bars -->
+  <line x1="45" y1="55" x2="155" y2="55" stroke="#E67E22" stroke-width="2"/>
+  <line x1="45" y1="70" x2="155" y2="70" stroke="#D4A574" stroke-width="2"/>
+  <line x1="45" y1="85" x2="155" y2="85" stroke="#E67E22" stroke-width="2"/>
+  <line x1="45" y1="100" x2="155" y2="100" stroke="#D4A574" stroke-width="2"/>
+  <line x1="45" y1="115" x2="155" y2="115" stroke="#E67E22" stroke-width="2"/>
+
+  <!-- TV stand -->
+  <rect x="75" y="145" width="50" height="4" fill="#D4A574"/>
+
+  <!-- Play triangle (symbol) -->
+  <polygon points="100,60 120,75 100,90 80,75" fill="#E67E22" opacity="0.8"/>
+
+  <!-- Bottom text: IPTV -->
+  <text x="100" y="180" font-family="Poppins, sans-serif" font-size="18" font-weight="bold" fill="#D4A574" text-anchor="middle">IPTV</text>
+
+  <!-- Glow effect -->
+  <defs>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Apply glow to main frame -->
+  <rect x="30" y="40" width="140" height="100" fill="none" stroke="#D4A574" stroke-width="3" rx="8" filter="url(#glow)" opacity="0.5"/>
+</svg>
