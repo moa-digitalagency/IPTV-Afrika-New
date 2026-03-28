@@ -224,8 +224,9 @@ def create_line():
         package = PackageCache.query.filter_by(golden_id=package_id).first()
         is_trial = package.is_trial if package else False
 
-        # Call GOLDEN API
-        result = GoldenAPIService.create_line(username, password, package_id)
+        # Call GOLDEN API with all optional fields
+        result = GoldenAPIService.create_line(username, password, package_id,
+                                             full_name=full_name, email=email, note=note)
         if not result:
             flash('Erreur lors de la création de la ligne', 'danger')
             return redirect(url_for('lines.create_line'))

@@ -139,7 +139,7 @@ class GoldenAPIService:
             raise
 
     @staticmethod
-    def create_line(username, password, package_id):
+    def create_line(username, password, package_id, full_name=None, email=None, note=None):
         """Create a new line"""
         try:
             url = f"{GoldenAPIService.get_base_url()}/v1/lines"
@@ -148,13 +148,15 @@ class GoldenAPIService:
                 'password': password,
                 'package_id': package_id
             }
-            print(f"📝 Sending create line request:")
-            print(f"   URL: {url}")
-            print(f"   Data: {data}")
+            # Add optional fields if provided
+            if full_name:
+                data['full_name'] = full_name
+            if email:
+                data['email'] = email
+            if note:
+                data['note'] = note
+
             response = requests.post(url, json=data, headers=GoldenAPIService._headers(), timeout=GoldenAPIService.TIMEOUT)
-            print(f"   Status: {response.status_code}")
-            if response.status_code != 201:
-                print(f"   Response: {response.text}")
 
             result = GoldenAPIService._handle_response(response)
             return GoldenAPIService._extract_data(result)

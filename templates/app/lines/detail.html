@@ -190,9 +190,9 @@
                 <!-- M3U URL -->
                 <div style="background: var(--bg-surface); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-gold); margin-bottom: 1rem;">
                     <div style="color: var(--text-muted); font-size: 0.75rem; margin-bottom: 0.5rem;">URL du Flux:</div>
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <code id="m3uLink" style="color: var(--gold); font-size: 0.75rem; flex: 1; word-break: break-all; padding: 0.5rem;"></code>
-                        <button type="button" onclick="copyM3ULink()" class="btn" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.875rem;">
+                    <div style="display: flex; gap: 0.5rem; align-items: flex-start;">
+                        <code id="m3uLink" style="color: var(--gold); font-size: 0.75rem; flex: 1; word-break: break-all; padding: 0.5rem; display: block; min-height: 2rem; background: var(--bg-elevated); border-radius: 4px; margin-bottom: 0;">Chargement...</code>
+                        <button type="button" onclick="copyM3ULink()" class="btn" style="white-space: nowrap; padding: 0.5rem 1rem; font-size: 0.875rem; min-width: 80px;">
                              Copier
                         </button>
                     </div>
@@ -535,10 +535,26 @@ function copyM3ULink() {
 }
 
 // Initialize M3U link on page load
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('m3uLink').textContent = buildBaseM3ULink();
-    buildCustomM3ULink();
-});
+function initM3ULink() {
+    const m3uLink = document.getElementById('m3uLink');
+    const m3uCustomLink = document.getElementById('m3uCustomLink');
+
+    if (m3uLink) {
+        const baseLink = buildBaseM3ULink();
+        m3uLink.textContent = baseLink;
+    }
+
+    if (m3uCustomLink) {
+        buildCustomM3ULink();
+    }
+}
+
+// Try to initialize immediately and also on DOMContentLoaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initM3ULink);
+} else {
+    initM3ULink();
+}
 
 function copyCustomM3ULink() {
     const link = document.getElementById('m3uCustomLink').textContent;
