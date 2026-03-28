@@ -31,8 +31,8 @@
     </script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../statics/css/style.css">
-    <link rel="stylesheet" href="../statics/css/index.css">
+    <link rel="stylesheet" href="/statics/css/style.css">
+    <link rel="stylesheet" href="/statics/css/index.css">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2">
-                <img src="../statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <img src="/statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
                 <div class="flex flex-col leading-tight">
                     <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
                     <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
@@ -308,100 +308,83 @@
     </section>
 
     <!-- ========== FOOTER ========== -->
-    <footer style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 py-16">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <!-- Brand -->
+    <footer id="contact" class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1: Logo -->
+                <div class="md:col-span-1">
+                    <div class="font-heading text-2xl font-bold italic mb-4" style="color: var(--gold); letter-spacing: 2px;">Mon IPTV Africa</div>
+                    <p class="font-sans text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Mon IPTV Africa. Centralisez Canal+, Netflix, Amazon Prime et Apple TV en un seul abonnement. Tous vos divertissements via internet.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation -->
                 <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <img src="../statics/img/logo.svg" alt="Logo" style="height: 32px; width: 32px;">
-                        <div class="flex flex-col leading-tight">
-                            <span class="font-heading text-xs font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
-                            <span class="font-heading text-xs font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
-                        </div>
+                    <div class="label-text mb-6" style="color: var(--gold);">NAVIGATION</div>
+                    <div class="space-y-3">
+                        <a href="/about" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">À Propos</a>
+                        <a href="/abonnements" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Abonnements</a>
+                        <a href="/vod" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Films & Séries</a>
+                        <a href="/sports" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Sports</a>
+                        <a href="/installation" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Installation</a>
+                        <a href="/app/login" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Login</a>
                     </div>
-                    <p class="font-sans text-sm" style="color: var(--text-muted);">Votre plateforme de streaming complète pour l'Afrique et le monde.</p>
                 </div>
 
-                <!-- Navigation -->
+                <!-- Col 3: Contact -->
                 <div>
-                    <div class="label-text mb-4" style="color: var(--gold);">NAVIGATION</div>
-                    <ul class="space-y-3 font-sans text-sm" style="color: var(--text-muted);">
-                        <li><a href="/about" class="hover:text-gold transition-colors">À Propos</a></li>
-                        <li><a href="/abonnements" class="hover:text-gold transition-colors">Abonnements</a></li>
-                        <li><a href="/vod" class="hover:text-gold transition-colors">Films & Séries</a></li>
-                        <li><a href="/sports" class="hover:text-gold transition-colors">Sports</a></li>
-                        <li><a href="/installation" class="hover:text-gold transition-colors">Installation</a></li>
-                        <li><a href="/app/login" class="hover:text-gold transition-colors">Login</a></li>
-                    </ul>
+                    <div class="label-text mb-6" style="color: var(--gold);">CONTACT</div>
+                    <div class="space-y-3">
+                        <div>
+                            <a href="https://wa.me/243860493345" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp RDC
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+243 86 049 33 45</div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/212699140001" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp Maroc
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+212 699 14 000 1</div>
+                        </div>
+                        <a href="mailto:contact@iptv-afrika.com" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Legal -->
+                <!-- Col 4: Legal -->
                 <div>
-                    <div class="label-text mb-4" style="color: var(--gold);">LEGAL</div>
-                    <ul class="space-y-3 font-sans text-sm" style="color: var(--text-muted);">
-                        <li><a href="#" class="hover:text-gold transition-colors">Conditions d'Utilisation</a></li>
-                        <li><a href="#" class="hover:text-gold transition-colors">Politique de Confidentialité</a></li>
-                        <li><a href="#" class="hover:text-gold transition-colors">Mentions Légales</a></li>
-                    </ul>
-                </div>
-
-                <!-- Contact -->
-                <div>
-                    <div class="label-text mb-4" style="color: var(--gold);">CONTACTEZ-NOUS</div>
-                    <ul class="space-y-3 font-sans text-sm" style="color: var(--text-muted);">
-                        <li><a href="https://wa.me/243860493345" target="_blank" class="hover:text-gold transition-colors">WhatsApp Support</a></li>
-                        <li><a href="mailto:support@moriptvafrica.com" class="hover:text-gold transition-colors">Email Support</a></li>
-                    </ul>
+                    <div class="label-text mb-6" style="color: var(--gold);">LEGAL</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Conditions generales</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Politique de confidentialite</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Mentions legales</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Divider -->
-            <div style="height: 1px; background: var(--border-gold); margin-bottom: 12px;"></div>
-
-            <!-- Copyright -->
-            <div class="flex flex-col sm:flex-row items-center justify-between text-sm font-sans" style="color: var(--text-muted);">
-                <p>&copy; 2024 Mon IPTV Africa. Tous droits réservés.</p>
-                <p>Créé par <span style="color: var(--gold);">MOA Digital Agency</span></p>
+            <!-- Bottom Bar -->
+            <div class="pt-8" style="border-top: 1px solid var(--border-gold);">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        &copy; 2026 Mon IPTV Africa. Tous droits reserves.
+                    </p>
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        Designed with <span style="color: var(--gold);">&#9670;</span> in Africa
+                    </p>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- Scripts -->
-    <script>
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
+    <script src="/statics/js/script.js"></script>
+    <script src="/statics/js/index.js"></script>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(10,8,6,0.95)';
-            } else {
-                navbar.style.background = 'rgba(10,8,6,0.85)';
-            }
-        });
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
