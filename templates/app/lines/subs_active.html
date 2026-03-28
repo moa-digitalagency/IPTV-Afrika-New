@@ -172,7 +172,7 @@ document.getElementById('extendForm').addEventListener('submit', async (e) => {
     const days = document.querySelector('[name="days"]').value;
 
     try {
-        const response = await fetch(`/app/lines/${golden_id}/extend('REPLACE', golden_id), {
+        const response = await fetch(`/app/lines/${golden_id}/extend`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

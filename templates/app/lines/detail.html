@@ -386,7 +386,7 @@ document.getElementById('extendForm').addEventListener('submit', async (e) => {
     const days = document.querySelector('#extendForm [name="days"]').value;
 
     try {
-        const response = await fetch(`/app/lines/${golden_id}/extend('REPLACE', golden_id), {
+        const response = await fetch(`/app/lines/${golden_id}/extend`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -413,7 +413,7 @@ document.getElementById('refundForm').addEventListener('submit', async (e) => {
     const golden_id = document.getElementById('refundGoldenId').value;
 
     try {
-        const response = await fetch(`/app/lines/${golden_id}/refund('REPLACE', golden_id), {
+        const response = await fetch(`/app/lines/${golden_id}/refund`, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
