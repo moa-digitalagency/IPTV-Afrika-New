@@ -116,6 +116,11 @@ def sports():
     """Serve the sports page"""
     return render_template('sports.html')
 
+@app.route('/vod')
+def vod():
+    """Serve the VOD (Films & Séries) page"""
+    return render_template('vod.html')
+
 @app.route('/api/channels')
 def get_channels():
     """API endpoint to get all channels data"""
