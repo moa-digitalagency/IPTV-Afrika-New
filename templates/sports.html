@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IPTV Sport en Direct - Football, NBA, UFC, Tennis, F1, Rugby. Tous les matchs en qualité 4K">
+    <title>IPTV Sport en Direct - Football, NBA, UFC | Mon IPTV Africa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/statics/img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Poppins', 'system-ui', 'sans-serif'],
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../statics/css/style.css">
+    <link rel="stylesheet" href="../statics/css/index.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2">
+                <img src="../statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/catalog" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">CHAÎNES</a>
+                <a href="/#pricing" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="/#about" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">À PROPOS</a>
+                <a href="/#contact" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">CONTACT</a>
+            </div>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="/#pricing" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Poppins', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2" onclick="toggleMobileMenu()">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="lg:hidden hidden" style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
+            <div class="px-6 py-6 flex flex-col gap-5">
+                <a href="/catalog" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">CHAÎNES</a>
+                <a href="/#pricing" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">ABONNEMENTS</a>
+                <a href="/#about" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">À PROPOS</a>
+                <a href="/#contact" class="label-text" style="color: var(--text-muted);" onclick="toggleMobileMenu()">CONTACT</a>
+                <a href="/#pricing" class="gold-gradient-bg text-center text-sm font-semibold px-6 py-3 rounded-full mt-2" style="color: var(--bg);" onclick="toggleMobileMenu()">S'abonner</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- ========== SPORTS SECTION ========== -->
+    <section class="relative py-20 lg:py-28 mt-20" style="background: var(--bg);">
+        <div class="max-w-6xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-20 reveal">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8" style="border: 1px solid var(--border-gold); background: rgba(212,165,116,0.06);">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"></path>
+                    </svg>
+                    <span class="label-text-wide" style="color: var(--gold); font-size: 10px;">SPORT</span>
+                </div>
+
+                <h1 class="font-heading text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary);">
+                    IPTV Sport en <span class="italic gold-gradient-text">Direct</span>
+                </h1>
+                <p class="font-sans text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                    Tous les matchs de football, NBA, UFC, tennis et plus en qualité 4K
+                </p>
+            </div>
+
+            <!-- Sports Cards Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Football -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-4xl">⚽</span>
+                        <h3 class="font-heading font-semibold text-xl" style="color: var(--text-primary);">Football</h3>
+                    </div>
+                    <p class="font-sans text-sm mb-4" style="color: var(--text-muted);">Ligue 1, Premier League, Liga, Serie A, Bundesliga, Champions League, Europa League, Coupe du Monde 2026. Tous les matchs en direct sur Canal+, BeIN Sports, RMC Sport.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Canal+</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">BeIN Sports</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">RMC Sport</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">ESPN</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Sky Sports</span>
+                    </div>
+                </div>
+
+                <!-- Basketball NBA -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-4xl">🏀</span>
+                        <h3 class="font-heading font-semibold text-xl" style="color: var(--text-primary);">Basketball NBA</h3>
+                    </div>
+                    <p class="font-sans text-sm mb-4" style="color: var(--text-muted);">Tous les matchs NBA en direct, playoffs et finales. Plus EuroLeague et championnats nationaux.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">ESPN</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">NBA TV</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">BeIN Sports</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Canal+ Sport</span>
+                    </div>
+                </div>
+
+                <!-- UFC / MMA / Boxe -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-4xl">🥊</span>
+                        <h3 class="font-heading font-semibold text-xl" style="color: var(--text-primary);">UFC / MMA / Boxe</h3>
+                    </div>
+                    <p class="font-sans text-sm mb-4" style="color: var(--text-muted);">Tous les événements UFC, Bellator et les grands combats de boxe en direct et en pay-per-view.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">RMC Sport</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">ESPN+</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">BT Sport</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">DAZN</span>
+                    </div>
+                </div>
+
+                <!-- Tennis -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-4xl">🎾</span>
+                        <h3 class="font-heading font-semibold text-xl" style="color: var(--text-primary);">Tennis</h3>
+                    </div>
+                    <p class="font-sans text-sm mb-4" style="color: var(--text-muted);">Roland Garros, Wimbledon, US Open, Open d'Australie et tous les Masters 1000.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Eurosport</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">BeIN Sports</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Amazon Prime Sport</span>
+                    </div>
+                </div>
+
+                <!-- Formule 1 & MotoGP -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-4xl">🏎️</span>
+                        <h3 class="font-heading font-semibold text-xl" style="color: var(--text-primary);">Formule 1 & MotoGP</h3>
+                    </div>
+                    <p class="font-sans text-sm mb-4" style="color: var(--text-muted);">Tous les Grand Prix F1 et MotoGP en direct avec les qualifications et essais libres.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Canal+</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Sky Sports F1</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">DAZN</span>
+                    </div>
+                </div>
+
+                <!-- NFL & Rugby -->
+                <div class="glass-surface rounded-2xl p-8 gold-glow-hover reveal" style="border: 1px solid var(--border-gold);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="text-4xl">🏈</span>
+                        <h3 class="font-heading font-semibold text-xl" style="color: var(--text-primary);">NFL & Rugby</h3>
+                    </div>
+                    <p class="font-sans text-sm mb-4" style="color: var(--text-muted);">NFL, Super Bowl, Top 14, Coupe du Monde de Rugby. Tous les matchs en direct.</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">ESPN</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">NFL Network</span>
+                        <span class="inline-block px-3 py-1 rounded-full text-xs font-semibold" style="background: rgba(212,165,116,0.1); color: var(--gold);">Canal+ Rugby</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIFA 2026 Special -->
+            <div class="mt-12 p-10 rounded-2xl glass-surface reveal text-center" style="border: 1px solid var(--border-gold);">
+                <h3 class="font-heading font-bold text-2xl mb-4" style="color: var(--text-primary);">
+                    🏆 Coupe du Monde FIFA <span class="italic gold-gradient-text">2026</span>
+                </h3>
+                <p class="font-sans text-base mb-6" style="color: var(--text-muted);">
+                    Du 11 juin au 19 juillet 2026. 48 équipes, 104 matchs, 16 villes. Tous les matchs en direct 4K sur MonIPTV Pro. Code promo <span style="color: var(--gold); font-weight: 600;">MONDIAL26</span> pour <span style="color: var(--gold); font-weight: 600;">-30%</span>.
+                </p>
+            </div>
+
+            <!-- CTA -->
+            <div class="mt-16 text-center reveal">
+                <a href="/#pricing" class="inline-flex gold-gradient-bg px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:shadow-2xl hover:-translate-y-1" style="color: var(--bg);">
+                    🏃 Commander pour le Sport
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1: Logo -->
+                <div class="md:col-span-1">
+                    <div class="font-heading text-2xl font-bold italic mb-4" style="color: var(--gold); letter-spacing: 2px;">Mon IPTV Africa</div>
+                    <p class="font-sans text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Mon IPTV Africa. Centralisez Canal+, Netflix, Amazon Prime et Apple TV en un seul abonnement. Tous vos divertissements via internet.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">NAVIGATION</div>
+                    <div class="space-y-3">
+                        <a href="/app/login" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Login</a>
+                        <a href="/catalog" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Chaines</a>
+                        <a href="/sports" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Sports</a>
+                        <a href="/installation" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Installation</a>
+                        <a href="/#pricing" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Abonnements</a>
+                        <a href="/#about" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A propos</a>
+                    </div>
+                </div>
+
+                <!-- Col 3: Contact -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">CONTACT</div>
+                    <div class="space-y-3">
+                        <div>
+                            <a href="https://wa.me/243860493345" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp RDC
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+243 86 049 33 45</div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/212699140001" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp Maroc
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+212 699 14 000 1</div>
+                        </div>
+                        <a href="mailto:contact@iptv-afrika.com" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 4: Legal -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">LEGAL</div>
+                    <div class="space-y-3">
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Conditions generales</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Politique de confidentialite</a>
+                        <a href="#" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Mentions legales</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8" style="border-top: 1px solid var(--border-gold);">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        &copy; 2026 Mon IPTV Africa. Tous droits reserves.
+                    </p>
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        Designed with <span style="color: var(--gold);">&#9670;</span> in Africa
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+    </script>
+</body>
+</html>

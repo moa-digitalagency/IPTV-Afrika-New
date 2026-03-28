@@ -111,6 +111,11 @@ def installation():
     """Serve the installation page"""
     return render_template('installation.html')
 
+@app.route('/sports')
+def sports():
+    """Serve the sports page"""
+    return render_template('sports.html')
+
 @app.route('/api/channels')
 def get_channels():
     """API endpoint to get all channels data"""
