@@ -111,6 +111,11 @@ def about():
     """Serve the About page"""
     return render_template('about.html')
 
+@app.route('/cgv')
+def cgv():
+    """Serve the Conditions Générales de Vente page"""
+    return render_template('cgv.html')
+
 @app.route('/statics/<path:filename>')
 def serve_static(filename):
     """Serve static files"""
