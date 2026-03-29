@@ -116,6 +116,16 @@ def cgv():
     """Serve the Conditions Générales de Vente page"""
     return render_template('cgv.html')
 
+@app.route('/politique-confidentialite')
+def politique_confidentialite():
+    """Serve the Politique de Confidentialité page"""
+    return render_template('politique-confidentialite.html')
+
+@app.route('/mentions-legales')
+def mentions_legales():
+    """Serve the Mentions Légales page"""
+    return render_template('mentions-legales.html')
+
 @app.route('/statics/<path:filename>')
 def serve_static(filename):
     """Serve static files"""

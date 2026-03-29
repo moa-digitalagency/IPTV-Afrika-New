@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Politique de Confidentialité - Mon IPTV Africa. Découvrez comment nous collectons, utilisons et protégeons vos données personnelles.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://moniptv.africa/politique-confidentialite">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Politique de Confidentialité | Mon IPTV Africa">
+    <meta property="og:description" content="Politique de Confidentialité - Mon IPTV Africa. Découvrez comment nous collectons, utilisons et protégeons vos données personnelles.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moniptv.africa/politique-confidentialite">
+    <meta property="og:image" content="https://moniptv.africa/statics/img/og-politique.jpg">
+
+    <title>Politique de Confidentialité | Mon IPTV Africa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/statics/img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Poppins', 'system-ui', 'sans-serif'],
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/statics/css/style.css">
+    <link rel="stylesheet" href="/statics/css/index.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2">
+                <img src="/statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/about" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A PROPOS</a>
+                <a href="/abonnements" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="/vod" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">FILMS & SÉRIES</a>
+                <a href="/sports" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">SPORTS</a>
+                <a href="/installation" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">INSTALLATION</a>
+            </div>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="/abonnements" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Poppins', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-black/80 border-t border-gold backdrop-blur">
+            <div class="flex flex-col gap-4 px-6 py-6">
+                <a href="/about" class="label-text" style="color: var(--gold);">A PROPOS</a>
+                <a href="/abonnements" class="label-text" style="color: var(--text-muted);">ABONNEMENTS</a>
+                <a href="/vod" class="label-text" style="color: var(--text-muted);">FILMS & SÉRIES</a>
+                <a href="/sports" class="label-text" style="color: var(--text-muted);">SPORTS</a>
+                <a href="/installation" class="label-text" style="color: var(--text-muted);">INSTALLATION</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative pt-32 pb-16 overflow-hidden" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 74, 0.9) 100%);">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+            <div class="absolute top-0 -left-40 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-6 text-center pt-20">
+            <h1 class="font-heading section-heading font-bold mb-6" style="color: var(--text-primary);">
+                Politique de <span class="italic gold-gradient-text">Confidentialité</span>
+            </h1>
+            <p class="font-sans text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                Nous accordons une grande importance à votre vie privée et à la protection de vos données personnelles
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== CONTENT ========== -->
+    <section class="relative py-16 lg:py-24" style="background: var(--bg-elevated);">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <!-- Article 1: Introduction -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">1. Introduction et Responsable du Traitement</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa accorde une priorité absolue à la protection de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons, stockons et protégeons vos informations.</p>
+                    <p><strong style="color: var(--gold);">Responsable du traitement des données :</strong> Mon IPTV Africa, Maroc</p>
+                    <p><strong style="color: var(--gold);">Email de contact :</strong> contact@iptv-afrika.com</p>
+                </div>
+            </div>
+
+            <!-- Article 2: Données Collectées -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">2. Données Personnelles Collectées</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Nous collectons les données suivantes pour fournir nos services :</p>
+                    <p><strong style="color: var(--gold);">Informations d'inscription :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Nom et prénom</li>
+                        <li>Adresse email</li>
+                        <li>Numéro de téléphone</li>
+                        <li>Pays de résidence</li>
+                        <li>Type d'abonnement choisi</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">Informations de paiement :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Détails de transaction (montant, date)</li>
+                        <li>Méthode de paiement utilisée (Mobile Money, virement bancaire, etc.)</li>
+                        <li><strong style="color: var(--gold);">Les données bancaires complètes ne sont jamais stockées par nos serveurs</strong> - elles sont traitées par des prestataires de paiement sécurisés</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">Données d'utilisation du service :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Appareils utilisés</li>
+                        <li>Adresse IP (partiellement enregistrée)</li>
+                        <li>Historique de connexion</li>
+                        <li>Contenu consulté</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Article 3: Utilisation des Données -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">3. Utilisation de Vos Données</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Nous utilisons vos données personnelles uniquement pour :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Fournir et maintenir nos services IPTV</li>
+                        <li>Traiter vos paiements et gestions d'abonnements</li>
+                        <li>Vous envoyer des confirmations de commande et mises à jour de compte</li>
+                        <li>Répondre à vos demandes de support client</li>
+                        <li>Améliorer notre service (analytics non-personnalisées)</li>
+                        <li>Prévenir la fraude et les abus</li>
+                        <li>Respecter nos obligations légales</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">Nous ne vendons JAMAIS vos données à des tiers</strong> sans votre consentement explicite.</p>
+                </div>
+            </div>
+
+            <!-- Article 4: Partage des Données -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">4. Partage des Données avec des Tiers</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Nous partageons vos données uniquement dans les cas suivants :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong style="color: var(--gold);">Prestataires de paiement :</strong> Pour traiter vos paiements (Mobile Money, institutions bancaires)</li>
+                        <li><strong style="color: var(--gold);">Fournisseurs de serveurs IPTV :</strong> Pour fournir le service de streaming</li>
+                        <li><strong style="color: var(--gold);">Obligations légales :</strong> Si la loi l'exige (autorités judiciaires, gouvernementales)</li>
+                        <li><strong style="color: var(--gold);">Sécurité :</strong> Pour prévenir la fraude ou les abus du service</li>
+                    </ul>
+                    <p class="mt-4">Tous nos partenaires sont contractuellement tenus de respecter la confidentialité de vos données.</p>
+                </div>
+            </div>
+
+            <!-- Article 5: Durée de Conservation -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">5. Durée de Conservation des Données</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p><strong style="color: var(--gold);">Pendant votre abonnement :</strong> Nous conservons vos données personnelles aussi longtemps que vous êtes client.</p>
+                    <p><strong style="color: var(--gold);">Après résiliation :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Données de paiement : conservées 7 ans (obligation légale et fiscale)</li>
+                        <li>Données de compte : supprimées dans un délai de 30 jours</li>
+                        <li>Données d'utilisation anonymisées : conservées à titre statistique</li>
+                    </ul>
+                    <p class="mt-4">Vous pouvez demander la suppression de vos données à tout moment en contactant support@iptv-afrika.com.</p>
+                </div>
+            </div>
+
+            <!-- Article 6: Sécurité des Données -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">6. Sécurité de Vos Données</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Nous mettons en place des mesures techniques et organisationnelles pour protéger vos données :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Chiffrement SSL/TLS de toutes les communications</li>
+                        <li>Bases de données sécurisées avec contrôle d'accès</li>
+                        <li>Authentification à deux facteurs pour les comptes administrateurs</li>
+                        <li>Audits de sécurité réguliers</li>
+                        <li>Politiques de confidentialité strictes pour nos employés</li>
+                    </ul>
+                    <p class="mt-4">Cependant, aucun système de sécurité n'est 100% impénétrable. Si vous pensez que vos données ont été compromises, contactez-nous immédiatement.</p>
+                </div>
+            </div>
+
+            <!-- Article 7: Vos Droits -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">7. Vos Droits en Matière de Données Personnelles</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Vous avez les droits suivants concernant vos données personnelles :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong style="color: var(--gold);">Droit d'accès :</strong> Obtenir une copie de vos données</li>
+                        <li><strong style="color: var(--gold);">Droit de rectification :</strong> Corriger les informations inexactes</li>
+                        <li><strong style="color: var(--gold);">Droit à l'effacement :</strong> Demander la suppression de vos données (sous certaines conditions)</li>
+                        <li><strong style="color: var(--gold);">Droit à la limitation :</strong> Demander la limitation du traitement</li>
+                        <li><strong style="color: var(--gold);">Droit à la portabilité :</strong> Recevoir vos données dans un format courant</li>
+                        <li><strong style="color: var(--gold);">Droit d'opposition :</strong> Vous opposer au traitement de vos données</li>
+                    </ul>
+                    <p class="mt-4">Pour exercer ces droits, contactez-nous à : <strong style="color: var(--gold);">contact@iptv-afrika.com</strong></p>
+                </div>
+            </div>
+
+            <!-- Article 8: Cookies et Technologies de Suivi -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">8. Cookies et Technologies de Suivi</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Notre site utilise des cookies pour :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Maintenir votre session de connexion</li>
+                        <li>Mémoriser vos préférences</li>
+                        <li>Analyser l'utilisation du site (Google Analytics)</li>
+                        <li>Améliorer votre expérience utilisateur</li>
+                    </ul>
+                    <p class="mt-4">Vous pouvez contrôler les cookies via les paramètres de votre navigateur. La désactivation de certains cookies peut affecter la fonctionnalité du site.</p>
+                </div>
+            </div>
+
+            <!-- Article 9: Modifications de cette Politique -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">9. Modifications de cette Politique</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Nous nous réservons le droit de modifier cette politique à tout moment. Les modifications seront communiquées via email aux utilisateurs enregistrés. L'utilisation continue de nos services après modification implique votre acceptation des nouvelles conditions.</p>
+                </div>
+            </div>
+
+            <!-- Article 10: Contact et Réclamations -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">10. Contact et Réclamations</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p><strong style="color: var(--gold);">Pour toute question concernant cette politique :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Email : contact@iptv-afrika.com</li>
+                        <li>WhatsApp RDC : +243 86 049 33 45</li>
+                        <li>WhatsApp Maroc : +212 699 14 000 1</li>
+                    </ul>
+                    <p class="mt-4">Si vous estimez que nous ne respectons pas votre vie privée, vous pouvez déposer une réclamation auprès des autorités de protection des données de votre pays.</p>
+                </div>
+            </div>
+
+            <!-- Date de dernière mise à jour -->
+            <div class="mt-16 pt-8 border-t" style="border-color: rgba(212, 165, 116, 0.2);">
+                <p class="text-sm" style="color: var(--text-muted);">
+                    <strong style="color: var(--gold);">Dernière mise à jour :</strong> 29 mars 2026
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="contact" class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <!-- Col 1: Logo -->
+                <div class="md:col-span-1">
+                    <div class="font-heading text-2xl font-bold italic mb-4" style="color: var(--gold); letter-spacing: 2px;">Mon IPTV Africa</div>
+                    <p class="font-sans text-sm leading-relaxed" style="color: var(--text-muted);">
+                        Mon IPTV Africa disponible en <span style="color: var(--gold);">Côte d'Ivoire, Sénégal, Gabon, Congo RDC, Maroc et Canada</span>. Centralisez tous vos divertissements <span style="color: var(--gold);">Canal+, Netflix, Amazon Prime et Apple TV</span> en un seul abonnement. 22 000+ chaînes, 120 000+ films & séries. Tous vos divertissements via internet.
+                    </p>
+                </div>
+
+                <!-- Col 2: Navigation -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">NAVIGATION</div>
+                    <div class="space-y-3">
+                        <a href="/about" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">À Propos</a>
+                        <a href="/abonnements" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Abonnements</a>
+                        <a href="/vod" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Films & Séries</a>
+                        <a href="/sports" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Sports</a>
+                        <a href="/installation" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Installation</a>
+                        <a href="/app/login" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Login</a>
+                    </div>
+                </div>
+
+                <!-- Col 3: Contact -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">CONTACT</div>
+                    <div class="space-y-3">
+                        <div>
+                            <a href="https://wa.me/243860493345?text=https://moniptv.africa" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp RDC
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+243 86 049 33 45</div>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/212699140001?text=https://moniptv.africa" target="_blank" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                                WhatsApp Maroc
+                            </a>
+                            <div class="font-sans text-xs ml-7" style="color: var(--text-muted); margin-top: 0.25rem;">+212 699 14 000 1</div>
+                        </div>
+                        <a href="mailto:contact@iptv-afrika.com" class="flex items-center gap-3 font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            Email
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 4: Legal -->
+                <div>
+                    <div class="label-text mb-6" style="color: var(--gold);">LEGAL</div>
+                    <div class="space-y-3">
+                        <a href="/cgv" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Conditions generales</a>
+                        <a href="/politique-confidentialite" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Politique de confidentialite</a>
+                        <a href="/mentions-legales" class="block font-sans text-sm transition-colors duration-300" style="color: var(--text-muted);" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Mentions legales</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- World Coverage Section -->
+            <div class="mb-12 pb-12" style="border-bottom: 1px solid var(--border-gold);">
+                <div class="text-center mb-8">
+                    <div class="label-text mb-4" style="color: var(--gold);">COUVERTURE MONDIALE</div>
+                    <p class="font-sans text-sm max-w-3xl mx-auto" style="color: var(--text-muted);">
+                        Mon IPTV Africa est disponible en <strong>Côte d'Ivoire, Sénégal, Gabon, Congo RDC, Maroc et Canada</strong>,
+                        ainsi que dans plus de 150 pays à travers l'Afrique, l'Europe, l'Amérique et au-delà.
+                        Profitez de 22 000+ chaînes et 120 000+ films & séries, où que vous soyez.
+                    </p>
+                </div>
+                <div class="flex flex-wrap items-center justify-center gap-6 lg:gap-8">
+                    <div class="text-center">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🇨🇮</div>
+                        <p class="font-sans text-xs font-semibold" style="color: var(--gold);">Côte d'Ivoire</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🇸🇳</div>
+                        <p class="font-sans text-xs font-semibold" style="color: var(--gold);">Sénégal</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🇬🇦</div>
+                        <p class="font-sans text-xs font-semibold" style="color: var(--gold);">Gabon</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🇨🇩</div>
+                        <p class="font-sans text-xs font-semibold" style="color: var(--gold);">Congo RDC</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🇲🇦</div>
+                        <p class="font-sans text-xs font-semibold" style="color: var(--gold);">Maroc</p>
+                    </div>
+                    <div class="text-center">
+                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🇨🇦</div>
+                        <p class="font-sans text-xs font-semibold" style="color: var(--gold);">Canada</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8" style="border-top: 1px solid var(--border-gold);">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        &copy; 2026 Mon IPTV Africa. Tous droits reserves.
+                    </p>
+                    <p class="font-sans text-xs" style="color: var(--text-muted);">
+                        Designed with <span style="color: var(--gold);">&#9670;</span> in Africa
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/statics/js/script.js"></script>
+
+</body>
+</html>

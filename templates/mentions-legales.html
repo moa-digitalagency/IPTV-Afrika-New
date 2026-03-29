@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mentions Légales - Mon IPTV Africa. Informations légales, conditions d'utilisation et droits de propriété intellectuelle de notre plateforme IPTV.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://moniptv.africa/mentions-legales">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Mentions Légales | Mon IPTV Africa">
+    <meta property="og:description" content="Mentions Légales - Mon IPTV Africa. Consultez nos mentions légales pour comprendre la propriété intellectuelle et les conditions d'utilisation.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moniptv.africa/mentions-legales">
+    <meta property="og:image" content="https://moniptv.africa/statics/img/og-mentions.jpg">
+
+    <title>Mentions Légales | Mon IPTV Africa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/statics/img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Poppins', 'system-ui', 'sans-serif'],
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/statics/css/style.css">
+    <link rel="stylesheet" href="/statics/css/index.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2">
+                <img src="/statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/about" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A PROPOS</a>
+                <a href="/abonnements" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="/vod" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">FILMS & SÉRIES</a>
+                <a href="/sports" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">SPORTS</a>
+                <a href="/installation" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">INSTALLATION</a>
+            </div>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="/abonnements" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Poppins', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-black/80 border-t border-gold backdrop-blur">
+            <div class="flex flex-col gap-4 px-6 py-6">
+                <a href="/about" class="label-text" style="color: var(--gold);">A PROPOS</a>
+                <a href="/abonnements" class="label-text" style="color: var(--text-muted);">ABONNEMENTS</a>
+                <a href="/vod" class="label-text" style="color: var(--text-muted);">FILMS & SÉRIES</a>
+                <a href="/sports" class="label-text" style="color: var(--text-muted);">SPORTS</a>
+                <a href="/installation" class="label-text" style="color: var(--text-muted);">INSTALLATION</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative pt-32 pb-16 overflow-hidden" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 74, 0.9) 100%);">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+            <div class="absolute top-0 -left-40 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4" style="color: var(--gold); font-family: 'Poppins', sans-serif;">
+                Mentions Légales
+            </h1>
+            <p class="text-lg" style="color: var(--text-muted);">
+                Informations légales et droits de propriété intellectuelle
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== CONTENT SECTION ========== -->
+    <section class="relative py-20" style="background: linear-gradient(180deg, rgba(10, 8, 6, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+
+            <!-- Article 1: Informations Générales -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">1. Informations Générales</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Raison Sociale :</strong> Mon IPTV Africa SARL
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Siège Social :</strong> Activité de prestation de services de streaming audiovisuel à la demande
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Gérant :</strong> Équipe de direction Mon IPTV Africa
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Contact :</strong> support@moniptv.africa
+                    </p>
+                    <p>
+                        Le présent site est destiné à fournir une information sur les services et produits proposés par Mon IPTV Africa. Ces mentions légales régissent l'utilisation du site moniptv.africa et des services qui y sont associés.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 2: Propriété Intellectuelle -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">2. Propriété Intellectuelle</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        Tous les contenus du site moniptv.africa, incluant notamment les textes, images, graphiques, logos, vidéos, icônes et tous autres éléments, sont la propriété de Mon IPTV Africa ou de ses partenaires et sont protégés par les lois internationales relatives aux droits d'auteur et à la propriété intellectuelle.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Droits d'auteur (Copyright) :</strong> Tous les droits d'auteur, droits voisins et droits afférents à la propriété intellectuelle sont réservés. Aucun élément du site ne peut être reproduit, distribué, modifié ou exploité sans l'autorisation écrite préalable de Mon IPTV Africa.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Marques déposées :</strong> "Mon IPTV Africa", le logo, et tous les éléments graphiques associés sont des marques déposées ou enregistrées. Leur utilisation sans autorisation est strictement interdite.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Interdictions :</strong> Toute reproduction, distribution, transmission, modification ou utilisation non autorisée des contenus constitue une violation des droits de propriété intellectuelle et peut donner lieu à des poursuites judiciaires.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 3: Limitation de Responsabilité -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">3. Limitation de Responsabilité</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Disclaimer général :</strong> Mon IPTV Africa n'est pas responsable des dommages directs ou indirects résultant de l'accès ou de l'utilisation du site, y compris notamment la perte de données, d'interuption de service ou les erreurs.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Exactitude des informations :</strong> Bien que Mon IPTV Africa s'efforce de maintenir des informations précises et à jour, nous ne garantissons pas l'exactitude, l'exhaustivité ou l'actualité de tout contenu affiché sur le site.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Services fournis "tel que" :</strong> Les services et le site sont fournis "tel que" sans garanties d'aucune sorte, explicites ou implicites, y compris les garanties de qualité marchande, d'aptitude à un usage particulier, ou de non-violation de droits.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Responsabilité maximale :</strong> En aucun cas, la responsabilité de Mon IPTV Africa ne dépassera le montant de l'abonnement payé par l'utilisateur au cours des 12 derniers mois.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 4: Conditions d'Utilisation du Site -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">4. Conditions d'Utilisation du Site</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Utilisation licite :</strong> L'utilisateur s'engage à utiliser le site de manière licite et à respecter les lois et réglementations applicables. Toute utilisation illégale ou contraire aux présentes mentions légales est strictement interdite.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Interdictions :</strong> L'utilisateur s'engage à ne pas :
+                    </p>
+                    <ul class="list-disc list-inside mb-4 ml-4">
+                        <li>Accéder à des parties non autorisées du site</li>
+                        <li>Contourner ou désactiver des mesures de sécurité</li>
+                        <li>Transmettre des malwares, virus ou logiciels nuisibles</li>
+                        <li>Effectuer des attaques par force brute ou injection SQL</li>
+                        <li>Utiliser des robots d'exploration ou racleurs automatisés</li>
+                        <li>Spam, phishing ou usurpation d'identité</li>
+                    </ul>
+                    <p>
+                        <strong style="color: var(--text-primary);">Suspension d'accès :</strong> Mon IPTV Africa se réserve le droit de suspendre ou résilier l'accès de tout utilisateur qui viole ces conditions.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 5: Contenu Tiers et Intégrité des Services -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">5. Contenu Tiers</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Contenu fournisseur :</strong> Mon IPTV Africa agrège des contenus audiovisuel provenant de sources tiers (chaînes TV, films, séries, documents). Ces contenus restent la propriété exclusive de leurs ayants droit respectifs.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Responsabilité limitée :</strong> Mon IPTV Africa agit en tant que distributeur et n'est pas responsable du contenu fourni par les tiers, notamment en cas de violation de droits d'auteur, d'inexactitudes, ou de contenus offensants.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Signalement :</strong> Tout abus ou violation de droits d'auteur doit être signalé à support@moniptv.africa. Mon IPTV Africa examinera les réclamations et prendra les mesures appropriées.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Respect des droits :</strong> Mon IPTV Africa respecte les droits de propriété intellectuelle et coopère avec les propriétaires de contenus pour assurer une distribution licite.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 6: Liens Externes -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">6. Liens Externes</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Sites tiers :</strong> Le site moniptv.africa contient des liens vers des sites tiers. Mon IPTV Africa n'est pas responsable du contenu, de la disponibilité ou des pratiques de ces sites externes.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Absence de contrôle :</strong> Mon IPTV Africa n'exerce aucun contrôle sur les sites tiers et ne peut être tenu responsable des dommages, pertes de données, ou autres préjudices résultant de votre visite sur ces sites.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Consentement implicite :</strong> En cliquant sur un lien externe, vous reconnaissez que vous quittez le site moniptv.africa et que vous acceptez les conditions et politiques du site vers lequel vous êtes redirigé.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Demande de suppression :</strong> Si vous êtes propriétaire d'un site et souhaitez que le lien vers votre site soit supprimé, contactez support@moniptv.africa avec les détails.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 7: Cookies et Suivi -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">7. Cookies et Suivi</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Utilisation des cookies :</strong> Mon IPTV Africa utilise des cookies pour améliorer votre expérience utilisateur, mémoriser vos préférences et analyser les performances du site.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Types de cookies :</strong>
+                    </p>
+                    <ul class="list-disc list-inside mb-4 ml-4">
+                        <li>Cookies de session (nécessaires au fonctionnement du site)</li>
+                        <li>Cookies analytiques (pour comprendre votre comportement)</li>
+                        <li>Cookies publicitaires (pour personnaliser les annonces)</li>
+                    </ul>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Consentement :</strong> Vous consentez à l'utilisation des cookies en continuant à utiliser le site. Vous pouvez modifier les paramètres de cookies dans votre navigateur à tout moment.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Politique détaillée :</strong> Pour plus d'informations, consultez notre Politique de Confidentialité.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 8: Modifications des Mentions Légales -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">8. Modifications des Mentions Légales</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Droit de modification :</strong> Mon IPTV Africa se réserve le droit de modifier les présentes mentions légales à tout moment, sans préavis.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Notification :</strong> Les modifications seront mises à jour sur cette page. Il vous incombe de consulter régulièrement les mentions légales pour rester informé des changements.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Acceptation implicite :</strong> Votre utilisation continue du site après des modifications signifie votre acceptation des nouvelles conditions.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 9: Droit Applicable et Juridiction -->
+            <article class="mb-12 pb-12 border-b" style="border-color: var(--border-gold);">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">9. Droit Applicable et Juridiction</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Loi applicable :</strong> Les présentes mentions légales et votre utilisation du site sont régies par les lois applicables dans le cadre de la prestation de services de streaming audiovisuel à la demande, y compris les réglementations sur la protection des données personnelles.
+                    </p>
+                    <p class="mb-4">
+                        <strong style="color: var(--text-primary);">Résolution des litiges :</strong> Tout litige découlant des présentes mentions légales ou de l'utilisation du site sera soumis aux tribunaux compétents. Les parties s'engagent à épuiser préalablement les recours à l'amiable.
+                    </p>
+                    <p>
+                        <strong style="color: var(--text-primary);">Médiation :</strong> En cas de différend, Mon IPTV Africa vous encourage à nous contacter pour tenter une résolution amiable avant toute action judiciaire.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Article 10: Nous Contacter -->
+            <article class="mb-12 pb-12">
+                <h2 class="text-3xl font-bold mb-6" style="color: var(--gold);">10. Contact</h2>
+                <div style="color: var(--text-muted); line-height: 1.8; font-size: 16px;">
+                    <p class="mb-4">
+                        Pour toute question concernant ces mentions légales, ou pour signaler une violation, veuillez nous contacter :
+                    </p>
+                    <div class="mt-6 p-6 rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                        <p class="mb-3">
+                            <strong style="color: var(--text-primary);">Email :</strong> <a href="mailto:support@moniptv.africa" style="color: var(--gold); text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">support@moniptv.africa</a>
+                        </p>
+                        <p class="mb-3">
+                            <strong style="color: var(--text-primary);">WhatsApp :</strong> <a href="https://wa.me/message/..." style="color: var(--gold); text-decoration: none; transition: opacity 0.3s;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Contactez-nous via WhatsApp</a>
+                        </p>
+                        <p class="mb-3">
+                            <strong style="color: var(--text-primary);">Réponse :</strong> Nous nous efforçons de répondre à toute demande dans les 48 heures.
+                        </p>
+                    </div>
+                    <p class="mt-6" style="color: var(--text-muted); font-size: 14px;">
+                        <strong style="color: var(--text-primary);">Dernière mise à jour :</strong> 29 Mars 2026
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ========== WORLD COVERAGE SECTION ========== -->
+    <section class="relative py-20" style="background: linear-gradient(135deg, rgba(30, 27, 74, 0.5) 0%, rgba(15, 23, 42, 0.8) 100%);">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4" style="color: var(--gold); font-family: 'Poppins', sans-serif;">
+                    Disponible Partout
+                </h2>
+                <p style="color: var(--text-muted); font-size: 16px;">
+                    Mon IPTV Africa est accessible dans 6 continents
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="p-4 text-center rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🇨🇮</div>
+                    <p style="color: var(--text-primary); font-weight: 600;">Côte d'Ivoire</p>
+                </div>
+                <div class="p-4 text-center rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🇸🇳</div>
+                    <p style="color: var(--text-primary); font-weight: 600;">Sénégal</p>
+                </div>
+                <div class="p-4 text-center rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🇬🇦</div>
+                    <p style="color: var(--text-primary); font-weight: 600;">Gabon</p>
+                </div>
+                <div class="p-4 text-center rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🇨🇩</div>
+                    <p style="color: var(--text-primary); font-weight: 600;">Congo RDC</p>
+                </div>
+                <div class="p-4 text-center rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🇲🇦</div>
+                    <p style="color: var(--text-primary); font-weight: 600;">Maroc</p>
+                </div>
+                <div class="p-4 text-center rounded-lg" style="background: rgba(255, 215, 0, 0.05); border: 1px solid var(--border-gold);">
+                    <div style="font-size: 32px; margin-bottom: 8px;">🇨🇦</div>
+                    <p style="color: var(--text-primary); font-weight: 600;">Canada</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer style="background: rgba(10, 8, 6, 0.9); border-top: 1px solid var(--border-gold);" class="py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+                <!-- Logo Column -->
+                <div>
+                    <a href="/" class="flex items-center gap-3 mb-6">
+                        <img src="/statics/img/logo.svg" alt="Logo" style="height: 48px; width: 48px;">
+                        <div>
+                            <div class="font-bold" style="color: var(--gold); font-size: 16px;">Mon IPTV</div>
+                            <div class="italic font-bold" style="color: var(--gold); font-size: 14px;">Africa</div>
+                        </div>
+                    </a>
+                    <p style="color: var(--text-muted); font-size: 14px; line-height: 1.6;">
+                        Le meilleur service IPTV pour toute l'Afrique et au-delà.
+                    </p>
+                </div>
+
+                <!-- Navigation Column -->
+                <div>
+                    <h4 class="font-bold mb-4" style="color: var(--text-primary); font-size: 16px;">Navigation</h4>
+                    <ul style="color: var(--text-muted); font-size: 14px; line-height: 2;">
+                        <li><a href="/about" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">À Propos</a></li>
+                        <li><a href="/abonnements" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Abonnements</a></li>
+                        <li><a href="/vod" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Films & Séries</a></li>
+                        <li><a href="/sports" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Sports</a></li>
+                        <li><a href="/installation" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Installation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Column -->
+                <div>
+                    <h4 class="font-bold mb-4" style="color: var(--text-primary); font-size: 16px;">Contact</h4>
+                    <ul style="color: var(--text-muted); font-size: 14px; line-height: 2;">
+                        <li>
+                            <a href="mailto:support@moniptv.africa" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                📧 Email
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/..." style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">
+                                💬 WhatsApp
+                            </a>
+                        </li>
+                        <li style="color: var(--text-muted); font-size: 13px; margin-top: 8px;">
+                            Réponse: 24-48h
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal Column -->
+                <div>
+                    <h4 class="font-bold mb-4" style="color: var(--text-primary); font-size: 16px;">Légal</h4>
+                    <ul style="color: var(--text-muted); font-size: 14px; line-height: 2;">
+                        <li><a href="/cgv" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Conditions générales</a></li>
+                        <li><a href="/politique-confidentialite" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Politique confidentialité</a></li>
+                        <li><a href="/mentions-legales" style="color: var(--gold); text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--text-muted)'" onmouseout="this.style.color='var(--gold)'">Mentions légales</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Footer -->
+            <div style="border-top: 1px solid var(--border-gold); padding-top: 16px;" class="text-center">
+                <p style="color: var(--text-muted); font-size: 14px;">
+                    © 2026 Mon IPTV Africa. Tous droits réservés. | Mentions Légales
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 8, 6, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 8, 6, 0.85)';
+            }
+        });
+    </script>
+
+</body>
+</html>
