@@ -131,6 +131,16 @@ def serve_static(filename):
     """Serve static files"""
     return send_from_directory('statics', filename)
 
+@app.route('/robots.txt')
+def serve_robots():
+    """Serve robots.txt from root"""
+    return send_from_directory(app.root_path, 'robots.txt')
+
+@app.route('/sitemap.xml')
+def serve_sitemap():
+    """Serve sitemap.xml from root"""
+    return send_from_directory(app.root_path, 'sitemap.xml')
+
 @app.errorhandler(404)
 def not_found(error):
     """Handle 404 errors"""
