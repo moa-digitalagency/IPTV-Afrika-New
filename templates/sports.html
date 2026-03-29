@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="IPTV Sport en Direct - Football, NBA, UFC, Tennis, F1, Rugby. Tous les matchs en qualité 4K">
-    <title>IPTV Sport en Direct - Football, NBA, UFC | Mon IPTV Africa</title>
+    <meta name="description" content="Regardez foot, NBA, UFC en direct depuis la Côte d'Ivoire, Sénégal, Gabon ou le Congo. Champions League, Coupe du Monde 2026 incluse. Qualité 4K.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://moniptv.africa/sports">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="IPTV Sport en Direct — Côte d'Ivoire, Sénégal, Gabon | Football, NBA | Mon IPTV Africa">
+    <meta property="og:description" content="Regardez foot, NBA, UFC en direct depuis la Côte d'Ivoire, Sénégal, Gabon ou le Congo. Champions League, Coupe du Monde 2026 incluse. Qualité 4K.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moniptv.africa/sports">
+    <meta property="og:image" content="https://moniptv.africa/statics/img/og-sports.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>IPTV Sport en Direct — Côte d'Ivoire, Sénégal, Gabon | Football, NBA | Mon IPTV Africa</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
@@ -31,8 +42,8 @@
     </script>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../statics/css/style.css">
-    <link rel="stylesheet" href="../statics/css/index.css">
+    <link rel="stylesheet" href="/statics/css/style.css">
+    <link rel="stylesheet" href="/statics/css/index.css">
 </head>
 <body>
 
@@ -41,7 +52,7 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
             <!-- Logo -->
             <a href="/" class="flex items-center gap-2">
-                <img src="../statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <img src="/statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
                 <div class="flex flex-col leading-tight">
                     <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
                     <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
@@ -102,8 +113,11 @@
                 <h1 class="font-heading text-4xl lg:text-5xl font-bold mb-6" style="color: var(--text-primary);">
                     IPTV Sport en <span class="italic gold-gradient-text">Direct</span>
                 </h1>
-                <p class="font-sans text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                <p class="font-sans text-lg max-w-2xl mx-auto mb-4" style="color: var(--text-muted);">
                     Tous les matchs de football, NBA, UFC, tennis et plus en qualité 4K
+                </p>
+                <p class="font-sans text-base max-w-2xl mx-auto" style="color: var(--text-muted);">
+                    Disponible en <span style="color: var(--gold); font-weight: 600;">Côte d'Ivoire, Sénégal, Gabon, Congo RDC</span> et partout. Regardez la <span style="color: var(--gold); font-weight: 600;">Coupe du Monde 2026</span> en direct sur Mon IPTV Africa.
                 </p>
             </div>
 
@@ -218,8 +232,8 @@
     </section>
 
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
+        <!-- ========== FOOTER ========== -->
+    <footer id="contact" class="relative py-20" style="background: var(--bg-elevated); border-top: 1px solid var(--border-gold);">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-12 mb-16">
                 <!-- Col 1: Logo -->
@@ -293,12 +307,35 @@
         </div>
     </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('hidden');
-        }
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mon IPTV Africa",
+      "url": "https://moniptv.africa",
+      "logo": "https://moniptv.africa/statics/img/logo.svg",
+      "description": "Service IPTV Sport - Regardez foot, NBA, UFC en direct en Côte d'Ivoire, Sénégal, Gabon, Congo RDC et partout.",
+      "areaServed": [
+        {"@type": "Country", "name": "Côte d'Ivoire"},
+        {"@type": "Country", "name": "Sénégal"},
+        {"@type": "Country", "name": "Gabon"},
+        {"@type": "Country", "name": "Congo, Democratic Republic of the"},
+        {"@type": "Country", "name": "Morocco"},
+        {"@type": "Country", "name": "Canada"}
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "availableLanguage": "French"
+      }
+    }
     </script>
-    <script src="../statics/js/script.js"></script>
-    <script src="../statics/js/index.js"></script>
+
+    <!-- Scripts -->
+    <script src="/statics/js/script.js"></script>
+    <script src="/statics/js/index.js"></script>
+
 </body>
 </html>
