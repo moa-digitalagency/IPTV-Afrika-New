@@ -21,12 +21,44 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 /* ===== INITIALIZATION ===== */
+/* ===== MOBILE MENU TOGGLE ===== */
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('hidden');
+    }
+}
+
+/* ===== FAQ TOGGLE ===== */
+function toggleFaq(button) {
+    const faqItem = button.parentElement;
+    const content = button.nextElementSibling;
+
+    if (faqItem && content) {
+        faqItem.classList.toggle('open');
+
+        // Close other FAQ items
+        const otherItems = document.querySelectorAll('.faq-item');
+        otherItems.forEach(item => {
+            if (item !== faqItem && item.classList.contains('open')) {
+                item.classList.remove('open');
+            }
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll reveal
     initScrollReveal();
 
     // Initialize navbar
     initNavbar();
+
+    // Initialize mobile menu
+    initMobileMenu();
+
+    // Initialize FAQ
+    initFaq();
 
     // Initialize channel filters if on channel list page
     if (document.querySelector('.filter-btn')) {
@@ -48,6 +80,44 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add page load animation
     document.body.style.opacity = '1';
 });
+
+/* ===== MOBILE MENU INITIALIZATION ===== */
+function initMobileMenu() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuLinks = document.querySelectorAll('#mobileMenu a');
+
+    if (mobileMenuBtn) {
+        // Toggle menu on button click
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleMobileMenu();
+        });
+    }
+
+    // Close menu when clicking on a link
+    if (menuLinks.length) {
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    }
+}
+
+/* ===== FAQ INITIALIZATION ===== */
+function initFaq() {
+    const faqButtons = document.querySelectorAll('[class*="faq"] button, .space-y-4 > div > button');
+
+    faqButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleFaq(this);
+        });
+    });
+}
 
 /* ===== SCROLL REVEAL INITIALIZATION ===== */
 function initScrollReveal() {
