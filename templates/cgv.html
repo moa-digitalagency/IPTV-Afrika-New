@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conditions Générales de Vente - Mon IPTV Africa. Consultez nos CGV pour comprendre les conditions d'utilisation de nos services de streaming IPTV en Côte d'Ivoire, Sénégal, Gabon, Congo RDC, Maroc et Canada.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://moniptv.africa/cgv">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Conditions Générales de Vente | Mon IPTV Africa">
+    <meta property="og:description" content="Conditions Générales de Vente - Mon IPTV Africa. Consultez nos CGV pour comprendre les conditions d'utilisation de nos services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moniptv.africa/cgv">
+    <meta property="og:image" content="https://moniptv.africa/statics/img/og-cgv.jpg">
+
+    <title>Conditions Générales de Vente | Mon IPTV Africa</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/statics/img/favicon.ico">
+    <link rel="apple-touch-icon" href="/statics/img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Poppins', 'system-ui', 'sans-serif'],
+                        'sans': ['Poppins', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/statics/css/style.css">
+    <link rel="stylesheet" href="/statics/css/index.css">
+</head>
+<body>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" style="background: rgba(10,8,6,0.85); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border-bottom: 1px solid var(--border-gold);" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20">
+            <!-- Logo -->
+            <a href="/" class="flex items-center gap-2">
+                <img src="/statics/img/logo.svg" alt="IPTV Africa Logo" style="height: 40px; width: 40px;">
+                <div class="flex flex-col leading-tight">
+                    <span class="font-heading text-sm font-bold" style="color: var(--gold); letter-spacing: 1px;">Mon IPTV</span>
+                    <span class="font-heading text-sm font-bold italic" style="color: var(--gold); letter-spacing: 1px;">Africa</span>
+                </div>
+            </a>
+
+            <!-- Center Nav Links (Desktop) -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="/about" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">A PROPOS</a>
+                <a href="/abonnements" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">ABONNEMENTS</a>
+                <a href="/vod" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">FILMS & SÉRIES</a>
+                <a href="/sports" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">SPORTS</a>
+                <a href="/installation" class="label-text" style="color: var(--text-muted); transition: color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">INSTALLATION</a>
+            </div>
+
+            <!-- CTA + Mobile Menu -->
+            <div class="flex items-center gap-4">
+                <a href="/abonnements" class="hidden sm:inline-flex gold-gradient-bg text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" style="color: var(--bg); font-family: 'Poppins', sans-serif;">
+                    S'abonner
+                </a>
+                <!-- Mobile Hamburger -->
+                <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-1.5 p-2">
+                    <span class="block w-6 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-4 h-0.5 rounded" style="background: var(--gold);"></span>
+                    <span class="block w-5 h-0.5 rounded" style="background: var(--gold);"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-black/80 border-t border-gold backdrop-blur">
+            <div class="flex flex-col gap-4 px-6 py-6">
+                <a href="/about" class="label-text" style="color: var(--gold);">A PROPOS</a>
+                <a href="/abonnements" class="label-text" style="color: var(--text-muted);">ABONNEMENTS</a>
+                <a href="/vod" class="label-text" style="color: var(--text-muted);">FILMS & SÉRIES</a>
+                <a href="/sports" class="label-text" style="color: var(--text-muted);">SPORTS</a>
+                <a href="/installation" class="label-text" style="color: var(--text-muted);">INSTALLATION</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="relative pt-32 pb-16 overflow-hidden" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 74, 0.9) 100%);">
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+            <div class="absolute top-0 -left-40 w-80 h-80 bg-orange-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+        </div>
+
+        <div class="relative max-w-5xl mx-auto px-6 text-center pt-20">
+            <h1 class="font-heading section-heading font-bold mb-6" style="color: var(--text-primary);">
+                Conditions Générales de <span class="italic gold-gradient-text">Vente</span>
+            </h1>
+            <p class="font-sans text-lg max-w-2xl mx-auto" style="color: var(--text-muted);">
+                Veuillez lire attentivement ces conditions avant d'utiliser notre service Mon IPTV Africa
+            </p>
+        </div>
+    </section>
+
+    <!-- ========== CGV CONTENT ========== -->
+    <section class="relative py-16 lg:py-24" style="background: var(--bg-elevated);">
+        <div class="max-w-4xl mx-auto px-6">
+
+            <!-- Article 1: Définitions -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">1. Définitions et Identification du Prestataire</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p><strong style="color: var(--gold);">Mon IPTV Africa</strong> (anciennement IPTV-Gabon.net, IPTV-Côte d'Ivoire.net, IPTV-Congo.net, IPTV-Sénégal.net) est un <strong style="color: var(--gold);">service de revente en pair-à-pair (P2P)</strong> d'accès à du contenu de streaming IPTV. Nous ne sommes pas une entreprise commerciale classique, mais plutôt un réseau de particuliers et de représentants commerciaux opérant dans les pays respectifs d'Afrique.</p>
+                    <p><strong style="color: var(--gold);">Siège principal :</strong> Maroc</p>
+                    <p><strong style="color: var(--gold);">Pays de couverture :</strong> Côte d'Ivoire, Sénégal, Gabon, Congo RDC, Maroc et Canada</p>
+                    <p>Les conditions générales s'appliquent à tout utilisateur accédant à notre plateforme et à tous les services fournis par Mon IPTV Africa.</p>
+                </div>
+            </div>
+
+            <!-- Article 2: Nature du Service -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">2. Nature et Étendue du Service</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa fournit un <strong style="color: var(--gold);">service de streaming IPTV</strong> disponible sur tous les appareils compatibles, notamment :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Smart TV (Samsung, LG, Sony, etc.)</li>
+                        <li>Appareils Android (téléphones, tablettes, Android TV Box)</li>
+                        <li>Appareils iOS (iPhone, iPad)</li>
+                        <li>Ordinateurs (Windows, macOS, Linux)</li>
+                        <li>Autres appareils compatibles</li>
+                    </ul>
+                    <p class="mt-4">Le service comprend l'accès à plus de <strong style="color: var(--gold);">22 000+ chaînes de télévision</strong>, <strong style="color: var(--gold);">120 000+ films et séries</strong>, ainsi que du contenu sportif en direct.</p>
+                </div>
+            </div>
+
+            <!-- Article 3: Disponibilité et Limitations Techniques -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">3. Disponibilité et Limitations Techniques</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa s'engage à maintenir le service <strong style="color: var(--gold);">sans interruption autant que possible</strong>. Cependant, des interruptions peuvent survenir pour des raisons indépendantes de notre volonté :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong style="color: var(--gold);">Blocages gouvernementaux :</strong> Les autorités de votre pays de résidence peuvent bloquer ou restreindre l'accès au service.</li>
+                        <li><strong style="color: var(--gold);">Restriction d'ISP :</strong> Votre fournisseur d'accès Internet peut ralentir, bloquer ou limiter la bande passante nécessaire.</li>
+                        <li><strong style="color: var(--gold);">Problèmes de connexion :</strong> La qualité et la stabilité dépendent de votre connexion Internet locale.</li>
+                        <li><strong style="color: var(--gold);">Maintenance serveur :</strong> Des mises à jour et maintenances peuvent être nécessaires.</li>
+                        <li><strong style="color: var(--gold);">Problèmes externes :</strong> Défaillances des serveurs fournisseurs, catastrophes naturelles, etc.</li>
+                    </ul>
+                    <p class="mt-4">Mon IPTV Africa ne peut être tenu responsable de ces situations échappant à son contrôle direct.</p>
+                </div>
+            </div>
+
+            <!-- Article 4: Support et Assistance -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">4. Support et Assistance Client</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa s'engage à fournir une assistance dans les meilleurs délais possibles.</p>
+                    <p><strong style="color: var(--gold);">Temps de réponse :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong style="color: var(--gold);">Clients d'abonnement :</strong> Réactivité garantie en moins de <strong style="color: var(--gold);">24 heures</strong> (voire 1 heure dans certains cas urgents)</li>
+                        <li><strong style="color: var(--gold);">Clients testeurs :</strong> Support disponible selon la disponibilité des équipes</li>
+                    </ul>
+                    <p class="mt-4">Notre équipe travaillera à résoudre tout problème technique en mettant en place des solutions appropriées, y compris la création d'une nouvelle ligne d'accès si nécessaire.</p>
+                </div>
+            </div>
+
+            <!-- Article 5: Responsabilité Limitée -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">5. Responsabilité Limitée et Applications Tierces</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa n'est <strong style="color: var(--gold);">pas responsable</strong> des problèmes liés aux applications tierces utilisées pour accéder au contenu, notamment :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>IBO Player</li>
+                        <li>IBO Player Pro</li>
+                        <li>IBPro Player</li>
+                        <li>Toute autre application compatible</li>
+                    </ul>
+                    <p class="mt-4">Ces applications sont <strong style="color: var(--gold);">des logiciels propriétaires payants</strong> mis à jour annuellement. En cas de problème lié à l'application :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Mon IPTV Africa contactera le support officiel (IBO Player, IBO Player Pro, IBPro Player)</li>
+                        <li>Nous effectuerons un suivi jusqu'à la résolution du problème</li>
+                        <li>Les prix et tarifs des applications sont référencés sur leurs sites respectifs</li>
+                    </ul>
+                    <p class="mt-4">Mon IPTV Africa facilite simplement le paiement et l'activation pour les clients des pays africains, mais chaque client peut également s'acquitter de la somme directement auprès du fournisseur de l'application.</p>
+                </div>
+            </div>
+
+            <!-- Article 6: Statut de Revendeur -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">6. Statut de Revendeur et Propriété des Serveurs</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa est un <strong style="color: var(--gold);">revendeur de services IPTV</strong> et ne possède pas les serveurs utilisés pour la diffusion du contenu. Nous travaillons avec <strong style="color: var(--gold);">plusieurs fournisseurs de serveurs</strong> pour garantir :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>La meilleure stabilité possible du service</li>
+                        <li>Une disponibilité optimale</li>
+                        <li>Un support réactif en cas de problème</li>
+                    </ul>
+                    <p class="mt-4">Nous sélectionnons continuellement les meilleurs serveurs du marché pour offrir la meilleure expérience possible à nos clients.</p>
+                </div>
+            </div>
+
+            <!-- Article 7: Conditions d'Utilisation -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">7. Conditions d'Utilisation Strictes</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>L'utilisateur accepte les conditions suivantes :</p>
+                    <p><strong style="color: var(--gold);">7.1 Usage Personnel Unique</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>L'abonnement est <strong style="color: var(--gold);">strictement personnel et non-transférable</strong></li>
+                        <li>L'utilisation sur <strong style="color: var(--gold);">un seul appareil principal</strong> est autorisée</li>
+                        <li>Toute réutilisation non autorisée sur d'autres appareils ou partage de codes d'accès est une <strong style="color: var(--gold);">violation grave</strong> de ces conditions</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">7.2 Interdiction de Réinstallation Non Autorisée</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>La réinstallation non autorisée du service sur d'autres appareils est <strong style="color: var(--gold);">strictement interdite</strong></li>
+                        <li>Toute tentative de contournement des mesures de sécurité entraînera la suspension immédiate du compte</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">7.3 Respect de la Légalité</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>L'utilisateur s'engage à respecter la loi en vigueur dans son pays de résidence</li>
+                        <li>Mon IPTV Africa ne peut être tenu responsable de l'utilisation du service en violation des lois locales</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Article 8: Abonnement et Paiement -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">8. Durée de l'Abonnement et Conditions de Paiement</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Les abonnements sont disponibles selon les périodes suivantes :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>24 heures de test gratuit (sans engagement)</li>
+                        <li>1 mois (renouvellement mensuel possible)</li>
+                        <li>6 mois (avec réduction)</li>
+                        <li>12 mois (avec réduction maximale)</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">Paiement :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Le paiement doit être effectué <strong style="color: var(--gold);">avant l'activation</strong> du service</li>
+                        <li>Les devises acceptées varient selon votre pays (FCFA, MAD, CAD, USD)</li>
+                        <li>Le paiement peut être effectué via divers moyens de paiement disponibles en ligne</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">Test Gratuit :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Durée : 24 heures sans frais</li>
+                        <li>Aucune carte bancaire requise</li>
+                        <li>Accès complet aux fonctionnalités pendant la période de test</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Article 9: Résiliation et Remboursement -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">9. Résiliation et Politique de Remboursement</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p><strong style="color: var(--gold);">Résiliation :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>L'utilisateur peut résilier son abonnement à tout moment en contactant notre support</li>
+                        <li>La résiliation prend effet immédiatement ou à la fin de la période de facturation selon la demande</li>
+                    </ul>
+                    <p class="mt-4"><strong style="color: var(--gold);">Remboursement :</strong></p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Les remboursements ne sont pas automatiques après la résiliation</li>
+                        <li>Toute demande de remboursement doit être justifiée (problème technique irrésolu après 24h de support)</li>
+                        <li>Le délai de remboursement est de 7 à 14 jours après approbation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Article 10: Suspension et Résiliation de Compte -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">10. Suspension et Résiliation de Compte</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa se réserve le droit de suspendre ou résilier un compte en cas de :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li><strong style="color: var(--gold);">Violation des conditions d'utilisation</strong> (partage, réinstallation non autorisée)</li>
+                        <li><strong style="color: var(--gold);">Activités frauduleuses</strong> ou utilisation abusive du service</li>
+                        <li><strong style="color: var(--gold);">Non-paiement</strong> des frais d'abonnement</li>
+                        <li><strong style="color: var(--gold);">Utilisation à des fins illégales</strong> dans le pays de résidence</li>
+                        <li>Dépassement excessif de la bande passante (plus de 10 connexions simultanées)</li>
+                    </ul>
+                    <p class="mt-4">En cas de suspension, aucun remboursement ne sera accordé pour la période restante.</p>
+                </div>
+            </div>
+
+            <!-- Article 11: Protection des Données -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">11. Protection des Données Personnelles</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Les données personnelles de l'utilisateur (nom, email, adresse, moyens de paiement) sont collectées uniquement pour :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>L'activation de l'abonnement</li>
+                        <li>La gestion des paiements</li>
+                        <li>L'assistance technique</li>
+                        <li>Les communications essentielles</li>
+                    </ul>
+                    <p class="mt-4">Mon IPTV Africa s'engage à :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Protéger les données contre tout accès non autorisé</li>
+                        <li>Ne pas partager les données avec des tiers sans consentement</li>
+                        <li>Respecter les lois applicables en matière de protection de données</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Article 12: Limitation de Responsabilité -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">12. Limitation de Responsabilité</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p>Mon IPTV Africa <strong style="color: var(--gold);">ne peut être tenu responsable</strong> de :</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Les interruptions de service dues à des facteurs externes</li>
+                        <li>Les dommages directs ou indirects résultant de l'utilisation du service</li>
+                        <li>Les pertes de données ou les dysfonctionnements d'équipement</li>
+                        <li>Les violations de lois locales par l'utilisateur</li>
+                        <li>Les problèmes liés aux applications tierces</li>
+                    </ul>
+                    <p class="mt-4">L'utilisation du service se fait <strong style="color: var(--gold);">à vos propres risques</strong>.</p>
+                </div>
+            </div>
+
+            <!-- Article 13: Dispositions Diverses -->
+            <div class="mb-12">
+                <h2 class="font-heading text-2xl font-bold mb-6" style="color: var(--gold);">13. Dispositions Diverses</h2>
+                <div class="space-y-4" style="color: var(--text-muted);">
+                    <p><strong style="color: var(--gold);">Modification des CGV :</strong> Mon IPTV Africa se réserve le droit de modifier ces conditions à tout moment. Les modifications seront communiquées aux utilisateurs.</p>
+                    <p><strong style="color: var(--gold);">Droit applicable :</strong> Ces conditions sont régies par la loi du pays de résidence de l'utilisateur, en conformité avec la législation marocaine.</p>
+                    <p><strong style="color: var(--gold);">Contact :</strong> Pour toute question concernant ces conditions, veuillez nous contacter via WhatsApp ou email.</p>
+                </div>
+            </div>
+
+            <!-- Date de dernière mise à jour -->
+            <div class="mt-16 pt-8 border-t" style="border-color: rgba(212, 165, 116, 0.2);">
+                <p class="text-sm" style="color: var(--text-muted);">
+                    <strong style="color: var(--gold);">Dernière mise à jour :</strong> 29 mars 2026
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="relative py-12" style="background: rgba(10,8,6,0.95); border-top: 1px solid var(--border-gold);">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="font-sans text-sm" style="color: var(--text-muted); margin-bottom: 1rem;">
+                Mon IPTV Africa disponible en <span style="color: var(--gold);">Côte d'Ivoire, Sénégal, Gabon, Congo RDC, Maroc et Canada</span>. Centralisez tous vos divertissements <span style="color: var(--gold);">Canal+, Netflix, Amazon Prime et Apple TV</span> en un seul abonnement. 22 000+ chaînes, 120 000+ films & séries. Tous vos divertissements via internet.
+            </p>
+            <p class="font-sans text-xs" style="color: var(--text-muted);">
+                &copy; 2026 Mon IPTV Africa. Tous droits réservés.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/statics/js/script.js"></script>
+
+</body>
+</html>
