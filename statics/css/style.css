@@ -19,19 +19,19 @@ body {
 /* ===== UNIFIED RESPONSIVE SIZING ===== */
 /* Applied to: H2, H3 (countries), stats, features, benefits */
 
-/* Desktop (1024px+): 2.5rem (40px) */
+/* Desktop (1024px+): 2.0rem (32px) */
 .section-heading,
 .country-heading,
 .stats-large,
 .secondary-heading,
 .feature-heading,
 .benefit-heading {
-    font-size: 2.5rem; /* 40px - Desktop */
+    font-size: 2.0rem; /* 32px - Desktop */
     line-height: 1.1;
     font-weight: bold;
 }
 
-/* Tablet (768-1024px): 2.0rem (32px) */
+/* Tablet (768-1024px): 1.5rem (24px) */
 @media (max-width: 1024px) and (min-width: 768px) {
     .section-heading,
     .country-heading,
@@ -39,11 +39,11 @@ body {
     .secondary-heading,
     .feature-heading,
     .benefit-heading {
-        font-size: 2.0rem; /* 32px - Tablet */
+        font-size: 1.5rem; /* 24px - Tablet */
     }
 }
 
-/* Mobile (480-768px): 1.5rem (24px) */
+/* Mobile (480-768px): 1.0rem (16px) */
 @media (max-width: 768px) {
     .section-heading,
     .country-heading,
@@ -51,11 +51,11 @@ body {
     .secondary-heading,
     .feature-heading,
     .benefit-heading {
-        font-size: 1.5rem; /* 24px - Mobile */
+        font-size: 1.0rem; /* 16px - Mobile */
     }
 }
 
-/* Small Mobile (< 480px): 1.25rem (20px) */
+/* Small Mobile (< 480px): 0.875rem (14px) */
 @media (max-width: 480px) {
     .section-heading,
     .country-heading,
@@ -63,7 +63,7 @@ body {
     .secondary-heading,
     .feature-heading,
     .benefit-heading {
-        font-size: 1.25rem; /* 20px - Small Mobile */
+        font-size: 0.875rem; /* 14px - Small Mobile */
     }
 }
 
