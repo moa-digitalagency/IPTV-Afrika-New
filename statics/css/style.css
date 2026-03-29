@@ -16,62 +16,54 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== SECTION HEADINGS (H2) - UNIFIED SIZING ===== */
-.section-heading {
+/* ===== UNIFIED RESPONSIVE SIZING ===== */
+/* Applied to: H2, H3 (countries), stats, features, benefits */
+
+/* Desktop (1024px+): 3.75rem (60px) */
+.section-heading,
+.country-heading,
+.stats-large,
+.secondary-heading,
+.feature-heading,
+.benefit-heading {
     font-size: 3.75rem; /* 60px - Desktop */
     line-height: 1.1;
     font-weight: bold;
 }
 
-@media (max-width: 1024px) {
-    .section-heading {
+/* Tablet (768-1024px): 2.5rem (40px) */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .section-heading,
+    .country-heading,
+    .stats-large,
+    .secondary-heading,
+    .feature-heading,
+    .benefit-heading {
         font-size: 2.5rem; /* 40px - Tablet */
     }
 }
 
+/* Mobile (480-768px): 2.0rem (32px) */
 @media (max-width: 768px) {
-    .section-heading {
+    .section-heading,
+    .country-heading,
+    .stats-large,
+    .secondary-heading,
+    .feature-heading,
+    .benefit-heading {
         font-size: 2.0rem; /* 32px - Mobile */
     }
 }
 
+/* Small Mobile (< 480px): 1.5rem (24px) */
 @media (max-width: 480px) {
-    .section-heading {
+    .section-heading,
+    .country-heading,
+    .stats-large,
+    .secondary-heading,
+    .feature-heading,
+    .benefit-heading {
         font-size: 1.5rem; /* 24px - Small Mobile */
-    }
-}
-
-/* ===== COUNTRY HEADINGS (H3) - REDUCED ON MOBILE ===== */
-.country-heading {
-    font-size: 1.875rem; /* 30px - Desktop */
-    line-height: 1.2;
-}
-
-@media (max-width: 768px) {
-    .country-heading {
-        font-size: 2.0rem; /* 32px - Mobile */
-    }
-}
-
-/* ===== STATS NUMBERS - REDUCED ON MOBILE ===== */
-.stats-large {
-    font-size: 3.125rem; /* 50px - Desktop */
-}
-
-@media (max-width: 768px) {
-    .stats-large {
-        font-size: 2.0rem; /* 32px - Mobile */
-    }
-}
-
-/* ===== SECONDARY HEADINGS (H4) - REDUCED ON MOBILE ===== */
-.secondary-heading {
-    font-size: 1.25rem; /* 20px - Desktop */
-}
-
-@media (max-width: 768px) {
-    .secondary-heading {
-        font-size: 2.0rem; /* 32px - Mobile */
     }
 }
 
